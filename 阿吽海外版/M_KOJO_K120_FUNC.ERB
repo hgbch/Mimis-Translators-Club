@@ -1,0 +1,1366 @@
+﻿;更新日期：2024年12月31日
+;--------------------------------------------------------
+;K120_INSEMINATION_POSSIBLE
+;Getter method to determine if insemination is possible.
+;This means: Not pregnant, permission to do it raw on dangerous day and not using contraceptives (also having no condom equipped).
+;
+;Return: True if insemination possible, false otherwise.
+;--------------------------------------------------------
+@K120_INSEMINATION_POSSIBLE
+#FUNCTION
+RETURNF (!TALENT:妊娠 && CFLAG:生解禁 >= 2 && !TCVAR:口服避孕薬 && !TEQUIP:PLAYER:避孕套)
+
+
+;--------------------------------------------------------
+;K120_IS_DANGEROUS_DAYS
+;Getter method to determine if currently on either "Before dangerous day", "Dangerous day" or "Ovulation".
+;
+;Return: True if on (any) dangerous day, false otherwise.
+;--------------------------------------------------------
+@K120_IS_DANGEROUS_DAYS
+#FUNCTION
+RETURNF (CFLAG:900 > 5 && CFLAG:900 < 9)
+
+;--------------------------------------------------------
+;K120_PLAYER_EJACULATION_IMMINENT
+;Getter method to determine if player is about to ejaculate and not currently ejaculating.
+;
+;Return: True if ejaculation imminent, false otherwise.
+;--------------------------------------------------------
+@K120_PLAYER_EJACULATION_IMMINENT
+#FUNCTION
+RETURNF (TCVAR:PLAYER:イきそう && !NOWEX:PLAYER:射精)
+
+;--------------------------------------------------------
+;K120_INSEMINATION_PLEA
+;Method encapsulating the logic and dialogue of her wanting to experience the pleasure of being cummed inside.
+;Note: To be used at the end of any and all V penetration calls; if applicable/wished.
+;      Also has a case for when Player already came inside, where she begs for even more.
+;
+;The following is needed for her to beg for insemination:
+;- Love
+;- Insemination possible (s. function)
+;- On dangerous days (s. function)
+;- Player is about to climax
+;- Current target is Aunn (ID:120) - should always be the case, but we'll make sure here just in case
+;
+;TODO: Should she try and force insemination, i.e. force player climax at the end of it with flavor text?
+;TODO: If yes, make it a toggle in update/first encounter to not spring it on people?
+;
+;Return: void (simply prints dialogue)
+;--------------------------------------------------------
+@K120_INSEMINATION_PLEA
+IF (TALENT:恋慕 && K120_INSEMINATION_POSSIBLE() && K120_IS_DANGEROUS_DAYS() && K120_PLAYER_EJACULATION_IMMINENT() && EX:TARGET:膣内精液 <= 0 && TARGET == 120)
+    PRINTFORML 
+    PRINTFORMDW Aunn %SPLIT_G(@"notices you are about to climax:feels your penis %FSYN("throb")% inside her:realizes you are at your limit:senses that you are about to %FSYN("ejac:v")%")%.
+    PRINTFORML 「%MOAN("m",,3)%... %CALLNAME:MASTER%-san...!」
+    PRINTFORMDW %SPLIT_G("Her pupils change into hearts:Her tongue hangs out:She begins to drool:Her expression goes slack:Her eyes lose all focus:Her entire body heats up:Her voice starts shaking:The animal inside her awakens:A deep desire surfaces")% as she becomes %SPLIT_G("entranced:mesmerized:enchanted:absorbed:infatuated:obsessed:enraptured:intoxicated")% by the %SPLIT_G("possibility:probability:opportunity:prospect:chance:likelihood")% of %SPLIT_G("fertilization:insemination:impregnation:inception:procreation:reproduction")%.
+    PRINTFORML 「%SPLIT_G(@"Inside...! Please, %FSYN("pour")% it all inside!:Today... please, you absolutely have to do it inside!:Please, for today, I want you to %FSYN("pour")% it all inside!:Today is special, so please do it inside, okay?:My womb... Please fill it all up!:Please... %FSYN("pour")% it all inside, just for today...:Don't pull out for today, please!")%」
+    PRINTFORMDW Even though she used the word『please』her demeanor is overbearing and almost domineering.
+    IF ABL:Ｖ感覚 >= 5
+        PRINTFORMDW The insides of her %SLIT(TARGET)% follow her plea and \@ RAND:2 == 0 ? %FSYN("twine")% intensively around your # %FSYN("clamp")% down hard on your \@ %FSYN("penis")%, set on %FSYN("milk:ing")% your %FSYN("balls")% dry.
+    ENDIF
+    SELECTCASE TEQUIP:TARGET:体位
+        CASE POSE_MISSIONARY
+        ;missionary
+            PRINTFORMD Aunn %SPLIT_G("locks her legs behind your back:wraps her legs around you:uses her hands to pull your hips toward her:grabs your arms to pull you in")% 
+        CASE POSE_DOGGYSTYLE
+        ;doggy style
+            PRINTFORMD Aunn %SPLIT_G(@"uses her ankles to push you deeper:pushes her %SPLIT_G("ass:butt:rear:behind")% into you:reaches behind her to pull you in by your arms")% 
+        CASE POSE_COWGIRL
+        ;cowgirl
+            PRINTFORMD Aunn %SPLIT_G("grabs your wrists and pins them down:pushes her weight down on your chest:grabs you by your shoulders:leans into a tight hug:shakes her hips eagerly before you can think about it")% 
+        CASE POSE_LOTUS
+        ;lotus
+            PRINTFORMD Aunn %SPLIT_G("locks her legs behind your back:wraps her legs around you:hugs you tightly:shakes her hips to bar you from standing up")% 
+        CASE POSE_REVLOTUS
+        ;reverse lotus
+            PRINTFORMD Aunn %SPLIT_G(@"uses her weight to hold you down:leans back into you to bar you from standing up:rocks her behind eagerly before you can think about it")% 
+        CASEELSE
+        ;generic
+            PRINTFORMD Aunn clings to you firmly
+    ENDSELECT
+    PRINTFORMDW and tries to force you to %SPLIT_G("ejaculate:cum:shoot:release:come")% inside...
+ELSEIF (TALENT:恋慕 && K120_INSEMINATION_POSSIBLE() && K120_IS_DANGEROUS_DAYS() && K120_PLAYER_EJACULATION_IMMINENT() && EX:TARGET:膣内精液 > 0 && TARGET == 120)
+    PRINTFORML 
+    PRINTFORMDW Aunn %SPLIT_G(@"notices you are about to climax:feels your penis %FSYN("throb")% inside her:realizes you are at your limit:senses that you are about to %FSYN("ejac:v")%")% again.
+    PRINTFORML 「%MOAN("m",,3)%... %SPLIT_G("Do it inside:Let it out inside:Don't pull out")% again, %CALLNAME:MASTER%-san! Please...!」
+    IF ABL:Ｖ感覚 >= 5
+        PRINTFORMDW The insides of her %SLIT(TARGET)% follow her plea and \@ RAND:2 == 0 ? %FSYN("twine")% intensively around your # %FSYN("clamp")% down hard on your \@ %FSYN("penis")%, set on further %FSYN("milk:ing")% your %FSYN("balls")% dry.
+    ENDIF
+    PRINTFORMDW She shows no signs of trying to force you this time, since you followed her request earlier and only looks at you with eyes full of want...
+ENDIF
+
+;--------------------------------------------------------
+;K120_CAN_INSEMINATION_BE_WASTED
+;Getter method to determine if insemination can be wasted by not cumming in the womb.
+;Can be used in conjunction with KOJO_EGG files to use before insemination waste comment for extra context.
+;
+;Return: True if wastable, false otherwise.
+;--------------------------------------------------------
+@K120_CAN_INSEMINATION_BE_WASTED
+#FUNCTION
+RETURNF (TALENT:恋慕 && K120_INSEMINATION_POSSIBLE() && K120_IS_DANGEROUS_DAYS() && NOWEX:PLAYER:射精)
+
+;--------------------------------------------------------
+;K120_INSEMINATION_WASTE_COMMENT
+;Method encapsulating the logic and dialogue of her complaining about the Player wasting his seed.
+;Note: To be used at the end of any and all non-V penetration calls; if applicable/wished.
+;
+;The following is needed for her to comment on the waste (s. K120_CAN_INSEMINATION_BE_WASTED):
+;- Love
+;- Insemination possible
+;- On dangerous days
+;- Player is ejaculating
+;
+;Parameters:
+;- ARGS -- Passable string of ejaculation destination used for determining appropriate dialogue
+;
+;Return: void (simply prints dialogue)
+;--------------------------------------------------------
+@K120_INSEMINATION_WASTE_COMMENT(ARGS)
+IF K120_CAN_INSEMINATION_BE_WASTED()
+    PRINTFORML 
+    PRINTFORMDL Aunn looks %SPLIT_G("sad:unhappy:somber:wistful:dejected:glum:forlorn")% as the target of your %SEMEN(,1)% is not her womb...
+    SELECTCASE ARGS
+        CASE "inMouth"
+            PRINTFORMW 「My mouth... What a waste...」
+        CASE "onHand"
+            PRINTFORMW 「My hand... What a waste...」
+        CASE "onChest"
+            PRINTFORMW 「My chest... What a waste...」
+        CASE "onPubicArea"
+            PRINTFORMW 「So close and yet so far... What a waste...」
+        CASE "onFeet"
+            PRINTFORMW 「My feet... What a waste...」
+        CASE "inAnus"
+            PRINTFORMW 「The wrong hole... What a waste...」
+        CASE "onArmpits"
+            PRINTFORMW 「My armpit... What a waste...」
+        CASE "inHair"
+            PRINTFORMW 「My hair... What a waste...」
+        CASE "onPubicHair"
+            PRINTFORMW 「My pubic hair... So close and yet so far... What a waste...」
+    ENDSELECT
+ENDIF
+
+;--------------------------------------------------------
+;K120_KISS_DIALOGUE
+;Method encapsulating the logic and dialogue of kissing Aunn. Includes first kiss flair.
+;
+;Return: void (simply prints dialogue)
+;--------------------------------------------------------
+@K120_KISS_DIALOGUE
+;Intro of initiating the kiss
+IF CFLAG:うふふ
+    PRINTFORMDW You %SPLIT_G("close what distance remains:lean into Aunn:press yourself against Aunn")% and %SPLIT_G("passionately:intensely:fervently:eagerly")% %SPLIT_G("press your lips against hers:meet her lips with yours:kiss her:lock your lips with hers")%.
+ELSE
+    PRINTFORMDW You %SPLIT_G("close the distance:pull Aunn close:lean forward")% and %SPLIT_G("gently:tenderly:softly:gingerly")% %SPLIT_G("press your lips against hers:meet her lips with yours:kiss her:rest your lips on hers")%.
+ENDIF
+
+;Kiss dialogue (and end of it) + Handling of first kiss (which does not go through the final block)
+PRINTFORML 「%RANDKISS("kiss")%... %FSYN("lips_muffle")%...」
+IF (TALENT:恋慕 && !TALENT:キス未経験)
+    PRINTFORMDW You separate her %SPLIT_G("soft:delicate:silky:velvety")% lips with your tongue and turn the kiss %SPLIT_G("affectionate:passionate:loving:sensual")% as you push inside.
+    PRINTFORML 「%RANDLIPS(,"kiss:heart:name")%...」
+    PRINTFORMDW Aunn %SPLIT_G("responds:replies:retorts:answers")% by %SPLIT_G("gently:tenderly:softly:gingerly:timidly")% %SPLIT_G("stroking:caressing:playing with:prodding:poking")% your tongue with hers.
+    PRINTFORMDW You %SPLIT_G("pull away:break the kiss:lean back")% and %SPLIT_G("a bridge of saliva connects the two of you:form a trail of saliva between you two:leave a thread of saliva behind:you can't tell if the saliva in your mouth is your own anymore")%.
+ELSEIF TALENT:キス未経験
+    PRINTFORMDW Aunn's eyes widen as she experiences the soft touch of another's lips on hers for the first time.
+    IF (TALENT:思慕 || TALENT:恋慕)
+        PRINTFORMDW Her shock quickly subsides and she happily wraps her arms around you when you end the short exchange.
+        PRINTFORML 「%FSYN("lips_over")%... My first kiss...」
+        PRINTFORMDW You ask her if she disliked it and she vehemently shakes her head.
+        PRINTFORML 「No... I'm happy that my first was with %CALLNAME:MASTER%-san... How about you...?」
+        IF TALENT:MASTER:キス未経験
+            PRINTFORMDW You smile and nod at her, telling her it was your first too.
+            PRINTFORML 「Really?! That makes me so happy! To think you'd choose me of all people...」
+            PRINTFORMDW She squeezes you and runs her fingers along your back with an affectionate smile.
+        ELSE
+            PRINTFORMDW You give her an apologetic smile and scratch your check, but she shakes her head again.
+            PRINTFORML 「Don't be sorry! It's fine... I... I shouldn't have asked... B-But I'm not sad or anything!」
+            PRINTFORMDW She buries her face in your chest and nuzzles into it.
+        ENDIF
+        PRINTFORML 「Kiss...」
+        PRINTFORMDW Aunn breaks her embrace and traces her lips with her fingers and then looks at you with puppy eyes.
+        PRINTFORML 「C-Can we do it again...?」
+        PRINTFORMDW You give her your answer by leaning in and locking your lips with hers again...
+    ELSE
+        PRINTFORMDW Her shock slowly subsides and she traces her lips with her fingers once you break the kiss.
+        PRINTFORML 「My first kiss...」
+        PRINTFORMDW You ask her if she disliked it and she shakes her head.
+        PRINTFORML 「That's not it... I just feel like we moved a little too fast...」
+        PRINTFORMDW Aunn looks up at you with an inquisitive gaze.
+        PRINTFORML 「Was this... you know... your first too?」
+        IF TALENT:MASTER:キス未経験
+            PRINTFORMDW You give her an affirmative nod.
+            PRINTFORML 「Ah... Haha... I wonder if this is alright...?」
+        ELSE
+            PRINTFORMDW You give her an apologetic frown and scratch your check.
+            PRINTFORML 「Ah... I see...」
+        ENDIF
+        PRINTFORMDW She seems really regretful...
+    ENDIF
+    RETURN 1
+ELSE
+    PRINTFORML 「%FSYN("lips_over")%...」
+ENDIF
+
+;Finishing dialogue
+IF TALENT:恋人
+    PRINTFORML 「%MOAN("m")%...%CALLNAME:MASTER%-san... Uhehehe～, luv yuu～♥」
+    PRINTFORMDW Her expression melts and she turns into a giggling blob of mess, drunk on love...
+ELSE
+    PRINTFORMDW Her wanton gaze silently lingers on you...
+ENDIF
+
+;--------------------------------------------------------
+;K120_DO_NOTHING_CHOICES
+;Method encapsulating the dialogue for extra options in the "Do Nothing" command.
+;
+;Return: void (prints dialogue)
+;--------------------------------------------------------
+@K120_DO_NOTHING_CHOICES
+PRINTFORMDL What would you like to do with Aunn?
+PRINTFORMDL
+PRINTFORMDL [ 0] Lick her armpits
+PRINTFORMDL [ 1] Rub your penis between her armpits
+PRINTFORMDL [ 2] Lick her belly button
+PRINTFORMDL [ 3] Have sex with her hair
+PRINTFORMDL [ 4] Inspect and caress her pubic hair
+PRINTFORMDL [ 5] Pubic hair sumata
+PRINTFORMDL [ 6] Touch fluffy tail
+PRINTFORMDL
+PRINTFORMDL [99] Do Nothing
+
+;--------------------------------------------------------
+;K120_LICK_ARMPIT
+;Custom function which handles COST, EXP gain and SOURCE for licking Aunn's armpit.
+;Mix of COMF15 (Clit caress) and COMF1 (Cunnilingus) to make it worthwhile
+;
+;Sets the following:
+;Cost:
+;Stamina      + 5
+;Energy       + 50
+;
+;Gain:
+;Sex Exp         + 1
+;Oral Sex Exp    + 1
+;
+;Source:
+;Player M Pleas. = 50
+;Pleasure        = 100
+;Affection       = 150
+;Desire          = 150
+;Exposure        = 100
+;Animosity       = 370
+;Passive         = 145 + 270 * ABL:Submission
+;
+;Return: void
+;--------------------------------------------------------
+@K120_LICK_ARMPIT
+DOWNBASE:体力 += 5
+DOWNBASE:気力 += 50
+
+SOURCE:PLAYER:快Ｍ += 50
+SOURCE:歓楽 = 100
+SOURCE:情愛 = 150
+SOURCE:欲情 = 150
+SOURCE:露出 = 100
+SOURCE:反感 = 370
+SOURCE:受動 = 145 + 270 * ABL:従順
+
+IF HETEROSEX(TARGET,PLAYER)
+    EXP:(50 + HETEROSEX(TARGET,PLAYER)) += 3
+    EXP:PLAYER:(50 + HETEROSEX(TARGET,PLAYER)) += 3
+ENDIF
+
+EXP:PLAYER:口淫経験 ++
+
+;--------------------------------------------------------
+;K120_ARMPIT_SEX
+;Custom function which handles COST, EXP gain and SOURCE for fucking Aunn's armpit.
+;Mix of COMF83 (Sumata) and COMF43 (Onahole)
+;
+;Sets the following:
+;Cost:
+;Stamina      + 20
+;Energy       + 90
+;
+;Gain:
+;Sex Exp         + 3
+;
+;Source:
+;Player C Pleas. = 120
+;Affection       = 60
+;Sex. behav.     = 150
+;Accomplishment  = 50
+;Submission      = 500
+;Deviance        = 140
+;Antipathy       = 120
+;
+;Return: void
+;--------------------------------------------------------
+@K120_ARMPIT_SEX
+DOWNBASE:体力 += 20
+DOWNBASE:気力 += 90
+
+SOURCE:PLAYER:快Ｃ = 120
+SOURCE:情愛 = 60
+SOURCE:性行動 = 150
+SOURCE:達成 = 50
+SOURCE:屈従 = 500
+SOURCE:逸脱 = 140
+SOURCE:反感 = 120
+
+IF HETEROSEX(TARGET,PLAYER)
+    EXP:(50 + HETEROSEX(TARGET,PLAYER)) += 3
+    EXP:PLAYER:(50 + HETEROSEX(TARGET,PLAYER)) += 3
+ENDIF
+
+;--------------------------------------------------------
+;K120_LICK_BELLY_BUTTON
+;Custom function which handles COST, EXP gain and SOURCE licking Aunn's belly button.
+;A shittier version of cunnilingus essentially
+;
+;Sets the following:
+;Cost:
+;Stamina      + 2
+;Energy       + 25
+;
+;Source:
+;Player M Pleas. = 50
+;Affection       = 40
+;Desire          = 40
+;Lubrication     = 100
+;Exposure        = 30
+;Deviance        = 15
+;Submission      = 300
+;
+;Return: void
+;--------------------------------------------------------
+@K120_LICK_BELLY_BUTTON
+DOWNBASE:体力 += 2
+DOWNBASE:気力 += 25
+
+SOURCE:PLAYER:快Ｍ += 50
+SOURCE:情愛 = 40
+SOURCE:欲情 = 40
+SOURCE:液体 = 100
+SOURCE:露出 = 30
+SOURCE:逸脱 = 15
+SOURCE:屈従 = 300
+
+;--------------------------------------------------------
+;K120_HAIR_SEX
+;Custom function which handles COST, EXP gain and SOURCE for fucking Aunn's hair.
+;Worthless outside of a good submission score
+;
+;Sets the following:
+;Cost:
+;Stamina      + 5
+;Energy       + 20
+;
+;Source:
+;Player C Pleas. = 90
+;Exposure        = 10
+;Deviance        = 50
+;Submission      = 1200
+;
+;Return: void
+;--------------------------------------------------------
+@K120_HAIR_SEX
+DOWNBASE:体力 += 5
+DOWNBASE:気力 += 20
+
+SOURCE:PLAYER:快Ｃ += 90
+SOURCE:露出 += 10
+SOURCE:逸脱 += 50
+SOURCE:屈従 = 1200
+
+;--------------------------------------------------------
+;K120_ARMPITS_NOT_UNLOCKED_DIALOGUE
+;Method encapsulating and printing the dialogue for when the Player has not yet encountered the armpit scene through the caress command.
+
+;Return: void (prints dialogue)
+;--------------------------------------------------------
+@K120_ARMPITS_NOT_UNLOCKED_DIALOGUE
+PRINTFORMDW You formulate your decision in your mind, but suddenly hear a voice echo inside your head.
+PRINTFORMDL 
+SETCOLOR C_AQUA
+FONTBOLD
+PRINTFORMW ...Can you hear me... ...Can you hear me... %CALLNAME:MASTER%...?
+PRINTFORMW ...Now... I speak directly to your heart... Can you hear me...?
+PRINTFORMW ...Aunn... does not yet know the joy of armpits... Introduce it to her through a caress...
+PRINTFORMW ...Caress... You must caress her... %CALLNAME:MASTER%...
+CALL SET_KOJO_COLOR(120)
+FONTREGULAR
+PRINTFORMDW The voice grows quieter until it finally fades away entirely...
+
+;--------------------------------------------------------
+;K120_ARMPITS_REJECTED_DIALOGUE
+;Method encapsulating and printing the dialogue and choice for when the Player has previously rejected armpit stuff and now tries to access it in the "Do Nothing" menu.
+
+;Return: void (prints dialogue)
+;--------------------------------------------------------
+@K120_ARMPITS_REJECTED_DIALOGUE
+PRINTFORMDW You formulate your decision in your mind, but suddenly hear a voice echo inside your head.
+PRINTFORMDL 
+SETCOLOR C_AQUA
+FONTBOLD
+PRINTFORMW ...Can you hear me... ...Can you hear me... %CALLNAME:MASTER%...?
+PRINTFORMW ...Now... I speak directly to your heart... Can you hear me...?
+PRINTFORMW ...You have previously rejected the joy of armpits... Do you wish to rectify your mistake...?
+PRINTFORMW ...An important choice like this... It cannot be changed if you accept the joy of armpits now...
+PRINTFORML 
+CALL ASK_YN("Accept the joy of armpits", "Reject the joy of armpits")
+IF !RESULT
+    PRINTFORMW ...Rejoice... in the joy of armpits... %CALLNAME:MASTER%...
+    CFLAG:1001 = 1
+ELSE
+    PRINTFORMW ...So be it... %CALLNAME:MASTER%...
+ENDIF
+CALL SET_KOJO_COLOR(120)
+FONTREGULAR
+PRINTFORMDW The voice grows quieter until it finally fades away entirely...
+
+;--------------------------------------------------------
+;K120_TOUCH_FLUFFY_TAIL
+;Custom function which handles COST, EXP gain and SOURCE for touching Aunn's fluffy tail.
+;Good submission score, good lubrication (half of cunnilingus) and cheap cost.
+;But adds no pleasure or anything. Best used for foreplay or for the joy of touching fluffy tail!
+;
+;Sets the following:
+;Cost:
+;Stamina      + 3
+;Energy       + 10
+;
+;Source:
+;Submission  = 1000
+;Lubrication = 300
+;
+;Return: void
+;--------------------------------------------------------
+@K120_TOUCH_FLUFFY_TAIL
+DOWNBASE:体力 += 3
+DOWNBASE:気力 += 10
+
+SOURCE:屈従 = 1000
+SOURCE:液体 = 500
+
+;--------------------------------------------------------
+;K120_CARESS_PUBIC_HAIR
+;Custom function which handles COST, EXP gain and SOURCE for caressing Aunn's pubic hair
+;Literally just clit caress, but used with descriptive focus on pubic hair.
+;
+;Sets the following:
+;Cost:
+;Stamina             + 5
+;Energy              + 50
+;
+;Source:
+;Aunn C pleas.       = 80 (+ hand skill * 10 OR + 50 if hand skill >= 4) * 1.5 if dexterous fingers
+;Pleasure            = 100
+;Affection           = 150
+;Desire              = 150
+;Exposure            = 100
+;Antipathy           = 370
+;Passive             = 145 + (270 * Submission level)
+;
+;Sex exp.            + 3
+;Player handjob exp. + 1
+;
+;Return: void (sets EXP etc)
+;--------------------------------------------------------
+@K120_CARESS_PUBIC_HAIR
+DOWNBASE:体力 += 5
+DOWNBASE:気力 += 50
+
+SOURCE:快Ｃ = 80
+IF ABL:PLAYER:指 >= 4
+    SOURCE:快Ｃ += 50
+ELSE
+    SOURCE:快Ｃ += ABL:PLAYER:指 * 10
+ENDIF
+
+IF TALENT:PLAYER:靈活手指
+    TIMES SOURCE:快Ｃ , 1.50
+    TIMES SOURCE:液体 , 1.50
+ENDIF
+
+
+SOURCE:歓楽 = 100
+SOURCE:情愛 = 150
+SOURCE:欲情 = 150
+SOURCE:露出 = 100
+SOURCE:反感 = 370
+SOURCE:受動 = 145 + 270 * ABL:従順
+
+IF HETEROSEX(TARGET,PLAYER)
+    EXP:(50 + HETEROSEX(TARGET,PLAYER)) += 3
+    EXP:PLAYER:(50 + HETEROSEX(TARGET,PLAYER)) += 3
+ENDIF
+
+EXP:PLAYER:手淫経験 ++
+
+;--------------------------------------------------------
+;K120_PUBIC_HAIR_SEX
+;Custom function which handles COST, EXP gain and SOURCE for fucking Aunn's pubic hair.
+;Literally just sumata, but used with descriptive focus on pubic hair.
+;
+;Sets the following:
+;Cost:
+;Stamina         + 40
+;Energy          + 130
+;
+;Source:
+;Player C pleas. = 150
+;Aunn C pleas.   = 150
+;Affection       = 80
+;Sex behav.      = 250
+;Accomp.         = 50
+;Submission      = 500
+;Deviancy        = 120
+;Antipathy       = 120
+;
+;Sex exp.        + 7
+;
+;Return: void (sets EXP etc)
+;--------------------------------------------------------
+@K120_PUBIC_HAIR_SEX
+DOWNBASE:体力 += 40
+DOWNBASE:気力 += 130
+
+SOURCE:PLAYER:快Ｃ = 150
+SOURCE:快Ｃ = 150
+SOURCE:情愛 = 80
+SOURCE:性行動 = 250
+SOURCE:達成 = 50
+SOURCE:屈従 = 500
+SOURCE:逸脱 = 120
+SOURCE:反感 = 120
+
+IF HETEROSEX(TARGET,PLAYER)
+    EXP:(50 + HETEROSEX(TARGET,PLAYER)) += 7
+    EXP:PLAYER:(50 + HETEROSEX(TARGET,PLAYER)) += 7
+ENDIF
+
+;--------------------------------------------------------
+;K120_PILLOW_TALK_CHOICES
+;Method encapsulating the dialogue for the options presented by the "Pillow Talk" command
+;
+;Return: void (prints dialogue)
+;--------------------------------------------------------
+@K120_PILLOW_TALK_CHOICES
+PRINTFORMDL What would you like to talk about with Aunn?
+PRINTFORMDL （There's dialogue for each technique reaching a milestone!）
+PRINTFORMDL （Milestones: Lvl 0, 3 and 5）
+PRINTFORMDL
+PRINTFORMDL [ 0] Talk about her hand technique
+PRINTFORMDL [ 1] Talk about her vagina technique
+PRINTFORMDL [ 2] Talk about her anal technique
+PRINTFORMDL [ 3] Talk about her chest technique
+PRINTFORMDL [ 4] Talk about her tongue technique
+PRINTFORMDL [ 5] Talk about her waist technique
+PRINTFORMDL
+PRINTFORMDL [99] Whisper sweet nothings into her ear
+
+;--------------------------------------------------------
+;K120_BE_SEDUCED_CHOICES
+;Method encapsulating the dialogue for the options presented by the "Be Seduced" command
+;
+;Return: void (prints dialogue)
+;--------------------------------------------------------
+@K120_BE_SEDUCED_CHOICES
+PRINTFORMDL What would you like Aunn to talk about?
+PRINTFORMDL
+PRINTFORMDL [ 0] Talk about your hand technique
+PRINTFORMDL [ 1] Talk about your vagina technique
+PRINTFORMDL [ 2] Talk about your anal technique
+PRINTFORMDL [ 3] Talk about your chest technique
+PRINTFORMDL [ 4] Talk about your tongue technique
+PRINTFORMDL [ 5] Talk about your waist technique
+PRINTFORMDL
+PRINTFORMDL [99] Whisper sweet nothings into your ear
+
+;--------------------------------------------------------
+;K120_FIRST_TIME_VAGINAL_SEX
+;Method encapsulating the dialogue for Aunn's first vaginal intercourse with the Player.
+;
+;Parameters:
+;- ARGS -- Passable string of current pose used for determining appropriate dialogue and description;
+;       -- Passables: lyingMissionary, standingMissionary, doggyStyle, standingDoggyStyle, cowGirl, lotusPosition, reverseLotus
+;
+;Return: void (prints dialogue)
+;--------------------------------------------------------
+@K120_FIRST_TIME_VAGINAL_SEX(ARGS)
+SELECTCASE ARGS
+    CASE "lyingMissionary", "standingMissionary"
+        PRINTFORMDW Aunn holds her fists, loose like dog paws, over her chest and first looks at your %TINKO(MASTER)% and then you.
+    CASE "doggyStyle", "standingDoggyStyle", "reverseLotus"
+        PRINTFORMDW Aunn's tail is frozen stiff and she looks over her shoulder, first at your %TINKO(MASTER)% and then you.
+    CASE "cowGirl", "lotusPosition"
+        PRINTFORMDW Aunn carefully straddles you and squishes the base of your %TINKO(MASTER)% against her puffy vulva.
+ENDSELECT
+
+SELECTCASE ARGS
+    CASE "lyingMissionary", "standingMissionary", "doggyStyle", "standingDoggyStyle"
+        PRINTFORML 「A-Are you going to put it in?」
+        PRINTFORMDW You nod and align your penis with her entrance.
+    CASE "cowGirl", "lotusPosition", "reverseLotus"
+        PRINTFORMW 「I-I'm going to put it in, okay?」
+        PRINTFORMDW You nod and help her align your penis with her entrance.
+ENDSELECT
+
+PRINTFORML 「Hawa... W-Wait!」
+
+SELECTCASE ARGS
+    CASE "lyingMissionary", "standingMissionary"
+        PRINTFORMDW She puts her hands on your chest and pushes you lightly.
+    CASE "doggyStyle", "standingDoggyStyle"
+        PRINTFORMDW She curves her back and moves her rear away from you.
+    CASE "cowGirl", "lotusPosition"
+        PRINTFORMDW She puts her hands on your chest and raises her hips.
+    CASE "reverseLotus"
+        PRINTFORMDW She puts her hands on your legs and raises her hips.
+ENDSELECT
+
+PRINTFORMDW You ask her if something is wrong and if she needs more time, but she shakes her head in response.
+PRINTFORML 「No... I'm just... haha... s-scared, I guess?」
+PRINTFORMDW You notice her slightly trembling and affectionately rub her head.
+PRINTFORML 「Nn! S-Sorry for worrying you...」
+PRINTFORMDW You tell her she can take as much time as she wants.
+PRINTFORML 「I don't want to make you wait, so...」
+
+SELECTCASE ARGS
+    CASE "lyingMissionary", "standingMissionary"
+        PRINTFORMDW Aunn retreats her hands, clenches them tightly and takes a few deep breaths.
+    CASE "doggyStyle", "standingDoggyStyle"
+        PRINTFORMDW Aunn straightens her back again and gives you access to her behind.
+    CASE "cowGirl", "lotusPosition", "reverseLotus"
+        PRINTFORMDW Aunn lowers her hips again and hovers her entrance of your dick.
+ENDSELECT
+
+SELECTCASE ARGS
+    CASE "lyingMissionary", "standingMissionary", "doggyStyle", "standingDoggyStyle"
+        PRINTFORMW 「I'm ready...」
+        PRINTFORMDL You align yourself, just for her to stop you again.
+        PRINTFORMW 「W-Wait! J-Just so you know... I'm a virgin...」
+    CASE "cowGirl", "lotusPosition", "reverseLotus"
+        PRINTFORMW 「H-Here I go...」
+        PRINTFORMDW Despite declaring her intent, she doesn't follow up on it and simply looks at you shyly.
+        PRINTFORMW 「J-Just so you know... I'm a virgin...」
+ENDSELECT
+
+PRINTFORMDW You chuckle and tell her that much was obvious.
+PRINTFORML 「Ah... Haha... H-How about you?」
+IF IS_DOUTEI(MASTER)
+    PRINTFORMDW You scratch your cheek and nod in embarrassment.
+    PRINTFORML 「W-Woah... Wait, so you decided to have your first time with me...」
+    PRINTFORMW 「And here I am, all scared when you're probably nervous yourself...」
+    PRINTFORMDW Aunn slaps her face and pumps her fists at you.
+ELSE
+    PRINTFORMDW You scratch your cheek and shake your head apologetically.
+    PRINTFORML 「Ah... It's fine. It's actually somewhat reassuring to know that you're more experienced than me.」
+    PRINTFORMDW Aunn takes a few more deep breaths and steels her resolve.
+ENDIF
+
+SELECTCASE ARGS
+    CASE "lyingMissionary", "standingMissionary", "doggyStyle", "standingDoggyStyle"
+        PRINTFORMDW You nod to each other and you align your member once more.
+    CASE "cowGirl", "lotusPosition", "reverseLotus"
+        PRINTFORMDW You nod to each other and she aligns your member once more to slowly lower herself onto it.
+ENDSELECT
+
+SELECTCASE ARGS
+    CASE "lyingMissionary", "standingMissionary", "cowGirl", "lotusPosition"
+        PRINTFORMDW When you look up to check on her, you see her with her eyes closed and tense like a rock.
+    CASE "doggyStyle", "standingDoggyStyle", "reverseLotus"
+        PRINTFORMDW When you lean sideways to get a look at her face, you see her with her eyes closed and tense like a rock.
+ENDSELECT
+
+PRINTFORMDW You seek out her hand with yours and intertwine your fingers.
+PRINTFORML 「Ah...」
+PRINTFORMDW She squeezes your hand and you can feel the extend of her nervousness through the jitter of her hand.
+PRINTFORML 「I-I-I'm ready. For real this time!」
+
+SELECTCASE ARGS
+    CASE "lyingMissionary", "standingMissionary", "doggyStyle", "standingDoggyStyle"
+        PRINTFORMDW You slowly slide your penis inside and Aunn arches her hips higher with each passing inch.
+        PRINTFORMW 「It's... going inside...」
+        PRINTFORMDW Your penis slowly gets enveloped by her warm insides and you delicately push it through its incredible tightness.
+        PRINTFORMDW The tip of your member meets her hymen and you press a little harder, the resistance vanishing without incident.
+    CASE "cowGirl", "lotusPosition", "reverseLotus"
+        PRINTFORMDW Aunn slowly slides your penis inside her and she bites her lip as your member inches deeper and deeper.
+        PRINTFORMW 「It's... going inside...」
+        PRINTFORMDW Your penis slowly gets enveloped by her warm insides and you delicately push it through its incredible tightness.
+        PRINTFORMDW The tip of your member meets her hymen and Aunn pushes a little harder, the resistance vanishing without incident.
+ENDSELECT
+
+PRINTFORML 「Ow... Uuu...」
+PRINTFORMDW Aunn moves her hand, and thus also yours, to her mouth and puts your index finger into her mouth.
+PRINTFORMDW Not realizing it isn't hers, she bites down hard on your index finger and immediately draws blood.
+PRINTFORMDW You shut your eyes tight and clench your teeth to not cry out in pain and scare her further.
+
+SELECTCASE ARGS
+    CASE "lyingMissionary", "standingMissionary", "doggyStyle", "standingDoggyStyle"
+        PRINTFORMDW Just how she endures her pain, you endure yours and after a short rest, you gently moves your hips back and forth.
+    CASE "cowGirl", "lotusPosition", "reverseLotus"
+        PRINTFORMDW Just how she endures her pain, you endure yours and after a short rest, she gently moves her hips up and down.
+ENDSELECT
+
+PRINTFORML 「%MOAN()%... Hau... Ah... It's happening...」
+PRINTFORMDW She opens her eyes again to look at you with a flushed face, her pain clearly subsiding and pleasure taking its place.
+PRINTFORML 「My first time... %MOAN()%... with %CALLNAME:MASTER%-san...」
+
+SELECTCASE ARGS
+    CASE "lyingMissionary", "standingMissionary", "cowGirl", "lotusPosition"
+        PRINTFORMDW Her gaze lowers and she notices the bite marks and blood on your index finger.
+    CASE "doggyStyle", "standingDoggyStyle", "reverseLotus"
+        PRINTFORMDW She looks to the side where your hands are joined, and notices the bite marks and blood on your index finger.
+ENDSELECT
+
+PRINTFORML 「Bite...? Huh, but-」
+PRINTFORMDW Aunn raises her index finger, but finds not bite marks on it.
+PRINTFORML 「Ah, oh no! Did I bite your finger instead of mine?!」
+PRINTFORMDW Aunn looks at you with panic in her eyes and instinctively lets go of your hand.
+PRINTFORMDW You lovingly caress her cheek with it and tell her that her pain was also yours and that it wouldn't be fair if only she bled, anyway.
+PRINTFORML 「%CALLNAME:MASTER%-san...」
+PRINTFORMDW Aunn happily takes your hand into hers again and nuzzles her cheek into it...
+PRINTFORMW 「Sorry and...」
+PRINTFORMW 「Thank you...」
+
+SELECTCASE ARGS
+    CASE "lyingMissionary", "standingMissionary", "doggyStyle", "standingDoggyStyle"
+        PRINTFORMDW She motions for you to continue and you are happy to oblige...
+    CASE "cowGirl", "lotusPosition", "reverseLotus"
+        PRINTFORMDW She resumes shaking her hips and ramps up its speed to lead your session into its next steps...
+ENDSELECT
+
+;--------------------------------------------------------
+;K120_EJAC_STAMINA_COMMENT
+;Method encapsulating the dialogue for continuing intercourse after the Player's ejaculation.
+;This is to avoid copy-pasta. Called in: K120_CONTINUED_VAGINAL_AFTER_EJAC, K120_CONTINUED_ANAL_AFTER_EJAC
+;
+;Return: void (prints dialogue)
+;--------------------------------------------------------
+@K120_EJAC_STAMINA_COMMENT
+PRINTFORMW 「%MOAN(,,2)%... %SPLIT_G(@"Will you be alright doing it again so soon?:Even though you just came...:You still have more stamina left?:Your endurance is -%MOAN()%- quite something!:You want to do it even more?")%」
+
+;--------------------------------------------------------
+;K120_CONTINUED_VAGINAL_AFTER_EJAC
+;Method encapsulating the dialogue for continued vaginal intercourse after the Player's ejaculation
+;
+;Return: void (prints dialogue)
+;--------------------------------------------------------
+@K120_CONTINUED_VAGINAL_AFTER_EJAC
+IF (TALENT:恋慕 && K120_INSEMINATION_POSSIBLE() && K120_IS_DANGEROUS_DAYS())
+    PRINTFORML 「%MOAN("m",,2)%... %SPLIT_G("Yes, give me more:Give me lots more:You are still going:My belly isn't full enough yet:More and more:Come inside again:Keep going, keep going:I'm glad you aren't done yet")%～♥!」
+    PRINTFORMDW Aunn %SPLIT_G("sighs out in pleasure:throws her head back:bites her lip:starts to sweat:surrenders herself to you:responds in kind to your desire")% as you continue %SPLIT_G("to stir up her insides:to fuck her diligently:to mate with her:to make love to her:your love session:your love-making:your sexual liaison:to pound her vagina")%...
+ELSE
+    CALL K120_EJAC_STAMINA_COMMENT()
+ENDIF
+
+;--------------------------------------------------------
+;K120_CONTINUED_VAGINAL_AFTER_EJAC_PROACTIVE
+;Method encapsulating the dialogue for continued vaginal intercourse after the Player's ejaculation while Aunn has initiative
+;
+;Return: void (prints dialogue)
+;--------------------------------------------------------
+@K120_CONTINUED_VAGINAL_AFTER_EJAC_PROACTIVE
+IF (TALENT:恋慕 && K120_INSEMINATION_POSSIBLE() && K120_IS_DANGEROUS_DAYS())
+    PRINTFORMDW Her %SPLIT_G("expression turns dark:eyes gaze down at you:panting intensifies")% and she %SPLIT_G("loses herself in her innate desire:accelerates her motions:gives you no time to rest anymore")%.
+    PRINTFORMW 「%MOAN("m",,2)%... %SPLIT_G(@"Sorry... I can't stop...:I need more, %CALLNAME:MASTER%-san...!:You still got some left, right?:My womb wants even more...:More... Even more...!")%」
+ELSE
+    PRINTFORMW 「%MOAN("m",,2)%... %SPLIT_G(@"Even though today isn't...:My body is moving on its own...:My body is craving more even though today isn't...:Why can't I -%MOAN()%- stop myself?:I know you just came, but... I'm sorry!")%」
+ENDIF
+PRINTFORMDW Aunn %SPLIT_G("sighs out in pleasure:throws her head back:bites her lip:starts to sweat:shakes her hips in eagerly:responds in kind to your desire")% as she continues %SPLIT_G("to stir up her insides:to service you diligently:to mate with you:to make love to you:your love session:your love-making:your sexual liaison:to pound your member into her vagina")%...
+
+;--------------------------------------------------------
+;K120_CONTINUED_ANAL_AFTER_EJAC
+;Method encapsulating the dialogue for continued anal intercourse after the Player's ejaculation
+;
+;Return: void (prints dialogue)
+;--------------------------------------------------------
+@K120_CONTINUED_ANAL_AFTER_EJAC
+IF (TALENT:恋慕 && K120_INSEMINATION_POSSIBLE() && K120_IS_DANGEROUS_DAYS())
+    PRINTFORML 「%MOAN("m",,2)%... %SPLIT_G("Are you sure you want to do it in there?:Even though the other place is ready to...:Is this the only place you're going to give attention...?:I... D-Don't you want to do it in the proper hole instead?")%」
+    PRINTFORMDW Aunn %SPLIT_G("sighs out in pleasure:throws her head back:bites her lip:starts to sweat:surrenders herself to you:responds in kind to your desire")% despite her complaints, as you continue %SPLIT_G("to stir up her insides:to fuck her diligently:to make love to her ass:to make love to her:your love session:your love-making:your sexual liaison:to pound her ass")%...
+ELSE
+    CALL K120_EJAC_STAMINA_COMMENT()
+ENDIF
+
+;--------------------------------------------------------
+;K120_CONTINUED_ANAL_AFTER_EJAC_PROACTIVE
+;Method encapsulating the dialogue for continued vaginal intercourse after the Player's ejaculation while Aunn has initiative
+;
+;Return: void (prints dialogue)
+;--------------------------------------------------------
+@K120_CONTINUED_ANAL_AFTER_EJAC_PROACTIVE
+IF (TALENT:恋慕 && K120_INSEMINATION_POSSIBLE() && K120_IS_DANGEROUS_DAYS())
+    PRINTFORMW 「%MOAN("m",,2)%... %SPLIT_G(@"We really shouldn't be doing it in there for today, but I can't stop myself...:I should really stop before you release it in there, but...!:Even though I keep telling my hips to stop they won't listen!:This just feels too good for me to stop...")%」
+ELSE
+    PRINTFORMW 「%MOAN("m",,2)%... %SPLIT_G(@"My body is moving on its own...::Why can't I -%MOAN()%- stop myself?:I know you just came, but... I'm sorry!")%」
+ENDIF
+PRINTFORMDW Aunn %SPLIT_G("sighs out in pleasure:throws her head back:bites her lip:starts to sweat:shakes her hips in eagerly")% as she continues %SPLIT_G("to stir up her insides:to service you diligently:your love session:your love-making:your sexual liaison:to pound your member into her anus")%...
+
+;--------------------------------------------------------
+;K120_FIRST_TIME_ANAL_SEX
+;Method encapsulating the dialogue for Aunn's first anal intercourse with the Player.
+;
+;Parameters:
+;- ARGS -- Passable string of current pose used for determining appropriate dialogue and description;
+;       -- Passables: lyingMissionary, standingMissionary, doggyStyle, standingDoggyStyle, cowGirl, lotusPosition, reverseLotus
+;
+;Return: void (prints dialogue)
+;--------------------------------------------------------
+@K120_FIRST_TIME_ANAL_SEX(ARGS)
+SELECTCASE ARGS
+    CASE "lyingMissionary"
+        PRINTFORMDW You grab the back of Aunn's knees, push her legs to her stomach and prod her now vulnerable anus with your penis.
+    CASE "standingMissionary"
+        PRINTFORMDW You put Aunn's right leg on your shoulder, use both hands to spread her cheeks and prod her anus with your penis.
+    CASE "doggyStyle", "standingDoggyStyle", "reverseLotus"
+        PRINTFORMDW You spread Aunn's cheeks and rub your penis over her anus, before prodding it with your tip.
+    CASE "cowGirl", "lotusPosition"
+        PRINTFORMDW You reach around Aunn's waist and spread her cheeks to prod her anus with the tip of your penis.
+ENDSELECT
+
+PRINTFORML 「Eh? You want to put it in there? But that place is... It's not the right hole, you know?」
+PRINTFORMDW You scratch your cheek and tell her you want to regardless.
+PRINTFORML 「W-Well... Since it's you %CALLNAME:MASTER%-san... B-But be careful, okay?」
+PRINTFORMDW You slowly push forward and watch your tip disappear into her plump rear.
+PRINTFORMDW The further you push, the more Aunn grimaces and lets out labored sighs of pain.
+
+SELECTCASE ARGS
+    CASE "lyingMissionary", "standingMissionary", "cowGirl", "lotusPosition"
+        PRINTFORMDW With every inch of progress her legs twitch as she tries to endure the pain.
+        PRINTFORMDW You stop half-way in and Aunn immediately shakes her head and pats your chest to continue.
+    CASE "doggyStyle", "reverseLotus"
+        PRINTFORMDW With every inch of progress her tail twitches before returning to stand frozen and stiff.
+        PRINTFORMDW You stop half-way in and Aunn immediately shakes her head and motions for you to continue.
+ENDSELECT
+
+PRINTFORML 「%GROAN()%...」
+PRINTFORMDW Following her command, you push your member in up to its base and Aunn reacts sharply by groaning and clenching her teeth.
+PRINTFORMDW It's apparent that she's in great pain and you tell her you'll stop and just forget about it.
+
+SELECTCASE ARGS
+    CASE "lyingMissionary", "standingMissionary"
+        PRINTFORMDW She stops you from pulling out by grabbing your waist and vehemently shakes her head.
+    CASE "cowGirl", "lotusPosition", "reverseLotus"
+        PRINTFORMDW She stops you from pulling out by pushing her weight down into you and vehemently shakes her head.
+    CASE "doggyStyle"
+        PRINTFORMDW She stops you from pulling out by pushing back into you and vehemently shakes her head.
+ENDSELECT
+
+PRINTFORMW 「Hah... Hah... %CALLNAME:MASTER%-san wanted to, so I'll bear with it until I get used to it.」
+IF TALENT:恋人
+    PRINTFORMW 「It's what lovers do for each other, right? I know there'll come a time where I'll rely on you for a selfish request, too...」
+ENDIF
+PRINTFORMW 「So don't worry about me, okay? Just keep going...」
+PRINTFORMDW You slowly and gingerly move your hips, but Aunn shows no sign of pleasure yet.
+PRINTFORMDW Consequently, her rectum is clamping and pushing down against your member, trying its best to remove the foreign object.
+PRINTFORMDW You look back up at Aunn to check if her conviction holds steadfast and see a tear rolling down her cheek.
+PRINTFORMDW Despite this, she shows no signs of giving up.
+PRINTFORMDW So you swallow your worries, knowing that it would hurt her only more if you refused to believe in her.
+PRINTFORMDW Instead, you try your best to ease her further into the process by taking a slow, rhythmic pace to give her an easier time to anticipate each thrust.
+PRINTFORMDW You keep this pace a while longer until you feel her insides easing up and--
+PRINTFORML 「%MOAN()%...」
+PRINTFORMDW --her first moan leaves her lips.
+
+SELECTCASE ARGS
+    CASE "lyingMissionary", "standingMissionary", "cowGirl", "lotusPosition"
+        PRINTFORMDW You caress her cheek, pick up the pace and quickly find her moans outnumbering her groans.
+    CASE "doggyStyle", "reverseLotus"
+        PRINTFORMDW You caress her sides, pick up the pace and quickly find her moans outpacing her groans.
+ENDSELECT
+
+PRINTFORML 「%MOAN(,,2)%... My ass is heating up... W-What's this feeling?」
+PRINTFORMDW You answer her by speeding up to a normal pace and sending shivers of pleasure through her rectum.
+PRINTFORML 「%MOAN()%! It's starting to feel really good... Ehehe, see? I told you I'll be fine! %MOAN()%!」
+PRINTFORMDW You reward her for her endurance and shake your hips accordingly...
+
+
+;--------------------------------------------------------
+;K120_ENDING_POSSIBLE
+;Getter method to determine if ending is achievable.
+;Following requirements are needed:
+; - Lover
+; - Had at least one child
+; - Finished the story time events (via Conversation command)
+;
+; - Finished talking to Aunn in the following locations during a date (you will know if you got the right convo if you are asked for a diary entry at the end of it):
+; --- TH6:  Scarlet Devil Mansion -> Hall, Dining Room, Library, Basement (Sakuya)
+; --- TH7:  Netherworld -> Hakugyokurou/Hakugyokurou Garden (Yuyuko)
+; --- TH8:  Bamboo Forest -> anywhere that isn't Eientei or around Yuuka's place (Mokou)
+; --- TH9:  Netherworld -> Sanzu River or Higan (Komachi)
+; --- TH10: Youkai Mountain (Summit) -> Moriya Shrine Main + Shrine grounds (Kanako)
+; --- TH11: Underground -> Remains of Blazing Hell (Okuu)
+; --- TH12: Myouren temple -> Main Temple (Shou)
+; --- TH13: Myouren temple -> Grounds (Kyouko)
+; --- TH14: Youkai Mountain (Foot) -> Deep Forest (Seija)
+; --- TH15: Dream World/Moon -> Sea of Tranquility (Junko)
+; --- TH16: Netherworld -> Mayohiga (Okina)
+; --- TH17: Netherworld -> Primate Spirit Garden (Keiki)
+; --- TH18: Youkai Mountain (Summit) -> Mountain Lake (Chimata)
+;
+; - Beat her in Danmaku
+; - Kissed her
+; - Saw human village sweets shop event (visit during date)
+; - Bought any hat while dating in Liquor Road/Shopping District of the Human Village (conversation command)
+; - CURRENTLY DISABLED: Encountered all the cameos in the Residential Area [Tanjiro, Sasha and Char] (conversation command)
+; - Found the two piece in the Lunar Capital after getting progression count to 12 (Conversation command while in Pavillion, Capital or Rabbit District)
+; - Went on a festival date in the Road of Liminality (conversation option while on a date there)
+; - Took a picture with Aunn (visit Kourindou during date and keep using the conversation option)
+; - Fished up at least one piece of driftwood together with Aunn
+; - Touched fluffy tail to your heart's content via the "Do Nothing" command during sex.
+; - Helped Aunn get her revenge against Cirno (talk to Aunn during a date while at the Misty Lake)
+;
+;Return: True if ending possible, false otherwise.
+;--------------------------------------------------------
+@K120_ENDING_POSSIBLE
+#FUNCTION
+RETURNF (TALENT:恋人 && CFLAG:子供人数 > 0 && CFLAG:1003 >= 18 && CFLAG:1002 >= 13 && CFLAG:TARGET:弾幕勝負勝利 == 1 && !TALENT:キス未経験 && !FIRSTTIME("AunnSweetsShopEvent", 1) && !FIRSTTIME("AunnBoughtHeadpiece", 1) && !FIRSTTIME("AunnKourindouFindsPolaroidCamera", 1) && CFLAG:1004 && !FIRSTTIME("AunnFishingCaughtDriftwood", 1) && !FIRSTTIME("AunnFindsTheTwoPiece", 1) && !FIRSTTIME("AunnRoLFestivalDate", 1) &&!FIRSTTIME("AunnWinAgainstCirno", 1))
+
+;--------------------------------------------------------
+;K120_ENDING_CHOICES
+;Method encapsulating the dialogue for the options presented during the ending event
+;
+;Return: void (prints dialogue)
+;--------------------------------------------------------
+@K120_ENDING_CHOICES
+PRINTFORMDL [ 0] You will continue to spend every day with her
+PRINTFORMDL [ 1] You will check on her from time to time
+PRINTFORMDL [ 2] You will leave to pursue other goals
+
+;--------------------------------------------------------
+;K120_CLIMAX_DIALOGUE
+;Method encapsulating the dialogue for the various climax cases. Adds dialogue and descriptions according to climax source(s).
+;
+;Return: void (prints dialogue)
+;--------------------------------------------------------
+@K120_CLIMAX_DIALOGUE
+#DIM climaxCount
+#DIMS aunnClimaxDialogue
+#DIMS aunnClimaxDescription
+
+climaxCount = 0
+aunnClimaxDialogue = 「
+aunnClimaxDescription =
+
+IF NOWEX:Ｃ絶頂
+    aunnClimaxDialogue += "My clit..." + SPLIT_G("feels so good:drives me crazy:is so sensitive:keeps sending shocks through my abdomen:is making me feel real good") + "～♥... "
+    aunnClimaxDescription += "Her clit " + SPLIT_G("stiffens:protrudes:quivers:unsheathes entirely:jumps a little:sticks out")
+    climaxCount++
+ENDIF
+
+IF NOWEX:Ｖ絶頂
+    aunnClimaxDialogue += "My pussy..." + SPLIT_G("my insides feel so good:it's so deep:keeps sending shocks through my abdomen:I'm going crazy:I'm being stirred up:more") + "～♥... "
+    aunnClimaxDescription += climaxCount == 0 ? "Her vagina " # ", her vagina "
+    IF TEQUIP:体位
+        aunnClimaxDescription += RAND:2 == 0 ? FSYN("twine:s") + " extensively around your member" # SPLIT_G("clamps:presses:clenches") + " down hard on your member"
+    ELSE
+        aunnClimaxDescription += RAND:2 == 0 ? FSYN("twine:s") + " extensively around the foreign object" # SPLIT_G("clamps:presses:clenches") + " down hard on the foreign object"
+    ENDIF
+    climaxCount++
+ENDIF
+
+IF NOWEX:Ａ絶頂
+    aunnClimaxDialogue += "My anus..." + SPLIT_G("it's so deep:sends shivers into my body:the insides are so hot:it's not letting go anymore") + "～♥... "
+    aunnClimaxDescription += climaxCount == 0 ? "Her anus " # ", her anus "
+    IF TEQUIP:体位
+        aunnClimaxDescription += RAND:2 == 0 ? FSYN("twine:s") + " extensively around your member" # SPLIT_G("clamps:presses:clenches") + " down hard on your member"
+    ELSE
+        aunnClimaxDescription += RAND:2 == 0 ? FSYN("twine:s") + " extensively around the foreign object" # SPLIT_G("clamps:presses:clenches") + " down hard on the foreign object"
+    ENDIF
+    climaxCount++
+ENDIF
+
+IF NOWEX:Ｂ絶頂
+    aunnClimaxDialogue += "My nipples..." + SPLIT_G("are so stiff:so sensitive:they're no longer normal:my head is going numb") + "～♥... "
+    aunnClimaxDescription += climaxCount == 0 ? "Her nipples " # ", her nipples " + SPLIT_G("stiffen:heat up:stand erect:puff up")
+    climaxCount++
+ENDIF
+
+IF NOWEX:Ｍ絶頂
+    ;along with my mouth
+    aunnClimaxDialogue += "My lips..." + SPLIT_G("even they are:they're so ticklish:they're making me feel so good:even just with my lips") + "～♥... "
+    aunnClimaxDescription += climaxCount == 0 ? "Her lips " # ", her lips " + SPLIT_G("make her shiver upon contact:hit the limit of their sensitivity:shoot tingles of pleasure into her head")
+    climaxCount++
+ENDIF
+
+SELECTCASE NOWEX:TotalEX
+        ;strong climax
+        ;強
+    CASE 5 TO 15
+        PRINTFORM %BREAKENG(@"%aunnClimaxDialogue%%MOAN("h")%～♥♥♥...%SLUR(SPLIT_G("I'm going to cum:I can't hold on anymore:I-It's cumming:I'm gonna:It feels too good"), -2)%～♥♥!!")%
+        ;medium climax
+		;中
+    CASE 2 TO 4
+        PRINTFORM %BREAKENG(@"%aunnClimaxDialogue%%MOAN("m")%～♥♥...%SPLIT_G("I'm going to cum:I can't hold on anymore:I-It's cumming:I'm gonna:It feels too good")%～♥♥!")%
+        ;weak climax
+		;弱
+    CASE 1
+        PRINTFORM %BREAKENG(@"%aunnClimaxDialogue%%MOAN("l")%～♥...%SPLIT_G("I'm going to come:I can't hold on anymore:I-It's coming:I'm gonna:It feels really good")%～♥!")%
+    CASEELSE
+        ;fallback
+        PRINTFORM %BREAKENG(@"%aunnClimaxDialogue%%MOAN("l")%～♥...%SPLIT_G("I'm going to come:I can't hold on anymore:I-It's coming:I'm gonna:It feels really good")%～♥!")%
+ENDSELECT
+PRINTFORML 」
+
+aunnClimaxDescription += " and her body " + FSYN("tremble:s")
+IF NOWEX:四重絶頂
+    aunnClimaxDescription += " as her " + FSYN("orgasm") + " runs fourfold through her body"
+ELSEIF NOWEX:三重絶頂
+    aunnClimaxDescription += " as her " + FSYN("orgasm") + " runs threefold through her body"
+ELSEIF NOWEX:二重絶頂
+    aunnClimaxDescription += " as her " + FSYN("orgasm") + " runs twofold through her body"
+ELSE
+    aunnClimaxDescription += " as she " + FSYN("orgasm:s")
+ENDIF
+PRINTFORMDW %BREAKENG(@"%aunnClimaxDescription%...")%
+
+;--------------------------------------------------------
+;K120_FISHING_INTRO_DIALOGUE
+;Method encapsulating the dialogue for Aunn's line tensing
+;
+;Return: void (prints dialogue)
+;--------------------------------------------------------
+@K120_FISHING_INTRO_DIALOGUE
+PRINTFORML 「%SPLIT_G("I think I caught something:I can feel something pulling:I feel a tug on my line:My line is moving:My float is bopping")%!」
+
+;--------------------------------------------------------
+;K120_FISHING_LIGHT_CATCH_DIALOGUE
+;Method encapsulating the dialogue for Aunn catching something light (fish size < 50, paper, rotor, misc items)
+;
+;Return: void (prints dialogue)
+;--------------------------------------------------------
+@K120_FISHING_LIGHT_CATCH_DIALOGUE
+PRINTFORML 「%SPLIT_G("But it's kinda light:There isn't much resistance:I don't feel much pull though:This one seems easy:My line is barely straining:I feel no tension on my rod")%!」
+PRINTFORMDL She %SPLIT_G("retrieves her line with ease:has no issues reeling it in:easily lifts her rod")%, but the %SPLIT_G("catch:bite")% isn't %SPLIT_G("as exciting as she'd like it to be:as special as she'd like it to be:what she hoped it would be:what she wanted it to be:to her liking")%.
+
+;--------------------------------------------------------
+;K120_FISHING_MEDIUM_CATCH_DIALOGUE
+;Method encapsulating the dialogue for Aunn catching a medium sized fish (size 50 to 150)
+;
+;Return: void (prints dialogue)
+;--------------------------------------------------------
+@K120_FISHING_MEDIUM_CATCH_DIALOGUE
+PRINTFORML 「%SPLIT_G("It's got some nice pull:I think it's a decent size:This one's gotta be good:It's really trying to fight back:I can see its shadow:You can't escape me:Gotta reel this one in")%!」
+
+;--------------------------------------------------------
+;K120_FISHING_HEAVY_CATCH_DIALOGUE
+;Method encapsulating the dialogue for Aunn catching a heavy sized fish (size > 150)
+;
+;Return: void (prints dialogue)
+;--------------------------------------------------------
+@K120_FISHING_HEAVY_CATCH_DIALOGUE
+PRINTFORML 「%SPLIT_G("My line is tensing up too much:Guh... It's really fighting back:I think I got a big one:Its shadow is so large:It's pulling so much:So strong... If I'm not careful I might lose my rod")%!」
+PRINTFORMDW She really struggles with her %SPLIT_G("target:potential catch:bite")% and %SPLIT_G("her rod is bent into a perfect U shape:her fishing line looks ready to snap:she puts her entire back into it:she pulls hard on the rod")%.
+PRINTFORML 「%SPLIT_G("Gnn... Come on:Nnnn... I almost got it:Mguuh... Just a little more:Grrr... Just give up already:Gaaah... Stop struggling")%!!」
+PRINTFORMDW %SPLIT_G("The tension finally lessens:Her stamina finally prevails:She finally seizes the victory:Her rod holds steadfast till the end")% and with a hearty yank she pulls out her %SPLIT_G("catch:bite")%.
+PRINTFORMDW She holds it up in front of you with a wagging tail and a %SPLIT_G("satisfied:accomplished")% expression.
+
+;--------------------------------------------------------
+;K120_FISHING_CALLOUT_DIALOGUE
+;Method encapsulating the dialogue for Aunn calling out your catch
+;
+;Return: void (prints dialogue)
+;--------------------------------------------------------
+@K120_FISHING_CALLOUT_DIALOGUE
+PRINTFORML 「%SPLIT_G("Your float is bopping:Your line is moving:I think you caught something:The water is rippling:I see something move under your float:I think I see a shadow:Your rod is twitching")%」!
+
+;--------------------------------------------------------
+;CHARA_INFO_KOJO_EGG_K120
+;Method encapsulating Aunn's character info.
+;Included title, character race and ability (hard-coded).
+;Shows Events seen, Who's Who Progress and Ending Progress.
+;
+;Return: 1
+;--------------------------------------------------------
+@CHARA_INFO_KOJO_EGG_K120()
+CALL M_KOJO_EGG_COLOR_K120
+;PRINTFORML %CSVCSTR(120, 10)% ;JP
+;PRINTFORML %CSTR:120:10% ;EN (Main)
+;PRINTFORML %nameArray:120:6% ;Neodev
+;Due to the conflict between Main and Neodev the "Race, Ability" etc. profile line is hard-coded here. If you came here after changing the CSV and not seeing it change in-game... I'm sorry!
+PRINTFORML ～The Guardian Beast Devoted to Shintoism and Buddhism～　●Race: Komainu　●Ability: Locating Shintoism and Buddhism
+RESETCOLOR
+PRINTL 
+
+;Aunn unique events. These are the conditions needed for the ending.
+PRINTFORML 
+FONTBOLD
+PRINTFORML 【Events seen】
+FONTREGULAR
+CALL K120_PRINT_ACHIEVEMENT_STATE(CFLAG:TARGET:弾幕勝負勝利 == 1, "Beat her in a Danmaku match")
+CALL K120_PRINT_ACHIEVEMENT_STATE(!FIRSTTIME("AunnWinAgainstCirno", 1), "Helped Aunn get her revenge against Cirno")
+CALL K120_PRINT_ACHIEVEMENT_STATE(CFLAG:1003 >= 18, "Told her about all the incidents")
+CALL K120_PRINT_ACHIEVEMENT_STATE(CFLAG:1002 >= 13, "Visited all incident locations together")
+CALL K120_PRINT_ACHIEVEMENT_STATE(!FIRSTTIME("AunnSweetsShopEvent", 1), "Visited the sweets shop together")
+CALL K120_PRINT_ACHIEVEMENT_STATE(!FIRSTTIME("AunnBoughtHeadpiece", 1), "Bought a hat for Aunn")
+CALL K120_PRINT_ACHIEVEMENT_STATE(!FIRSTTIME("AunnKourindouFindsPolaroidCamera", 1), "Took a picture with Aunn")
+;(currently deactivated) CALL K120_PRINT_ACHIEVEMENT_STATE(!FIRSTTIME("AunnMeetsMysteryCoalSeller", 1) && !FIRSTTIME("AunnMeetsMysteryLieutenant", 1) && !FIRSTTIME("AunnMeetsMysteryBreadGirl", 1), "Met all the mysterious strangers.")
+CALL K120_PRINT_ACHIEVEMENT_STATE(!FIRSTTIME("AunnFishingCaughtDriftwood", 1), "Fished out some driftwood together")
+CALL K120_PRINT_ACHIEVEMENT_STATE(!FIRSTTIME("AunnFindsTheTwoPiece", 1), "Infiltrated the Lunar Capital and found the『Two Piece』")
+CALL K120_PRINT_ACHIEVEMENT_STATE(!FIRSTTIME("AunnRoLFestivalDate", 1), "Went on a festival date with Aunn")
+CALL K120_PRINT_ACHIEVEMENT_STATE(!TALENT:キス未経験, "Shared a consensual kiss")
+CALL K120_PRINT_ACHIEVEMENT_STATE(TALENT:恋人, "Became lovers")
+CALL K120_PRINT_ACHIEVEMENT_STATE(CFLAG:子供人数 > 0, "Had a child together")
+CALL K120_PRINT_ACHIEVEMENT_STATE(CFLAG:1004, "Touched fluffy tail to your heart's content")
+PRINTFORML 
+
+;Show Who's Who Progress if Player shared incident knowledge of EoSD or later.
+IF CFLAG:1003 >= 6
+    PRINTFORML 
+    FONTBOLD
+    PRINTFORML 【Who's Who Progress】
+    FONTREGULAR
+    PRINTFORM 　　● Current Chapter: 
+    CALL COLORMESSAGE(@"  Touhou %TOSTR(CFLAG:1003)%", CFLAG:1003 >= 18 ? C_GREEN # C_YELLOW, 1)
+    PRINTFORM 　　● Locations Visited: 
+    CALL COLORMESSAGE(@"%TOSTR(CFLAG:1002)%/13", CFLAG:1002 >= 13 ? C_GREEN # C_YELLOW, 1)
+    PRINTFORML 
+ENDIF
+
+;Display if ending is achievable or was achieved.
+PRINTFORML 
+FONTBOLD
+PRINTFORML 【Ending Progress】
+FONTREGULAR
+IF !FIRSTTIME("AunnEndingAchievedVerTH18", 1)
+    CALL COLORMESSAGE("　　Ending achieved!", C_GREEN, 1)
+ELSEIF K120_ENDING_POSSIBLE()
+    PRINTFORM 　　Ending achievable: 
+    CALL COLORMESSAGE("Yes", C_YELLOW, 1)
+ELSE
+    PRINTFORM 　　Ending achievable: 
+    CALL COLORMESSAGE("Not yet", C_RED, 1)
+ENDIF
+
+RETURN 1
+
+;--------------------------------------------------------
+;K120_PRINT_ACHIEVEMENT_STATE
+;Private method handling the logic for printing the state of given achievement
+;
+;Parameters:
+; - bool   ARG  -- Achievement to write state of
+; - string ARGS -- Line to print if achievement was achieved
+;
+;Return: void (prints dialogue)
+;--------------------------------------------------------
+@K120_PRINT_ACHIEVEMENT_STATE(ARG, ARGS)
+IF ARG
+    PRINTFORML 　　● %ARGS%
+ELSE
+    PRINTFORML 　　● ?????????
+ENDIF
+
+;--------------------------------------------------------
+;K120_RETURN_HAT_NAME
+;Internal method which returns wanted string from double language hat name (ex. "hatNameEn_hatNameJp")
+;
+;Parameters:
+; - string ARGS -- Hat name string to split
+; - int    ARG  -- 0 for EN, 1 for JP
+;
+;Return: Hat name in given language
+;--------------------------------------------------------
+@K120_RETURN_HAT_NAME(ARGS, ARG)
+#FUNCTIONS
+#DIMS DYNAMIC HAT_NAMES_ARRAY, 2 ;Array that includes split hat name into EN and JP counterparts
+
+SPLIT ARGS, "_", HAT_NAMES_ARRAY
+RETURNF HAT_NAMES_ARRAY:ARG
+
+;--------------------------------------------------------
+;K120_BUY_AND_EQUIP_HAT
+;Internal method which handles actually buying and equipping the chosen hat.
+;
+;Parameters:
+; - int    ARG  -- Price of chosen hat
+; - string ARGS -- Unsplit name of hat
+;
+;Return: void
+;--------------------------------------------------------
+@K120_BUY_AND_EQUIP_HAT(ARG, ARGS)
+PRINTFORMDW You buy the %K120_RETURN_HAT_NAME(ARGS, 0)% for Aunn.
+PRINTFORML 「%SPLIT_G("That one looks really nice!:Are you sure I can have this?:O～h! Is that for me?:It definitely looks like it would suit me!")%」
+EQUIP:120:帽子 = CLOTHES_ID("帽子", K120_RETURN_HAT_NAME(ARGS, 1))
+CFLAG:120:202 = CLOTHES_ID("帽子", K120_RETURN_HAT_NAME(ARGS, 1))
+MONEY -= ARG
+
+;--------------------------------------------------------
+;K120_CALCULATE_FAVOR_GAIN
+;Internal method which calculates and returns the Favor gain for given price
+;
+;Parameters:
+; - int ARG  -- Price of hat
+;
+;Return: Calculated Favor gain
+;--------------------------------------------------------
+@K120_HAT_CALCULATE_FAVOR_GAIN(ARG)
+#FUNCTION
+RETURNF ARG / 10
+
+;--------------------------------------------------------
+;K120_HAT_CALCULATE_TRUST_GAIN
+;Internal method which calculates and returns the Trust gain for given price
+;
+;Parameters:
+; - int ARG  -- Price of hat
+;
+;Return: Calculated Trust gain
+;--------------------------------------------------------
+@K120_HAT_CALCULATE_TRUST_GAIN(ARG)
+#FUNCTION
+RETURNF ARG / 14
+
+;--------------------------------------------------------
+;K120_HAT_SHOP_HANDLER
+;Method to print hat choices in hat shop and handle logic for buying and browsing
+;LOCALS:1 - 4 = hat/ribbons types
+;LOCAL:1 - 4 = respective price
+;
+;Parameters:
+; - int ARG -- 1 for hat, 2 for ribbon
+; - int ARG:1 -- Total time spent browsing
+;
+;Return: void
+;--------------------------------------------------------
+@K120_HAT_SHOP_HANDLER(ARG, ARG:1)
+#DIMS color, 4
+#DIMS hatString, 4
+#DIM price, 4
+#DIM choice
+#DIM totalMinutesBrowsing
+#DIM FavorGain
+#DIM TrustGain
+
+;Intro text
+PRINTFORMDW You enter the store and the bell jingles.
+CALL COLORMESSAGE("「Irashaimase!」", C_P_PURPLE, 1)
+PRINTFORMDW The young clerk happily greets you.
+$BROWSE_FOR_HEADGEAR
+PRINTFORML 
+CALL COLORMESSAGE(@"Current money: %DIGIT_GROUP(MONEY)%", C_YELLOW, 1)
+PRINTFORMDL You browse the store for \@ RESULT == 1 ? hats # ribbons and headbands \@ together with Aunn.
+PRINTFORML 
+
+;Build the 4 choices with color and hat/ribbon type + price
+FOR choice, 0, 4
+    IF ARG == 1
+        hatString:choice = %SPLIT_G("hat_帽子:hood_頭巾:eboshi_烏帽子:casquette_キャスケット:miso soup bowl_お椀:nightcap_ナイトキャップ:turban cap_ターバンキャップ:tokin_兜巾:straw hat_麦藁帽子:student cap_学帽")%
+    ELSEIF ARG == 2
+        hatString:choice = %SPLIT_G("hair ornament_髪飾り:ribbon_リボン:maid headpiece_ホワイトブリム:headband_カチューシャ:rabbit ear headband_兎耳ヘアーバンド:nurse cap_ナースキャップ:sports visor_サンバイザー")%
+    ENDIF
+    price:choice = RAND(100, 2000)
+    ;Print choices
+    PRINTFORMDL [ %TOSTR(choice)%] %SPLIT_G("Red:Blue:Yellow:Orange:Green:Purple:Brown:White:Black:Gray:Pink:Checkered:Dotted")% %K120_RETURN_HAT_NAME(hatString:choice, 0)% - %TOSTR(price:choice)%￥
+NEXT
+PRINTFORMDL [ 4] Continue browsing （+10 Minutes）
+PRINTFORMDL [ 5] Leave the store
+
+DO
+    INPUT
+    SELECTCASE RESULT
+        CASE 0
+            IF price:0 > MONEY
+                PRINTFORMDL You don't have enough money...
+            ELSE
+                CALL K120_BUY_AND_EQUIP_HAT(price:0, hatString:0)
+                FavorGain = K120_HAT_CALCULATE_FAVOR_GAIN(price:0)
+                TrustGain = K120_HAT_CALCULATE_TRUST_GAIN(price:0)
+                BREAK
+            ENDIF
+        CASE 1
+            IF price:1 > MONEY
+                PRINTFORMDL You don't have enough money...
+            ELSE
+                CALL K120_BUY_AND_EQUIP_HAT(price:1, hatString:1)
+                FavorGain = K120_HAT_CALCULATE_FAVOR_GAIN(price:1)
+                TrustGain = K120_HAT_CALCULATE_TRUST_GAIN(price:1)
+                BREAK
+            ENDIF
+        CASE 2
+            IF price:2 > MONEY
+                PRINTFORMDL You don't have enough money...
+            ELSE
+                CALL K120_BUY_AND_EQUIP_HAT(price:2, hatString:2)
+                FavorGain = K120_HAT_CALCULATE_FAVOR_GAIN(price:2)
+                TrustGain = K120_HAT_CALCULATE_TRUST_GAIN(price:2)
+                BREAK
+            ENDIF
+        CASE 3
+            IF price:3 > MONEY
+                PRINTFORMDL You don't have enough money...
+            ELSE
+                CALL K120_BUY_AND_EQUIP_HAT(price:3, hatString:3)
+                FavorGain = K120_HAT_CALCULATE_FAVOR_GAIN(price:3)
+                TrustGain = K120_HAT_CALCULATE_TRUST_GAIN(price:3)
+                BREAK
+            ENDIF
+        CASE 4
+            IF totalMinutesBrowsing <= 60
+                totalMinutesBrowsing += 10
+                GOTO BROWSE_FOR_HEADGEAR
+            ENDIF
+            BREAK
+        CASE 5
+            BREAK
+    ENDSELECT
+LOOP 1
+
+IF RESULT == 4
+    ;Ran out of time
+    PRINTFORML 「I don't think we're finding anything...」
+    PRINTFORMDW Aunn seems bored of browsing so you stop for now...
+ELSEIF RESULT == 5
+    ;Chose to leave without buying anything
+    PRINTFORML 「Oh, are we leaving?」
+    PRINTFORMDW You leave the store empty-handed.
+    PRINTFORML 「I guess nothing in there suited me, huh...?」
+    PRINTFORMDW Aunn seems a bit disappointed...
+ELSE
+    ;Chose and successfully bought a hat
+    PRINTFORMDW Aunn puts it on her head and spins around for you.
+    PRINTFORML 「How is it, does it suit me?」
+    PRINTFORMDW You give her a thumbs up.
+    PRINTFORMW 「Ehehe～! Thank you so much for this!」
+    IF TALENT:恋慕
+        PRINTFORML 「I'll forever treasure this!」
+        PRINTFORMDW Aunn nuzzles into your arm.
+    ELSE
+        PRINTFORML 「I need to make sure to give you something in return!」
+    ENDIF
+    PRINTFORMDW You leave the store with a giddy Aunn...
+    CFLAG:好感度 += FavorGain
+    CFLAG:信頼度 += TrustGain
+    CALL COLORMESSAGE(@"Favor +%TOSTR(FavorGain)%!", C_YELLOW, 1)
+    CALL COLORMESSAGE(@"Trust +%TOSTR(TrustGain)%!", C_YELLOW, 1)
+    TIME += totalMinutesBrowsing
+    CALLF FIRSTTIME("AunnBoughtHeadpiece")
+ENDIF
+
+;--------------------------------------------------------
+;K120_SET_TWO_PIECE_EVENT_PROGRESS
+;Method to print and set two piece (lunar capital) event progress (CFLAG:1005) based ony given magic string
+;
+;Parameters:
+; - string ARGS -- Magic string for outputting progress: "positive" (+1), "none" (0), "negative" (-1)
+;
+;Return: void (prints dialogue)
+;--------------------------------------------------------
+@K120_SET_TWO_PIECE_EVENT_PROGRESS(ARGS)
+SELECTCASE ARGS
+    CASE "positive"
+        CALL COLORMESSAGE("Some progress mapping the capital was made...", C_YELLOW, 2)
+        CFLAG:1005 += 1
+    CASE "none"
+        CALL COLORMESSAGE("No progress mapping the capital was made...", C_AQUA, 2)
+    CASE "negative"
+        CALL COLORMESSAGE("Some progress mapping the capital was lost...", C_RED, 1)
+        CFLAG:1005 -= 1
+ENDSELECT

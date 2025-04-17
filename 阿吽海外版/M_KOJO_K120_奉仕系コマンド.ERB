@@ -1,0 +1,898 @@
+;更新日期：2025年1月29日
+;※※※※※※※※※※※※※※※※※※※※※※※※※
+;奉仕系コマンド
+;※※※※※※※※※※※※※※※※※※※※※※※※※
+;==================================================
+;80,Handjob
+;80,手淫
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_80
+CALL M_KOJO_EGG_MESSAGE_COM_K120_80_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_80_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL
+	;時姦中
+	IF FLAG:70
+		RETURN 1
+	ENDIF
+
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初めて
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		PRINTFORML 「You want me to use my hand?」
+		PRINTFORMDW Aunn stares at your \@ BASE:MASTER:勃起 >= 1000 ? raging erection # flaccid dick \@ with uncertainty.
+		PRINTFORMW 「W-Will that be okay?」
+		PRINTFORMW 「I don't want to hurt you...」
+		PRINTFORMDW You take Aunn's hand and push her palm against your penis.
+		PRINTFORMW 「Hawa!」
+		PRINTFORMW 「O-Okay, I'll do it!」
+		IF BASE:MASTER:勃起 <= 1000
+			BASE:MASTER:勃起 = 1000
+			PRINTFORMDW Aunn's gentle touch immediately causes your soft penis to stiffen.
+		ELSE
+			PRINTFORMDW Your erect dick jumps at Aunn's soft touch.
+		ENDIF
+		PRINTFORMW 「It's hard inside, but the outside is squishy...」
+		PRINTFORMW 「The skin feels a bit slimy even.」
+		PRINTFORMW 「Ah, but not in a bad way!」
+		PRINTFORMDW She runs her fingers from the base of your member to the tip.
+		PRINTFORMW 「Especially the tip...」
+		PRINTFORMW 「It's squishy like mochi.」
+		PRINTFORMDW Aunn uses her index fingers and thumbs to gently press down on the tip.
+		PRINTFORMDW A jolt of pleasure runs through your lower body as she massages it.
+		PRINTFORMW 「Ah... I can feel it twitching in my hands.」
+		PRINTFORMDW She instinctively grabs your shaft with her right hand and wraps her fingers around it.
+		PRINTFORMW 「It's pulsating.」
+		PRINTFORMDW Aunn looks up at you with uncertainty.
+		PRINTFORMW 「D-Does it feel good?」
+		PRINTFORMDW You make a jerking motion with your right hand and motion to her.
+		PRINTFORMW 「Ah! Jerk it!」
+		PRINTFORMW 「I-I will!」
+		PRINTFORMDW She loosens her grip and runs the inside of her palm over your sensitive skin.
+		PRINTFORMDW It feels good, but it's too gentle of a stroke, so you tell her to tighten her grip.
+		PRINTFORMW 「Hau...」
+		PRINTFORMW 「I-If it hurts, tell me right away, okay?」
+		PRINTFORMDW Aunn grabs her right hand with her left and tightens her grip.
+		PRINTFORMDW All of her digits now firmly grab your member.
+		PRINTFORMDW She gently moves her hand up and down, and you are immediately delighted by pleasure.
+		PRINTFORMDW Aunn looks up at you and smiles in relief.
+		PRINTFORMW 「I'll keep going!」
+		PRINTFORMDW She diligently services your member with her hands, albeit a bit clumsily.
+		PRINTFORMDW You continue to give pointers, and she finally gets the hang of it...
+		RETURN 1
+	ENDIF
+
+
+		;この後射精する(射精寸前の描写)
+		;Player climax
+	IF NOWEX:PLAYER:射精
+		IF FIRSTTIME("AunnMakesPlayerClimaxWithHandjob")
+			PRINTFORMW 「I can feel it twitching so much!」
+			PRINTFORMW 「A-Are you about to...?」
+			PRINTFORMDW Aunn looks up at your pleasure-riddled face.
+			PRINTFORMW 「T-Then I'll...!」
+			PRINTFORMDW She focuses her gaze on your member and speeds up her strokes.
+			PRINTFORMW 「Gotta make %CALLNAME:MASTER%-san feel good...!」
+			PRINTFORMDW Heat radiates from your hips and takes over your body.
+			PRINTFORMDW It washes through you, and your vision fades for a moment.
+			PRINTFORMDW For a moment you are close to heaven.
+			PRINTFORMW 「Kya!」
+			PRINTFORMDW You hit your climax and send ribbons of %SEMEN(,1)% flying into Aunn's face.
+			PRINTFORMW 「T-That surprised me.」
+			PRINTFORMW 「It came out so fast!」
+			PRINTFORMDW Aunn wipes the semen off her face and looks at it in her hands.
+			IF EXP:精液経験 <= 0
+				PRINTFORMW 「This is...」
+				PRINTFORMW 「%CALLNAME:MASTER%-san's...」
+				PRINTFORMW 「It smells so weird...」
+				PRINTFORMW 「But, I don't mind it.」
+				PRINTFORMDW She looks at your cum with intrigue, and you motion for her to taste it.
+				PRINTFORMW 「Eh? But...」
+				PRINTFORMDW Aunn keeps glancing between you and the semen and cautiously takes her palm to her mouth.
+				PRINTFORMDW She licks some of it, and her face immediately crunches up.
+				PRINTFORMW 「It's bitter!」
+				PRINTFORMDW Aunn's face quickly changes from sour to surprised.
+				PRINTFORMW 「But, the taste isn't bad.」
+				PRINTFORMW 「J-Just gotta get used to it...」
+			ELSEIF ABL:精液中毒 <= 3
+				PRINTFORMW 「I'm still not used to it, but...」
+				PRINTFORMW 「This is %CALLNAME:MASTER%-san's, so...」
+				PRINTFORMDW She closes her eyes and cleans her hands with her tongue.
+				PRINTFORMW 「...」
+				PRINTFORMDW Aunn tries her best to not contort her face, but she can't hide the hint of displeasure as she swallows it.
+				PRINTFORMW 「S-So bitter...」
+			ELSE
+				PRINTFORMW 「%CALLNAME:MASTER%-san's...」
+				PRINTFORMDW She eagerly cleans her hands with her tongue.
+				PRINTFORMW 「Mustn't waste it!」
+				PRINTFORMDW Aunn finishes and looks at you with a face glistening with semen.
+			ENDIF
+			EXP:精飲経験++
+			PRINTFORMDW You pat Aunn's head and she smiles at you with pride...
+			RETURN 1
+		ELSE
+			PRINTFORMW 「%SPLIT_G("It's twitching so much again!:It's really pulsating in my hand!:It's getting so hot in my hand!:It's jumping a little with every stroke!")%」
+			PRINTFORMW 「%SPLIT_G("If you are close:If you are about to:If it's like this:If you are getting there")%, then I'll...!!」
+			PRINTFORMDW Aunn %SPLIT_G("firmly wraps her digits around your:carefully squeezes down on your:tightens her grip around your")% %FSYN("penis")% and %SPLIT_G("jerks you off as fast as she can:uses her other hand to massage your tip:allows you to buck your hips into her hand:strokes the full length of it:gives it her all")%.
+			PRINTFORMDW You %SPLIT_G("are unable to hold on:cannot hold back your climax anymore:quickly hit your limit:let it all go")% and %SPLIT_G("release:unleash")% the %SPLIT_G("pleasure:desire:bliss")% %SPLIT_G("coursing:running:jolting")% through your body.
+			PRINTFORMDW You send %SPLIT_G("ribbons:ropes:a spray")% of %SEMEN(,1)% flying %SPLIT_G("all over:through the air:")% and %SPLIT_G("coat:stain:mark:sully")% Aunn's hand with it.
+			PRINTFORMW 「%SPLIT_G("So much came out!:There's so much!:It came out so fast again!:It's all over my hand...!:My hand is coated...")%」
+			IF K120_CAN_INSEMINATION_BE_WASTED()
+				PRINTFORMW 「But maybe I shouldn't have been so eager...」
+			ELSE
+				PRINTFORMW 「%SPLIT_G("D-Did it feel good?:D-Did I do well?:Was it what you hoped for?:Are you satisfied?:Was it what you wanted?")%」
+				PRINTFORMDW You %SPLIT_G("pat the eager Aunn's head:nod affirmatively to Aunn:tell her she did a good job:motion to the result of your climax")%.
+				PRINTFORMW 「Ehehe～... %SPLIT_G("I'm glad!:That's good to hear!:Then I'm happy!")%」
+			ENDIF
+		ENDIF
+		CALL K120_INSEMINATION_WASTE_COMMENT("inHand")
+		RETURN 1
+	ENDIF
+
+		;-------------------------------------------------
+		;Basic description
+		;-------------------------------------------------
+	IF PREVCOM == SELECTCOM
+		IF BASE:MASTER:勃起 >= 1000
+			PRINTFORMDW Aunn continues to stroke your %SPLIT_G("erect:stiff:hard")% %SPLIT_G("member:dick:penis:cock")%.
+			PRINTFORMW 「%SPLIT_G("It's so stiff:It's starting to jump from my touch:It's really reacting to my touch now")%...」
+			PRINTFORMW 「%SPLIT_G("D-Does it feel good?:Am I doing it right?:Is it okay like this?")%」
+			PRINTFORMDW You %SPLIT_G("pat the cautious Aunn's head:nod affirmatively to Aunn:instruct her accordingly:tell her she's doing a good job")%.
+			PRINTFORMW 「%SPLIT_G("Alright, I'll keep going like this!:I'll keep doing more of this then!:I'll continue to give it my all then!")%」
+			PRINTFORMDW She %SPLIT_G("diligently:carefully:ardently:earnestly")% %SPLIT_G("handles:works on:services")% your %SPLIT_G("member:dick:penis:cock")% and focuses on %SPLIT_G("even, long strokes:its tip:the right amount of pressure:the speed of her strokes:rhythmic strokes")%...
+		ELSE
+			PRINTFORMDW Aunn continues to try and get your %SPLIT_G("soft:squishy:flaccid")% %SPLIT_G("member:dick:penis:cock")% ready to go.
+			PRINTFORMW 「Ah, %SPLIT_G("it's still not there:it's still all squishy:it's not ready:it's not reacting enough yet")%...」
+			PRINTFORMW 「Gotta %SPLIT_G("try harder:give it my all:do it better")% then!」
+			PRINTFORMDW She %SPLIT_G("diligently:carefully:ardently:earnestly")% continues to %SPLIT_G("handle:work on:service")% your %SPLIT_G("flaccid:soft:squishy")% %SPLIT_G("member:dick:penis:cock")% and %SPLIT_G("massages it:teases your tip:gently runs her fingers over its skin:blows on it while stroking it:squeezes it carefully:gently flicks it up and down")%...
+		ENDIF
+	ELSE
+		PRINTFORMDW Aunn grabs your \@ BASE:MASTER:勃起 >= 1000 ? erection # soft dick \@ and %SPLIT_G("gently massages it with her hands:strokes the length of it:strokes it and massages its tip with her palm:squeezes it tight")%.
+		IF BASE:MASTER:勃起 >= 1000
+			PRINTFORMW 「%SPLIT_G("It's so hard and e-erect:It's really raring to go:It's so hot to the touch")%...」
+			PRINTFORMW 「Since %SPLIT_G("it's already ready:I don't have to get it going:there's no f-foreplay needed:it's already like this")%...」
+			PRINTFORMW 「Leave it to me to make you feel g-good!」
+			PRINTFORMDW She %SPLIT_G("diligently:carefully:ardently:earnestly")% %SPLIT_G("handles:works on:services")% your %SPLIT_G("member:dick:penis:cock")% and focuses on %SPLIT_G("even, long strokes:its tip:the right amount of pressure:the speed of her strokes:rhythmic strokes")%...
+		ELSE
+			PRINTFORMW 「%SPLIT_G("It's so soft and squishy:It isn't ready yet:It's so delicate in this state:It's not e-erect")%...」
+			PRINTFORMW 「%SPLIT_G("I can help with that!:Let me help with that!:I'll give it my all to get it going!:Gotta get it going!")%」
+			PRINTFORMDW She %SPLIT_G("diligently:carefully:ardently:earnestly")% %SPLIT_G("handles:works on:services")% your %SPLIT_G("flaccid:soft:squishy")% %SPLIT_G("member:dick:penis:cock")% and %SPLIT_G("massages it:teases your tip:gently runs her fingers over its skin:blows on it while stroking it:squeezes it carefully:gently flicks it up and down")%...
+		ENDIF
+	ENDIF
+ENDIF
+RETURN 1
+;==================================================
+;81,Fellatio
+;81,フェラチオ
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_81
+CALL M_KOJO_EGG_MESSAGE_COM_K120_81_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_81_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL
+	;時姦中
+	IF FLAG:70
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初めて
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		PRINTFORML 「With my... mouth? Will that really feel good?」
+		PRINTFORMDW Aunn innocently asks you and traces her lips with her fingers.
+		PRINTFORMDW You motion to her that it's fine and point at your hyperweapon.
+		PRINTFORML 「A-Ah, then I'll...」
+		PRINTFORMDW She leans into your member and sizes it up for a moment while she's busy tucking her hair behind her ear.
+		IF BASE:MASTER:勃起 >= 1000
+			PRINTFORMDW Her breath tickles and makes your %TINKO(PLAYER)% twitch a little.
+		ELSE
+			PRINTFORMDW Her breath tickles and causes your %TINKO(PLAYER)% to stiffen and stand tall.
+			BASE:MASTER:勃起 = 1000
+			PRINTFORMW 「T-This feels harder now...」
+		ENDIF
+		PRINTFORMDW Aunn finally finds her courage and carefully slides your %FSYN("penis")% into her mouth.
+		PRINTFORMDW A sharp pain suddenly spreads through your lower body, and you quickly pat her head for attention and then point to your teeth.
+		PRINTFORML 「...! Shorry! Shish ish kinda hard...」
+		PRINTFORMDW She opens her mouth a little more, and the pain quickly subsides, replaced by a warm pleasure instead.
+		PRINTFORML 「%RANDLIPS(,"suck")%...%RANDLIPS(,"suck")%...%RANDLIPS(,"suck")%...」
+		PRINTFORMDW Aunn is very attentive and tries her best to service you, instinctively moving her tongue around your member.
+		PRINTFORMDW You gently grab the sides of her head and instruct her to bop up and down.
+		PRINTFORML 「...! %RANDLIPS(,"suck")%...%RANDLIPS(,"suck")%...」
+		PRINTFORMDW She immediately understands and services you somewhat sloppily, but definitely with her utmost.
+		PRINTFORMW 「Mphm... Hmm!」
+		PRINTFORMDW Aunn leans back and releases her hold on your dick.
+		PRINTFORMW 「Hah... Hah... T-This is tough...!」
+		PRINTFORMDW She catches her breath and massages her jaw.
+		PRINTFORMDW You ask her if she wants to stop, but she is quick to vehemently shake her head.
+		PRINTFORMW 「No!」
+		PRINTFORMW 「If %CALLNAME:MASTER%-san wants me to, I'll do it!」
+		PRINTFORMDW As to not let you get a word in, she wraps her arms around your hips and goes in to service you again.
+		PRINTFORMW 「%RANDLIPS(,"suck")%...%RANDLIPS(,"suck")%...%RANDLIPS(,"suck")%...」
+		PRINTFORMDW You watch Aunn as she diligently sucks, slurps and tongues your %TINKO(PLAYER)%.
+		RETURN 1
+	ENDIF
+
+	;Player climax case
+	IF NOWEX:PLAYER:射精
+		IF FIRSTTIME("AunnMakesPlayerClimaxWithBlowjob")
+			PRINTFORMDW You feel your climax fast approaching as the pleasure clouds your mind.
+			PRINTFORMW 「Ish.. %RANDLIPS(,"suck")%... twitshing sho mush... %RANDLIPS(,"suck")%!」
+			PRINTFORMW 「Are yuu %RANDLIPS(,"suck")%... gunna...?」
+			PRINTFORMDW You answer her question by grabbing her ears and keeping her steady as you unload your %SEMEN(,1)% straight on her tongue.
+			PRINTFORMW 「Mmgh!」
+			PRINTFORMDW Aunn twitches in surprise, but doesn't fight back and patiently waits for you to finish cumming.
+			PRINTFORMDW You pull back, shoot one last rope directly onto her lips and leave a distinct trail of semen from your tip to her mouth.
+			IF EXP:精液経験 <= 0
+				PRINTFORMDW She puts her flat hand on her mouth and looks at you with a discomforted frown.
+				PRINTFORMW 「I-Itsh sho bitter...」
+				PRINTFORMW 「And gooey and shlimey...」
+				PRINTFORMDW You tell her it's fine to spit it out, but just like last time she vehemently shakes her head.
+				PRINTFORML 「Gulp!」
+				PRINTFORMDW Aunn raises her head, and you hear an audible gulp.
+				PRINTFORMW 「A-At least it's easy to swallow...」
+				PRINTFORMDW She licks her lips and thinks for a moment before speaking up again.
+				PRINTFORMW 「The t-taste isn't so bad actually.」
+				PRINTFORMW 「If only it wasn't so bitter...」
+				PRINTFORMW 「But look!」
+				PRINTFORMDW Aunn opens her mouth and shows you that it's empty.
+				PRINTFORMW 「I managed to swallow it all!」
+				PRINTFORMDW You pat Aunn's head and she smiles at you proudly...
+			ELSEIF ABL:精液中毒 <= 3
+				PRINTFORML 「Gulp!」
+				PRINTFORMDW Aunn raises her head, and you hear an audible gulp.
+				PRINTFORMDW She licks her lips and thinks for a moment before speaking up again.
+				PRINTFORMW 「The taste isn't so bad...」
+				PRINTFORMW 「If only it wasn't so bitter...」
+				PRINTFORMW 「But I guess I'm getting used to it.」
+				PRINTFORMW 「Look!」
+				PRINTFORMDW Aunn opens her mouth and shows you that it's empty.
+				PRINTFORMW 「I managed to swallow it all!」
+				PRINTFORMDW You pat Aunn's head, and she smiles at you proudly...
+			ELSE
+				PRINTFORML 「Gulp!」
+				PRINTFORMDW Aunn raises her head and you hear an audible gulp.
+				PRINTFORMDW She licks her lips and smiles happily at you.
+				PRINTFORMW 「All gone!」
+				PRINTFORMDW Aunn opens her mouth to show you and you pat her head as a reward.
+				PRINTFORMW 「Ehehe～!」
+				PRINTFORMW 「I'm glad my mouth feels good enough to make you...」
+				PRINTFORMDW She trails off, blushes and mutters "cum" under her breath...
+			ENDIF
+			RETURN 1
+		ELSE
+			PRINTFORMDW You %SPLIT_G("feel your climax fast approaching:are hitting your limit:are ready to burst:are ready to cum")% as %SPLIT_G("pleasure clouds your mind:bliss takes its toll on you:the wet and warm feeling resonates through your body:Aunn's service pushes you over the edge")%.
+			PRINTFORMW 「Ish.. %RANDLIPS(,"suck")%... %SPLIT_G("twitshing:pulshating:shumping")% sho mush... %RANDLIPS(,"suck")%!」
+			PRINTFORMW 「Are yuu %RANDLIPS(,"suck")%... %SPLIT_G("gunna:aboud tu:ready to:at your limit")%...?」
+			PRINTFORMDW You %SPLIT_G("thrust into Aunn's mouth:grab Aunn by the back of her head and pull her in:grab Aunn's ears to steady her:grab Aunn's horn to force your member a bit deeper")% and %SPLIT_G(@"coat her tongue with your %SEMEN(,1)%:shoot ropes of %SEMEN(,1)% into her mouth:fill her mouth with %SEMEN(,1)%:unload your %SEMEN(,1)% directly into her mouth:flood her mouth with your %SEMEN(,1)%")%.
+			PRINTFORMW 「%SPLIT_G("Mmhph:Mmmgh:Nnmgh:Nnpmh")%!」
+			PRINTFORMDW You %SPLIT_G("pull back:step back:release your hold")% and %SPLIT_G(@"shoot one last rope directly onto Aunn's forehead:leave a trail of cum between your tip and her mouth:cover her face with your %SEMEN(,1)% too:are filled with a sense of conquest:give Aunn some room to breathe")%.
+			PRINTFORMW 「%FSYN("lips_over")%!」rf
+			PRINTFORMW 「%SPLIT_G("There'sh sho mush:It's sho shticky:It'sh all over:My tongue ish coated")%...!」
+			PRINTFORML 「Gulp!」
+			PRINTFORMDW Aunn %SPLIT_G("raises her head:puts her flat hand over her mouth:locks eyes with you:audibly:readily")% %SPLIT_G("gulps:swallows:drinks")% down your %SEMEN(,1)%.
+			IF ABL:精液中毒 <= 3
+				PRINTFORMW 「%SPLIT_G("So bitter, still:I still can't handle the taste:I'm still struggling with the taste")%...」
+				PRINTFORMW 「B-But I think %SPLIT_G("I'm getting there:I'm getting used to it:It's starting to grow on me")%!」
+				PRINTFORMW 「So %SPLIT_G("don't worry about me:don't hold back or anything:do as you please")%!」
+				PRINTFORMW 「And just keep... %SPLIT_G("dispensing:giving me:feeding me:giving me a taste of")%...」
+				PRINTFORMDW She blushes and is unable to finish her sentence...
+			ELSE
+				PRINTFORMW 「%SPLIT_G("It tastes really rich:I swallowed it all:It went down really easily:It has a unique taste")%!」
+				PRINTFORMDW %SPLIT_G("She licks her lips:She opens her mouth to show you that it's all gone:She rolls her tongue around in her mouth:She comments on the taste in detail:She nods to herself, satisfied")%.
+				PRINTFORMDW You %SPLIT_G("pat Aunn's head:tell her she did a good job:praise Aunn")% and she %SPLIT_G("grins:smiles:giggles")% happily...
+			ENDIF
+			IF K120_CAN_INSEMINATION_BE_WASTED()
+				PRINTFORMW 「Ah, but...」
+				PRINTFORMW 「Since today is... you know...」
+				PRINTFORMW 「Maybe I shouldn't have been so eager with this...?」
+			ENDIF
+			CALL K120_INSEMINATION_WASTE_COMMENT("inMouth")
+			RETURN 1
+		ENDIF
+	ENDIF
+
+	;-------------------------------------------------
+	;Basic description
+	;-------------------------------------------------
+	IF PREVCOM == SELECTCOM
+		IF BASE:MASTER:勃起 >= 1000
+			SELECTCASE RAND:2
+				CASE 0
+					PRINTFORMDW Aunn removes your %TINKO(PLAYER)% from her mouth to take a quick break.
+					PRINTFORMW 「Phew...」
+					PRINTFORMDW You ask her if she's too tired.
+					PRINTFORMW 「Nope!」
+					PRINTFORMW 「Just gotta catch my breath a little.」
+					PRINTFORMDW She plays with your dick in her hand for a bit and eventually dives back in.
+				CASE 1
+					PRINTFORMDW Aunn continues to diligently serve your %TINKO(PLAYER)% with her mouth.
+			ENDSELECT
+			PRINTFORMW 「%RANDLIPS(,"suck")%... %RANDLIPS(,"suck")%...」
+			PRINTFORMDW She focuses on %SPLIT_G("rubbing your glans with her tongue:caressing your shaft with her tongue:wrapping her tongue around your length:the speed of moving her head:using her hand to assist her:the lower half of your member")%.
+			PRINTFORMDW The pleasant wet warmth %SPLIT_G("spreads from your groin:washes over you:takes hold of your lower body")%, and %SPLIT_G("Aunn's hair tickles as it touches down on your stomach and thighs:you watch Aunn serve you diligently:you put your hand on the back of Aunn's head to assist her:hold Aunn's hair back for her:you lean back as she works hard:you feel Aunn's hot breath around your dick")%...
+		ELSE
+			PRINTFORMDW Aunn removes your %TINKO(PLAYER)% from her mouth and inspects her handiwork.
+			PRINTFORMW 「Ah, %SPLIT_G("it's still not there:it's still all squishy:it's not ready:it's not reacting enough yet")%...」
+			PRINTFORMW 「Gotta %SPLIT_G("try harder:give it my all:do it better")% then!」
+			PRINTFORMDW She goes back to work on it and %SPLIT_G("squishes it with her tongue:runs her tongue around it:teases the base of it:sucks hard on it to pull it gently:squeezes it with her lips")%.
+			PRINTFORMW 「%RANDLIPS(,"suck")%... %RANDLIPS(,"suck")%...」
+			PRINTFORMDW You feel her %SPLIT_G("hard work:diligent servicing:unwavering spirit")% slowly pay off as your %SPLIT_G("member stiffens:dick goes erect:penis reacts by hardening")%...
+		ENDIF
+	ELSE
+		IF BASE:MASTER:勃起 >= 1000
+			PRINTFORMW 「%SPLIT_G("It's twitching so eagerly:It's all ready to go:It keeps jumping a little:It's so stiff and erect")%...」
+			PRINTFORMDW Aunn cusps your %TINKO(PLAYER)% with her lips and %SPLIT_G("licks your glans:caresses the shaft with her tongue:runs her lips up and down its length:sucks hard on it to create pressure")%.
+			PRINTFORMW 「Ish.. %RANDLIPS(,"suck")%... %SPLIT_G("getting sho hot:shtiffen even more:really pulshating:really hard")%... %RANDLIPS(,"suck")%!」
+			PRINTFORMDW She focuses on %SPLIT_G("rubbing your glans with her tongue:caressing your shaft with her tongue:wrapping her tongue around your length:the speed of moving her head:using her hand to assist her:the lower half of your member")%.
+			PRINTFORMW 「%RANDLIPS(,"suck")%... %RANDLIPS(,"suck")%...」
+			PRINTFORMDW A pleasant wet warmth %SPLIT_G("spreads from your groin:washes over you:takes hold of your lower body")% and %SPLIT_G("Aunn's hair tickles as it touches down on your stomach and thighs:you watch Aunn serve you diligently:you put your hand on the back of Aunn's head to assist her:you hold Aunn's hair back for her:you lean back as she works hard:you feel Aunn's hot breath around your dick")%...
+		ELSE
+			PRINTFORMW 「%SPLIT_G("It's so soft and squishy:It isn't ready yet:It's so delicate in this state:It's not e-erect")%...」
+			PRINTFORMW 「I guess you want to use my mouth to %SPLIT_G("help with that!:give it my all to get it going!:get it going!:to remedy that!")%」
+			PRINTFORMDW Aunn carefully %SPLIT_G("plops:puts:slides")% your %TINKO(PLAYER)% into her mouth and she %SPLIT_G("squishes it with her tongue:runs her tongue around it:teases the base of it:sucks hard on it to pull it gently:squeezes it with her lips")%.
+			PRINTFORMW 「%RANDLIPS(,"suck")%... %RANDLIPS(,"suck")%...」
+			PRINTFORMDW A pleasant wet warmth %SPLIT_G("spreads from your groin:washes over you:takes hold of your lower body")% and %SPLIT_G("Aunn's hair tickles as it touches down on your stomach and thighs:you watch Aunn serve you diligently:you put your hand on the back of Aunn's head to assist her:hold Aunn's hair back for her:you lean back as she works hard:you feel Aunn's hot breath around your dick")%...
+		ENDIF
+	ENDIF
+ENDIF
+RETURN 1
+
+;==================================================
+;82,Paizuri
+;82,パイズリ
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_82
+CALL M_KOJO_EGG_MESSAGE_COM_K120_82_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_82_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL
+	;時姦中
+	IF FLAG:70
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初めて
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		IF TALENT:120:胸圍 < 0
+			;Naizuri/Small
+			PRINTFORMW 「M-My chest?」
+			PRINTFORMDW She looks down at her flat upper body.
+			PRINTFORMW 「B-But there's nothing really there...」
+			PRINTFORMW 「I-I'll guess I'll try!」
+			PRINTFORMDW You sit down, and Aunn kneels in front of you.
+			PRINTFORMW 「H-Here I go...!」
+			PRINTFORMDW Despite her lack of confidence, she diligently rubs her flat chest over your member.
+			PRINTFORMDW Her skin is silky soft and causes very little friction in return.
+			PRINTFORMDW She alternates between circular motions, bopping up and down and from side to side.
+			PRINTFORMDW Whenever one of her nipples makes contact with your %TINKO(PLAYER)% both of you let out a short moan.
+			PRINTFORMW 「Nnn... H-How about it?」
+			PRINTFORMDW Aunn looks up at you, uncertainty still written all over her face.
+			CALL ASK_YN("Give a thumbs up", "Give a thumbs down")
+			IF !RESULT
+				PRINTFORMDW Her expression lights up, and she goes right back to her task.
+				PRINTFORMW 「G-Gotta keep going then!」
+			ELSE
+				PRINTFORMW 「G-Gotta try harder then!」
+			ENDIF
+			PRINTFORMDW You watch her diligently service you with her flat chest...
+			RETURN 1
+		ELSEIF TALENT:120:胸圍 == 0
+			;Paizuri (average)
+			PRINTFORMW 「W-With my c-chest?」
+			PRINTFORMDW Aunn looks down at her average size.
+			PRINTFORMW 「W-Will they be enough?」
+			PRINTFORMW 「I guess we gotta f-find out!」
+			PRINTFORMDW You sit down, and Aunn kneels in front of you.
+			PRINTFORMW 「H-Here I go...!」
+			PRINTFORMDW Despite her lack of confidence, she diligently squishes her breasts together and envelopes your member in them.
+			PRINTFORMDW Your warmth mixes with hers and creates a pleasant tingle that spreads through your lower body.
+			PRINTFORMDW She then gently rocks up and down and immediately checks in with you.
+			PRINTFORMW 「D-Does it feel good?」
+			PRINTFORMDW Her breasts aren't well suited for it, but her earnest attempt and the friction of them causes you greater satisfaction.
+			PRINTFORMDW You praise her and pat her head.
+			PRINTFORMW 「Ehehe～!」
+			PRINTFORMW 「I'll keep going then.」
+			PRINTFORMDW You watch Aunn service you with her breasts and feel your pleasure increasing steadily...
+			RETURN 1
+		ELSEIF TALENT:120:胸圍 > 0
+			;Paizuri (big)
+		ENDIF
+	ENDIF
+
+	;Player climax case; TODO: first time climax case
+	IF NOWEX:PLAYER:射精
+		PRINTFORMDW You are %SPLIT_G("nearing your limit:approaching your climax")% and your %TINKO(PLAYER)% %SPLIT_G("twitches:pulsates:heats up")% immensely in response.
+		PRINTFORMW 「I-It's really reacting to my service now!」
+		PRINTFORMW 「You must be about to...!」
+		PRINTFORMW 「In that case!」
+		IF TALENT:120:胸圍 < 0
+			PRINTFORMDW Aunn rubs your member from her belly button up to her chest and then circles its tip around her nipples.
+			PRINTFORMDW The sensation is too much, and you spread your %SEMEN(,1)% over her upper body.
+			PRINTFORMDW When she pulls back, some of it drips down from her nipples.
+		ELSE
+			PRINTFORMDW Aunn squeezes her breasts tight together and rocks up and down as fast as she can.
+			PRINTFORMDW The sensation is too much, and you spread your %SEMEN(,1)% over her upper body.
+			PRINTFORMDW When she pulls back, there's a puddle of it stuck between her squished breasts.
+		ENDIF
+		PRINTFORMW 「Hawa!」
+		PRINTFORMW 「Ah, there's so much...」
+		PRINTFORMW 「My entire chest is sticky with it...」
+		PRINTFORMDW She looks up at you with a sense of accomplishment.
+		PRINTFORMW 「I'm glad I was able to make you feel good with this!」
+		PRINTFORMW 「I was a bit worried at first!」
+		PRINTFORMDW You reward Aunn with a head pat, and she lets out a satisfied giggle...
+		IF K120_CAN_INSEMINATION_BE_WASTED()
+			PRINTFORMW 「Ah, but...」
+			PRINTFORMW 「Since today is... you know...」
+			PRINTFORMW 「Maybe I shouldn't have been so eager with this...?」
+		ENDIF
+		CALL K120_INSEMINATION_WASTE_COMMENT("onChest")
+		RETURN 1
+	ENDIF
+
+	;-------------------------------------------------
+	;Basic description
+	;-------------------------------------------------
+	IF PREVCOM == SELECTCOM
+		PRINTFORMW 「%SPLIT_G("Huff:And then like this:Maybe more of:If I do it a bit faster")%...」
+		IF TALENT:120:胸圍 < 0
+			PRINTFORMDW Aunn continues to %SPLIT_G(@"rub your %TINKO(PLAYER)% all over her flat chest:tease your tip with her nipples:give you a titjob and speeds up a little")%.
+		ELSEIF TALENT:120:胸圍 == 0
+			PRINTFORMDW Aunn continues to %SPLIT_G(@"knead your %TINKO(PLAYER)% between her breasts:jerk your %TINKO(PLAYER)% with her breasts:give you a titjob and speeds up a little")%.
+		ELSEIF TALENT:120:胸圍 > 0
+			;TODO
+		ENDIF
+		PRINTFORMDW She is fully focused on servicing you...
+	ELSE
+		IF TALENT:120:胸圍 < 0
+			PRINTFORMW 「Even though there's nothing there...」
+			PRINTFORMDW Aunn kneels in front of you and rubs her flat chest over your %TINKO(PLAYER)%.
+			PRINTFORMW 「H-Here I go...!」
+			PRINTFORMDW %SPLIT_G("She uses the full length of her upper body to give you at least some pleasure:She focuses on rubbing the tip of your member against her nipples:She rubs her chest against your member in circular motions")%.
+			PRINTFORMW 「%SPLIT_G("I'm still not sure about this...:I hope it feels good...:I-Is this okay...?:M-Maybe like this...?")%」
+			PRINTFORMDW You %SPLIT_G("pat Aunn's head:lean back:enjoy the show")% as %SPLIT_G("she tries her utmost to service you:she diligently services you:she tries to give you pleasure")% with her flat chest...
+		ELSEIF TALENT:120:胸圍 == 0
+			PRINTFORMW 「%SPLIT_G("If it's my c-chest, I can do it!:You want me to use my c-chest?:S-Service you with my b-breasts?")%」
+			PRINTFORMDW Aunn kneels in front of you and presses her breasts together.
+			PRINTFORMDW You %SPLIT_G("pat Aunn's head:lean back:enjoy the show")% as she %SPLIT_G("diligently services you with her breasts:rocks her breasts up and down:squishes your member between her breasts:rubs your tip against her nipples")%...
+		ELSEIF TALENT:120:胸圍 > 0
+			;TODO
+		ENDIF
+	ENDIF
+ENDIF
+RETURN 1
+
+;==================================================
+;83,Thigh job
+;83,素股
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_83
+CALL M_KOJO_EGG_MESSAGE_COM_K120_83_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_83_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL
+	;時姦中
+	IF FLAG:70
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初めて
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		PRINTFORMW 「You're not... putting it in?」
+		PRINTFORMW 「You want me to just use my thighs...?」
+		PRINTFORMDW Aunn examines her thighs and squeezes them with her hands.
+		PRINTFORMW 「I kinda see what you mean.」
+		PRINTFORMW 「L-Leave it to me then!」
+		PRINTFORMDW She has you sit down and straddles you with her back turned to you.
+		PRINTFORMDW Her weight feels nice and blankets you in a warm sense of security.
+		PRINTFORMDW You wrap your hands around her waist to steady her.
+		PRINTFORMW 「I-It's like an embrace...」
+		PRINTFORMDW You lean forward a bit, and her tail tickles your chest.
+		PRINTFORMW 「Now to...」
+		IF BASE:MASTER:勃起 >= 1000
+			PRINTFORML 「Ah, it's between already...」
+			PRINTFORMDW Your erection pops up between her legs.
+		ELSE
+			PRINTFORML 「Ah, it suddenly s-stiffened!」
+			PRINTFORMDW The warmth and proximity to Aunn immediately causes your flaccid dick to jump to action.
+			BASE:MASTER:勃起 = 1000
+		ENDIF
+		IF !HAS_PENIS(120)
+			PRINTFORMW 「W-Woah...」
+			PRINTFORMW 「It's like I have my own...」
+			PRINTFORMDW Aunn looks down at her crotch where your penis is peeking through.
+			PRINTFORMW 「S-So that's what it would look like...」
+		ENDIF
+		PRINTFORMW 「A-Anyway... Time to...!」
+		PRINTFORMDW She carefully cups her hand and presses your %TINKO(PLAYER)% against her labia.
+		PRINTFORMW 「Now that it's this close, I gotta...」
+		PRINTFORMDW Aunn gently presses her thighs together and smothers your %TINKO(PLAYER)% between them.
+		PRINTFORMDW The slight squeeze feels nice and your penis sinks safely into her plump thighs.
+		PRINTFORMW 「T-The tip is still peeking through...」
+		PRINTFORMDW She leans back into you and starts moving her hips.
+		PRINTFORMDW Her lubrication removes enough friction that it feels like being milked by an onahole.
+		PRINTFORMDW %BREAKENG("Every time Aunn lowers herself, your tip peeks through again and brushes against the upper part of her thighs, sending nice jolts from the tip to the rest of your body.")%
+		PRINTFORMDW Aunn's thighs carry just the right amount of fat to make it seem as if they were made specifically for this purpose.
+		PRINTFORMW 「Mmm... Nnn...」
+		PRINTFORMW 「Hah... D-Does it feel good?」
+		PRINTFORMDW You hear sweet moans escape Aunn's lips in-between labored breaths.
+		PRINTFORMW 「I-It's rubbing against my... So...」
+		PRINTFORMDW Her cheeks flush as she has to admit that it feels good for her too.
+		PRINTFORMW 「Nnn... Hah... L-Let me shift a bit...」
+		PRINTFORMDW She leans forward, grabs the side of your own thighs and continues to service your %TINKO(PLAYER)%.
+		PRINTFORMDW The tip of your member suddenly tickles with each thrust.
+		PRINTFORMDW It's coarse and feels like you're penetrating something.
+		PRINTFORMDW You lean to the side to investigate and wonder if your dick slid inside by accident.
+		PRINTFORMDW You find instead that your member is firmly brushing against her dense pubic hair at the end of each stroke.
+		PRINTFORMDW It's not displeasing, and the ticklish graze against it feels quite nice, so you don't speak up about it.
+		PRINTFORMW 「Hnnn... Hah...」
+		PRINTFORMW 「M-My hips are getting tired.」
+		PRINTFORMDW You tell her to take a short break and note that it might be good to alternate between who is moving their hips...
+		RETURN 1
+	ENDIF
+
+	;Player climax case
+	IF NOWEX:PLAYER:射精
+		PRINTFORMDW The %SPLIT_G("soft and squishy:plump and full:ripe and silky:warm")% feeling of Aunn's exquisite thighs %SPLIT_G("pushes you to your limits:makes your climax draw near:makes you ready to cum")%.
+		IF FIRSTTIME("AunnMakesPlayerClimaxWithThighjob")
+			IF TCVAR:351 == 0
+				PRINTFORMW 「Ah... You only just put it between my thighs and it's already t-throbbing like crazy...」
+			ELSE
+				PRINTFORMW 「Ah... I can feel it t-throbbing like crazy...」
+			ENDIF
+			PRINTFORMW 「Are you about to...?」
+			PRINTFORMW 「I-I didn't think my thighs could feel so good...」
+			PRINTFORMDW You answer her by thrusting hard into them to chase down your your climax.
+			PRINTFORMW 「%MOAN("m")%!」
+			PRINTFORMW 「S-So eager all of a sudden...」
+			PRINTFORMW 「T-That must mean...!」
+			PRINTFORMD You plunge your %TINKO(PLAYER)% between her thighs one final time and unleash ribbons of %SEMEN(,1)% which coat her 
+			SELECTCASE TCVAR:351
+				CASE 0, 1, 4
+					PRINTFORMDW stomach.
+					PRINTFORMW 「W-Woah, all over my stomach!」
+					PRINTFORMDW You then pull back and leave a trail of it on her groin and thighs.
+					PRINTFORMW 「A-And my thighs and d-down there...!」
+				CASE 2, 3, 5
+					PRINTFORMDW thighs.
+					PRINTFORMW 「W-Woah, it's all inside my thighs.」
+					PRINTFORMDW You then pull back and leave a trail of it on her groin and stomach.
+					PRINTFORMW 「A-And my stomach and d-down there...!」
+				CASE 6, 7
+					PRINTFORMDW stomach.
+					PRINTFORMW 「W-Woah, all over my stomach!」
+					PRINTFORMDW You then allow her to stand up and leave a trail of it on her groin and thighs.
+					PRINTFORMW 「I-It's running down my g-groin and thighs!」
+			ENDSELECT
+			PRINTFORMW 「So they really made you feel that good...」
+			PRINTFORMDW Aunn looks surprised, but it quickly fades to make way for a sense of pride and fulfillment.
+			PRINTFORMW 「Ehehe～...」
+			PRINTFORMW 「You can always borrow them if you need to!」
+			PRINTFORMW 「After all...」
+			PRINTFORMDW Aunn blushes and lowers her gaze.
+			PRINTFORMW 「I-It felt g-good for me too...」
+			PRINTFORMDW You pat Aunn as a reward and she lets out another happy giggle...
+			RETURN 1
+		ELSE
+			PRINTFORMW 「%MOAN("m")%... %MOAN("m")%!」
+			SELECTCASE TCVAR:351
+				CASE 0
+					PRINTFORMW 「Ah... You only just put it between my thighs and it's already t-throbbing like crazy...」
+					PRINTFORMW 「%SPLIT_G("Are you about to:Are you gonna:Are you hitting your l-limit")%...?」
+				CASE 1
+					PRINTFORMW 「Ah... %SPLIT_G("You are speeding up:It's t-throbbing like crazy:It's really t-twitching now:It's getting so h-hot")%...」
+					PRINTFORMW 「%SPLIT_G("Are you about to:Are you gonna:Are you hitting your l-limit")%...?」
+					PRINTFORMDW You answer her by %SPLIT_G("thrusting hard into her:pistoning even harder than before:mating profusely with her thighs:shaking your hips violently")% %SPLIT_G("to chase down your climax:and cum within seconds of it:and feel your limit fast approach")%.
+					PRINTFORMW 「%MOAN("m")%!」
+					PRINTFORMDW You shoot %SPLIT_G("ribbons:ropes:a spray")% of %SEMEN(,1)% and %SPLIT_G("completely:thoroughly")% %SPLIT_G("sully:coat:stain:mark")% her %SPLIT_G("thighs:stomach:pubic hair:groin")%.
+					PRINTFORMW 「%SPLIT_G("Hau:Hawa:Ah")%... %SPLIT_G("There's so much:It's so sticky:It's everywhere:It's all over:It came out so fast")%...」
+				CASE 2, 3, 5
+					PRINTFORMW 「Ah... %SPLIT_G("You are speeding up:It's t-throbbing like crazy:It's really t-twitching now:It's getting so h-hot")%...」
+					PRINTFORMW 「%SPLIT_G("Are you about to:Are you gonna:Are you hitting your l-limit")%...?」
+					PRINTFORMDW You answer her by %SPLIT_G("thrusting hard into her:pistoning even harder than before:mating profusely with her thighs:shaking your hips violently")% %SPLIT_G("to chase down your climax:and cum within seconds of it:and feel your limit fast approach")%.
+					PRINTFORMW 「%MOAN("m")%!」
+					PRINTFORMDW You shoot %SPLIT_G("ribbons:ropes:a spray")% of %SEMEN(,1)% directly through her thighs and %SPLIT_G("completely:thoroughly")% %SPLIT_G("sully:coat:stain:mark")% them and a short way in front of you.
+					PRINTFORMW 「%SPLIT_G("Hau:Hawa:Ah")%... %SPLIT_G("There's so much:It's so sticky:It's everywhere:It's all over:It came out so fast")%...」
+				CASE 4
+					PRINTFORMW 「Ah... %SPLIT_G("You are speeding up:It's t-throbbing like crazy:It's really t-twitching now:It's getting so h-hot")%...」
+					PRINTFORMW 「%SPLIT_G("Are you about to:Are you gonna:Are you hitting your l-limit")%...?」
+					PRINTFORMDW You answer her by %SPLIT_G("thrusting hard into her:pistoning even harder than before:mating profusely with her thighs:shaking your hips violently")% %SPLIT_G("to chase down your climax:and cum within seconds of it:and feel your limit fast approach")%.
+					PRINTFORMW 「%MOAN("m")%!」
+					PRINTFORMDW You shoot %SPLIT_G("ribbons:ropes:a spray")% of %SEMEN(,1)% and %SPLIT_G("completely:thoroughly")% %SPLIT_G("sully:coat:stain:mark")% her %SPLIT_G("thighs:back:rear")%.
+					PRINTFORMW 「%SPLIT_G("Hau:Hawa:Ah")%... %SPLIT_G("There's so much:It's so sticky:It's everywhere:It's all over:I can feel it clinging to my skin")%...」
+				CASE 6, 7
+					PRINTFORMW 「Ah... %SPLIT_G("Your breathing is changing:It's t-throbbing like crazy:It's really t-twitching now:It's getting so h-hot")%...」
+					PRINTFORMW 「%SPLIT_G("Are you about to:Are you gonna:Are you hitting your l-limit")%...?」
+					PRINTFORMW 「%SPLIT_G("I-In that case:If that's the case:T-Then")%... %MOAN("m")%... %SPLIT_G("I'll give it my all:I'll really speed up:I'll make you feel even b-better:I'll h-help you out")%!」
+					PRINTFORMDW Aunn %SPLIT_G("speeds up:moves her hips as fast as she can:squeezes down hard:pushes her entire weight onto you")% and %SPLIT_G("you reach your climax:hit your limit:cum right away:surrender yourself to the pleasure")%.
+					PRINTFORMW 「%MOAN("m")%...!」
+					PRINTFORMDW You shoot %SPLIT_G("ribbons:ropes:a spray")% of %SEMEN(,1)% and %SPLIT_G("completely:thoroughly")% %SPLIT_G("sully:coat:stain:mark")% her %SPLIT_G("thighs:stomach:pubic hair:groin")%.
+					PRINTFORMW 「%SPLIT_G("Hau:Hawa:Ah")%... %SPLIT_G("There's so much:It's so sticky:It's everywhere:It's all over:It came out so fast")%...」
+					PRINTFORMW 「%SPLIT_G("But:However")%! %SPLIT_G("I'm glad it felt good:I'm glad was able to make you...:I'm glad you enjoyed it:It's a small price to pay for your p-pleasure")%!」
+			ENDSELECT
+			IF (K120_CAN_INSEMINATION_BE_WASTED() && (TCVAR:351 == 6 || TCVAR:351 == 7))
+				PRINTFORMW 「Although...」
+				PRINTFORMW 「Since today is...」
+				PRINTFORMW 「M-Maybe I shouldn't have been so eager...」
+			ENDIF
+			CALL K120_INSEMINATION_WASTE_COMMENT("onPubicArea")
+			RETURN 1
+		ENDIF
+		TCVAR:351 = 0
+	ENDIF
+
+	;-------------------------------------------------
+	;Basic description
+	;-------------------------------------------------
+	IF PREVCOM == SELECTCOM
+		SELECTCASE TCVAR:351
+			CASE 1, 2
+				PRINTFORMDW You %SPLIT_G("tighten your hold around her legs:angle her legs down a bit:angle her legs up a bit:move your hands down to squeeze tighter:speed up")% and continue to %SPLIT_G("piston:thrust:push")% your %TINKO(PLAYER)% between her %SPLIT_G("plump:pudgy:ripe:soft:squishy")% thighs.
+				PRINTFORMW 「%MOAN()%... %MOAN()%!」
+				PRINTFORMW 「%SPLIT_G("It feels g-good:It's making a l-lewd noise whenever you t-thrust:I guess, it feels g-good for you too then:Y-You seem eager to continue like this")%...」
+			CASE 3
+				PRINTFORMDW You %SPLIT_G("squeeze her waist:sink your fingers into her behind:lean into her:speed up")% and continue to %SPLIT_G("piston:thrust:push")% your %TINKO(PLAYER)% between her %SPLIT_G("plump:pudgy:ripe:soft:squishy")% thighs from the front.
+				PRINTFORMW 「%MOAN()%... %MOAN()%!」
+				PRINTFORMW 「%SPLIT_G("It feels g-good:It's making a l-lewd noise whenever you t-thrust:M-My legs are going to give out eventually:This must be r-really tiring")%...」
+			CASE 4
+				PRINTFORMDW You %SPLIT_G("squeeze her waist:sink your fingers into her behind:lean into her:speed up")% and continue to %SPLIT_G("piston:thrust:push")% your %TINKO(PLAYER)% between her %SPLIT_G("plump:pudgy:ripe:soft:squishy")% thighs from behind.
+				PRINTFORMW 「%MOAN()%... %MOAN()%!」
+				PRINTFORMW 「%SPLIT_G("It feels g-good:Continuing in this position:M-My thighs are getting v-violated:You're t-thrusting so eagerly")%...」
+			CASE 5
+				PRINTFORMDW You %SPLIT_G("squeeze her waist:sink your fingers into her behind:lean into her:speed up")% and continue to %SPLIT_G("piston:thrust:push")% your %TINKO(PLAYER)% between her %SPLIT_G("plump:pudgy:ripe:soft:squishy")% thighs from behind
+				PRINTFORMW 「%MOAN()%... %MOAN()%!」
+				PRINTFORMW 「%SPLIT_G("It feels g-good:It's making a l-lewd noise whenever you t-thrust:M-My legs are going to give out eventually:This must be r-really tiring:I keep seeing it e-emerge through the other side")%...」
+			CASE 6, 7
+				PRINTFORMDW Aunn %SPLIT_G("shifts forward:shifts backwards:squeezes tighter:gives it her all")% and continues to %SPLIT_G("squeeze:press:push")% your %TINKO(PLAYER)% between her %SPLIT_G("plump:pudgy:ripe:soft:squishy")% thighs.
+				PRINTFORMW 「%MOAN()%... %MOAN()%...」
+				PRINTFORMW 「%SPLIT_G("It feels g-good:It's making a l-lewd noise whenever you t-thrust:M-My hips are going to give out eventually:This is tiring, b-but I can still keep going")%...」
+		ENDSELECT
+	ELSE
+		IF RAND:2 == 0
+			;Player leads
+			IF RAND:3 == 0
+			;Missionary
+				SELECTCASE RAND:3
+					CASE 0
+						;legs raised high
+						PRINTFORMDW You push Aunn on her back and hug her legs against your chest to straighten them.
+						PRINTFORMW 「%SPLIT_G("Hawa:Hau:My legs:That surprised me:My ankles are interlocked:You're hugging my legs so eagerly")%...」
+						PRINTFORMDW You %SPLIT_G("thrust:piston:squeeze")% your %TINKO(PLAYER)% between her %SPLIT_G("plump:pudgy:ripe:soft:squishy")% thighs.
+						PRINTFORMW 「%MOAN()%!」
+						PRINTFORMW 「%SPLIT_G("I can see it peeking through:It's like you're m-mating with my thighs:It's rubbing my")%...」
+						TCVAR:351 = 1
+					CASE 1
+						;knees pushed against chest
+						PRINTFORMDW You push Aunn on her back, press her knees against her chest and squeeze them together.
+						PRINTFORMW 「%SPLIT_G("Hawa:Hau:My knees:That surprised me:I-It's like a m-mating p-press:I c-can't see what you're doing like this")%...」
+						PRINTFORMDW You %SPLIT_G("thrust:piston:squeeze")% your %TINKO(PLAYER)% between her %SPLIT_G("plump:pudgy:ripe:soft:squishy")% thighs from above.
+						PRINTFORMW 「%MOAN()%!」
+						PRINTFORMW 「%SPLIT_G("I can't see w-what's happening:It's like you're m-mating with my thighs:It's rubbing my")%...」
+						TCVAR:351 = 1
+					CASE 2
+						;reverse legs raised high
+						PRINTFORMDW You push Aunn on her back, straddle her with your back turned to her and hug her legs against your chest to straighten them.
+						PRINTFORMW 「%SPLIT_G("Hawa:Hau:My legs:That surprised me:I-I can't see anything:You're hugging my legs so eagerly")%...」
+						PRINTFORMDW You %SPLIT_G("thrust:piston:squeeze")% your %TINKO(PLAYER)% between her %SPLIT_G("plump:pudgy:ripe:soft:squishy")% thighs.
+						PRINTFORMW 「%MOAN()%!」
+						PRINTFORMW 「%SPLIT_G("I can feel it peeking through:It's rubbing my:I can only see you t-thrust")%...」
+						TCVAR:351 = 2
+				ENDSELECT
+			ELSEIF RAND:2 == 1
+			;Standing
+				PRINTFORMDW You stand up straight in front of Aunn and %SPLIT_G("press:push:squeeze")% her thighs together.
+				PRINTFORMDW Aunn %SPLIT_G("looks down at your member:locks eyes with you:puts her hands on your shoulders:wraps her hands around your waist")% as you %SPLIT_G("thrust:piston:squeeze")% your %TINKO(PLAYER)% between her %SPLIT_G("plump:pudgy:ripe:soft:squishy")% thighs from behind.
+				PRINTFORMW 「%MOAN()%!」
+				PRINTFORMW 「%SPLIT_G("I can feel it peeking through:It's p-penetrating my thighs so eagerly:D-Doing something like this while s-standing:I-I can see it vanishing into my thighs")%...」
+				TCVAR:351 = 3
+			ELSE
+				;doggy style
+				IF RAND:2 == 0
+					;on all fours
+					PRINTFORMDW You push Aunn on all fours %SPLIT_G("press:push:squeeze")% her thighs together.
+					PRINTFORMDW Aunn %SPLIT_G("lowers her head:looks over her shoulder:looks straight ahead")% as you %SPLIT_G("thrust:piston:squeeze")% your %TINKO(PLAYER)% between her %SPLIT_G("plump:pudgy:ripe:soft:squishy")% thighs.
+					PRINTFORMW 「%MOAN()%!」
+					PRINTFORMW 「%SPLIT_G("I can feel it peeking through:It's l-like you're m-mating with my thighs:It's p-penetrating my thighs so eagerly")%...」
+					TCVAR:351 = 4
+				ELSE
+					;standing (from behind)
+					PRINTFORMDW You stand up straight behind Aunn and %SPLIT_G("press:push:squeeze")% her thighs together.
+					PRINTFORMDW Aunn %SPLIT_G("looks over her shoulder:looks straight towards the sky:lowers her head")% as you %SPLIT_G("thrust:piston:squeeze")% your %TINKO(PLAYER)% between her %SPLIT_G("plump:pudgy:ripe:soft:squishy")% thighs from behind.
+					PRINTFORMW 「%MOAN()%!」
+					PRINTFORMW 「%SPLIT_G("I can feel it peeking through:It's p-penetrating my thighs so eagerly:D-Doing something like this while s-standing")%...」
+					TCVAR:351 = 5
+				ENDIF
+			ENDIF
+		ELSE
+			;Aunn leads
+			IF RAND:2 == 0
+			 	;sitting (facing away)
+				PRINTFORMDW Aunn straddles you while facing away and %SPLIT_G("squeezes:presses:pushes")% your %TINKO(PLAYER)% between her %SPLIT_G("plump:pudgy:ripe:soft:squishy")% thighs.
+				PRINTFORMW 「%MOAN()%...」
+				PRINTFORMW 「%SPLIT_G(@"Only being able to see your... is w-weird:It's peeking through so eagerly:I hope I'm not too heavy:Gotta make %CALLNAME:MASTER%-san feel good")%...」
+				PRINTFORMDW She %SPLIT_G("leans back into you:leans forward:wraps her hands around your thighs:puts her hands on your knees")% and %SPLIT_G("moves her hips:rubs your penis between her thighs:moves her thighs:squeezes your member")%...
+				TCVAR:351 = 6
+			ELSE
+				;sitting (facing player)
+				PRINTFORMDW Aunn straddles you and %SPLIT_G("squeezes:presses:pushes")% your %TINKO(PLAYER)% between her %SPLIT_G("plump:pudgy:ripe:soft:squishy")% thighs.
+				PRINTFORMW 「%MOAN()%...」
+				PRINTFORMW 「%SPLIT_G(@"Facing each other is a bit e-embarrassing:It's peeking through so eagerly:I hope I'm not too heavy:Gotta make %CALLNAME:MASTER%-san feel good")%...」
+				PRINTFORMDW She %SPLIT_G("leans into you:puts her hands on your shoulders:wraps her hands around your waist")% and %SPLIT_G("moves her hips:rubs your penis between her thighs:moves her thighs:squeezes your member")%...
+				TCVAR:351 = 7
+			ENDIF
+		ENDIF
+	ENDIF
+ENDIF
+RETURN 1
+
+;==================================================
+;84,foam play
+;84,泡踊り
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_84
+CALL M_KOJO_EGG_MESSAGE_COM_K120_84_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_84_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初めて
+	;記入チェック
+	LOCAL:1 = 0
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		PRINTFORMW 
+		RETURN 1
+	ENDIF
+	;基本セット
+	;恋慕
+	IF TALENT:恋慕
+		PRINTFORMW 
+		RETURN 1
+	;屈服3
+	ELSEIF MARK:不埒刻印 == 3
+		PRINTFORMW 
+		RETURN 1
+	;それ以外
+	ELSE
+		PRINTFORMW 
+		RETURN 1
+	ENDIF
+ENDIF
+RETURN 1
+
+;==================================================
+;85,Foot job
+;85,足扱き
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_85
+CALL M_KOJO_EGG_MESSAGE_COM_K120_85_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_85_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初めて
+	;記入チェック
+	LOCAL:1 = 0
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		PRINTFORMW 
+		RETURN 1
+	ENDIF
+	;基本セット
+	;時姦中
+	IF FLAG:70
+		PRINTFORMW 
+		RETURN 1
+	;恋慕
+	ELSEIF TALENT:恋慕
+		PRINTFORMW 
+		RETURN 1
+	;屈服3
+	ELSEIF MARK:不埒刻印 == 3
+		PRINTFORMW 
+		RETURN 1
+	;それ以外
+	ELSE
+		PRINTFORMW 
+		RETURN 1
+	ENDIF
+ENDIF
+RETURN 1
+;==================================================
+;88,vacuum sucking
+;88,バキュームフェラ
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_88
+CALL M_KOJO_EGG_MESSAGE_COM_K120_88_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_88_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初めて
+	;記入チェック
+	LOCAL:1 = 0
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		PRINTFORMW 
+		RETURN 1
+	ENDIF
+	;基本セット
+	;時姦中
+	IF FLAG:70
+		PRINTFORMW 
+		RETURN 1
+	;恋慕
+	ELSEIF TALENT:恋慕
+		PRINTFORMW 
+		RETURN 1
+	;屈服3
+	ELSEIF MARK:不埒刻印 == 3
+		PRINTFORMW 
+		RETURN 1
+	;それ以外
+	ELSE
+		PRINTFORMW 
+		RETURN 1
+	ENDIF
+ENDIF
+RETURN 1

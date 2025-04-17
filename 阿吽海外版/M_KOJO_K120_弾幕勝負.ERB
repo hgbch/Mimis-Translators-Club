@@ -1,0 +1,124 @@
+;==================================================
+;弾幕勝負
+;==================================================
+;
+@M_KOJO_EGG_MESSAGE_COM_K120_DANMAKU(ARGS, 相手残機)
+#DIM 相手残機
+;全体の流れ
+;①【戦闘前】→②ダイスロールとプレイヤー選択肢、ハンデをつけた場合は【ハンデ口上】→③対応スキルが発動した場合【スキル口上】→④被弾判定、キャラが被弾したなら【被弾口上】→
+;どちらかの残機が0になっていなければ②に戻る→⑤【戦闘後口上】
+
+;--------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------
+IF LOCAL
+	SIF FLAG:口上色
+		TRYCALLFORM M_KOJO_COLOR_K{NO:TARGET}
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;戦闘前
+	;記入チェック（=0, 非表示、1, 表示）
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && ARGS == "戦闘前"
+		PRINTFORML 「A Danmaku match! Then I'll be your opponent!」
+		IF TALENT:恋人
+			PRINTFORML 「Even if we're lovers, when it comes to Danmaku I won't go easy on you!」
+		ELSE
+			PRINTFORML 「Don't take me lightly or you'll regret it! I'm going all out for this!」
+		ENDIF
+		PRINTFORML 「Hound Sign『Mountain Hound's Walk』!」
+		PRINTFORMDW Elongated yellow bullets home in on you, eventually splitting off into red elongated bullets which spread randomly.
+		PRINTFORML 
+	ENDIF
+
+	;-------------------------------------------------
+	;戦闘中TARGET被弾時口上
+	;記入チェック（=0, 非表示、1, 表示）
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && ARGS == "被弾"
+		;別に一律で「やられたー」だけでもいいよ
+		SELECTCASE 相手残機
+			;残り残機3が表示されるのは【洽覧深識】持ちのみ
+			CASE 2
+				PRINTFORMDW As the bullets change their direction to follow you every second or so, you first lead them to the left.
+				PRINTFORMDW %BREAKENG("Then falling back to the center to get some more damage in, you lead them to the right and continue this back and forth until you clear her Spell Card.")%
+				PRINTFORML 
+				PRINTFORML 「Not bad! But try this next!」
+				PRINTFORML 「Spinning Top『Curl Up And Die』!」
+				PRINTFORMDW Aunn shoots red lasers which spin and curve before closing in on you.
+				PRINTFORMDW She then covers some of the empty space with bursts of 5 short yellow bullets parallel to each other.
+			CASE 1
+				PRINTFORMDW You find the Spell Card fairly easily, sticking to the center and concentrate on dodging the yellow bullets by moving ever so slightly left and right.
+				PRINTFORML 
+				PRINTFORML 「T-This much is nothing! The next one will get you for sure!」
+				PRINTFORML 「Koma Sign『Solitary A-Un Breathing』!」
+				PRINTFORMDW %BREAKENG("Aunn splits herself in two and shoots whirls of small pink bullets in groups of 5, with large pink orbs that home in on your position from both clones.")%
+			CASE 0
+				PRINTFORMDW %BREAKENG("You concentrate and dispose of the left clone first, before slowly moving towards the original on the right, leaving the pink orbs behind you and dodging through the spaces of the smaller bullets.")%
+				PRINTFORMDW You repeat this motion until you successfully clear her Spell Card.
+		ENDSELECT
+	ENDIF
+
+		;-------------------------------------------------
+	;戦闘後
+	;記入チェック（=0, 非表示、1, 表示）
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && ARGS == "戦闘後"
+		PRINTFORML 
+		SELECTCASE 相手残機
+			CASE 3
+				PRINTFORMDW You panic and spread yellow bullets everywhere until you are eventually cornered and succumb to them.
+				CALL COLORMESSAGE("Pichuun!",C_YELLOW)
+				PRINTFORML 
+				IF TALENT:恋人
+					PRINTFORML 「I-It's over already?」
+					PRINTFORML 「Are you okay? You barely even fought back!」
+					PRINTFORMDW Aunn seems worried that she went too hard on you after all...
+				ELSE
+					PRINTFORML 「I'm a Komainu, so it's only natural that I win!」
+					PRINTFORMDW Aunn puts her hands on her hips and sticks out her chest in triumph...
+				ENDIF
+			CASE 2
+				PRINTFORMDW You find yourself disoriented by the curving lasers and unable to concentrate on the yellow bullets; eventually caught off-guard entirely.
+				CALL COLORMESSAGE("Pichuun!",C_YELLOW)
+				PRINTFORML 
+				PRINTFORML 「Do you realize how awesome this Komainu before is yet?」
+				PRINTFORMDW Aunn strikes a few poses for you in triumph.
+				PRINTFORML 「Ah, but don't be discouraged!」
+				PRINTFORMW 「You still have so much more potential! So keep training and then challenge me again!」
+				PRINTFORMW 「Okay?」
+				PRINTFORMDW Despite everything, Aunn still tries her best to cheer you on...
+			CASE 1
+				PRINTFORMDW Unsure on which Aunn to concentrate on, you are quickly overwhelmed by the sheer volume of the bullets and--
+				CALL COLORMESSAGE("Pichuun!",C_YELLOW)
+				PRINTFORML 
+				PRINTFORML 「Phew, that was really close!」
+				IF TALENT:恋人
+					PRINTFORML 「As expected of the one I love!」
+				ELSE
+					PRINTFORML 「You're stronger than you let on.」
+				ENDIF
+				PRINTFORML 「If I'm not careful, you might beat me next time!」
+				PRINTFORMDW Despite her saying she should be careful, she still pumps her fists at you encouragingly...
+			CASE 0
+				PRINTFORML 「Uwah... I surrender! What strength...」
+				IF TALENT:恋人
+					PRINTFORML 「I'm a bit worried you'll end up protecting me instead of the other way around...」
+					PRINTFORML 「Well... I guess I don't mind...」
+					PRINTFORMDW Aunn nuzzles up to you and giggles at you...
+				ELSE
+					PRINTFORML 「You really beat me!」
+					PRINTFORML 「But I bet I can beat you if I train really hard!」
+					PRINTFORMDW Aunn stretches and starts shadowboxing to prepare for your next challenge...
+				ENDIF
+		ENDSELECT
+	ENDIF
+	RESETCOLOR
+ENDIF
+RETURN 1
+
