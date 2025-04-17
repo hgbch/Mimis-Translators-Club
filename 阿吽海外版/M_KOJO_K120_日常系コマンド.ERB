@@ -27,35 +27,35 @@ RETURN RESULT
 LOCAL = 1
 ;-------------------------------------------------
 IF LOCAL
-	IF CFLAG:ブチギレ || TFLAG:193 == -3 ;custom code, hate mark 3/anger
-		PRINTFORMDW Aunn growls at you, baring her teeth. It looks like she's far too angry with you to tolerate conversation...
+	IF CFLAG:ブチギレ || TFLAG:193 == -3 ;反3/生气
+		PRINTFORMDW 阿吽朝你露出獠牙低吼着..看起来对你过于愤怒...无法继续对话...
 		RETURN
 	ENDIF
 
-	;Dialogue failure
+	;交谈失败
 	IF TCVAR:302
 		SELECTCASE RAND:3
 			CASE 0
 				PRINTFORML 「...」
-				PRINTFORMDW Both of you run out of conversation topics...
+				PRINTFORMDW 两人都找不到话题...
 			CASE 1
 				PRINTFORML 「...」
-				PRINTFORMDW Aunn awkwardly scratches her cheek as she tries to think of a conversation topic...
+				PRINTFORMDW 阿吽尴尬地挠着脸颊...
 			CASE 2
-				PRINTFORML 「Ha...Haha...」
+				PRINTFORML 「哈...哈哈.....」
 				PRINTFORML 「...」
-				PRINTFORMDW Aunn stiffly laughs and immediately falls quiet after...
+				PRINTFORMDW 阿吽僵硬地笑了笑，随后立刻陷入了沉默...
 		ENDSELECT
 
 		RETURN 1
 	ENDIF
 
 	;-------------------------------------------------
-	;Dating dialogue
+	;约会
 	;-------------------------------------------------
 	IF CHK_DATENOW(CFLAG:TARGET:デート中)
 		SELECTCASE CFLAG:MASTER:現在位置
-			;in transit
+			;移动中
 			;道中
 			CASE ROAD_TO(CFLAG:MASTER:デート中)
 				IF TALENT:恋慕
@@ -64,122 +64,123 @@ IF LOCAL
 					;
 				ENDIF
 
-			;Hakurei Shrine and surroundings
+			;波力神社
 			;博麗神社
 			CASE 10 TO 90
 				;
 
-			;Forest of Magic
+			;魔法森林
 			;魔法の森
 			CASE 森林的入口, 古木的大樹, 霧雨魔法店, 人偶的洋館
 				SELECTCASE RAND:3
 					CASE 0
-						PRINTFORML 「When people mention a "forest" they always just talk about this one, right?」
-						PRINTFORMW 「How come?」
-						PRINTFORMDW You explain that there are no other real forests in Gensokyo outside of this one.
-						PRINTFORML 「What about the Bamboo Forest?」
-						PRINTFORMDW That one is technically a "thicket" and not a forest.
+						PRINTFORML 「说到「森林」的话，大家总是只会提到这里对吧？」
+						PRINTFORMW 「为啥呢?」
+						PRINTFORMDW 你解释道幻想乡除了这里之外没有其他真正意义上的森林。
+						PRINTFORML 「那竹林呢？」
+						PRINTFORMDW 啊...那个是竹林啊...竹林也算森林么?
 						;Editor's note: "Bamboo Thicket" (竹林) vs. "Forest" (森).
-						PRINTFORML 「Then what about the Youkai Mountain?」
-						PRINTFORMW 「That one has a really large forest, right?」
-						PRINTFORMDW You smile wryly and tell her that because it's so vast, it's literally a "Sea of Trees".
+						PRINTFORML 「那妖怪之山呢？」
+						PRINTFORMW 「那里不是有很大片的森林吗？」
+						PRINTFORMDW 那里的话要比"森林"大得多吧...与其叫森林不如更应该说是"树海"...再说更重要的不应该是山么?
 						;Editor's note: "Sea of Trees" (樹海) vs. "Forest" (森).
-						PRINTFORML 「Hmm...」
-						PRINTFORMW 「I guess you are right! There's no other forest in Gensokyo then!」
-						PRINTFORMDW You are ready to drop the topic, but Aunn suddenly perks up.
-						PRINTFORML 「Ah!」
-						PRINTFORMW 「I heard there's a "Youkai Tanuki Forest"!」
-						PRINTFORMDW You almost forgot about it yourself and nod in response.
-						PRINTFORMDW That one counts as another forest.
+						PRINTFORML 「嗯...」
+						PRINTFORMW 「这么说来确实！幻想乡里没有其他森林了呢！」
+						PRINTFORMDW 你正准备结束话题，但阿吽突然精神一振。
+						PRINTFORML 「啊!!」
+						PRINTFORMW 「我听说有个『妖怪狸森林』！」
+						PRINTFORMDW 你自己都快忘记这件事了，于是点头回应。
+						PRINTFORMDW 那个确实也算作森林之一。
 						;Editor's note: 妖怪狸の森
-						PRINTFORML 「Hehe!」
-						PRINTFORMDW Aunn proudly puffs out her chest.
-						PRINTFORMDW However that one is barely known and thus people will still only think of the Forest of Magic.
-						PRINTFORMDW Especially due to its close proximity to the Human Village.
-						PRINTFORML 「Ah...」
-						PRINTFORMW 「Hmm...」
-						PRINTFORMDW Aunn falls silent again as she explores deep into her thoughts.
-						PRINTFORMDW It doesn't take long for her to speak her mind again.
-						PRINTFORMW 「I wanna find a forest and call it the "Komano Forest!"」
-						PRINTFORMDW You tell her to go for it, and she starts examining trees, as if to confirm what makes a forest a forest...
+						PRINTFORML 「嘿嘿!」
+						PRINTFORMDW 阿吽自豪地挺起胸膛。
+						PRINTFORMDW 不过那里鲜为人知，所以人们仍然只会想到魔法森林
+						PRINTFORMDW 特别是由于它紧邻人类村落。
+						PRINTFORML 「啊...」
+						PRINTFORMW 「唔...」
+						PRINTFORMDW 阿吽再次陷入沉默，好像在思考着什么。
+						PRINTFORMDW 没过多久,她又抬起头来。
+						PRINTFORMW 「我想发现个森林! 就叫高丽野森林好了!」
+						PRINTFORMDW 你鼓励她去尝试，她开始仔细端详树木，仿佛在确认构成森林的要素...
 					CASE 1
-						PRINTFORML 「I wonder if this is one of the forest's famous mushrooms.」
-						PRINTFORMDW Aunn squats next to a small colony of yellow mushrooms with white dots on them.
-						PRINTFORMW 「I heard eating them will make people see things.」
-						PRINTFORML 「But Marisa-san uses these for her magic, right?」
-						PRINTFORMDW She carefully picks one and inspects it.
-						PRINTFORML 「How do you even get magic out of these?」
-						PRINTFORMDW Aunn waves the mushroom in front of her, but no magic comes out, just a few spores.
+						PRINTFORML 「这应该就是森林里那些有名的蘑菇了吧。」
+						PRINTFORMDW 阿吽蹲在长着白色斑点的黄色蘑菇丛旁。
+						PRINTFORMW 「听说吃了这个会让看到神奇的景象呢」
+						PRINTFORML 「不过魔理沙是用这个来施展魔法的对吧？」
+						PRINTFORMDW 她小心翼翼地摘下一朵仔细观察。
+						PRINTFORML 「到底要怎么从这里面提取魔力啊？」
+						PRINTFORMDW 阿吽把蘑菇在面前挥来挥去，但除了孢子外什么都没掉出来。
 						SELECTCASE TALENT:MASTER:調合Lv
 							CASE 0, 1
-								PRINTFORMDW Your mixing knowledge is too low, so you tell her to ask Marisa directly.
-								PRINTFORML 「Oh! Good idea!」
-								PRINTFORML 「I'll ask her one of these days then.」
-								PRINTFORMDW She puts the mushroom down and the two of you continue...
+								PRINTFORMDW 想了想自己贫乏的知识, 你建议她直接去问魔理沙。
+								PRINTFORML 「啊! 对耶! 」
+								PRINTFORML 「那过几天我就去问问她吧。」
+								PRINTFORMDW 她放下蘑菇，你们两人继续前行...
 							CASE 1, 2
-								PRINTFORMDW You tell her that you can dry and crush them to make medicine.
-								PRINTFORMDW But your mixing knowledge is too low and you don't know how to extract magic from them.
-								PRINTFORML 「In that case I just gotta ask Marisa-san directly!」
-								PRINTFORMDW She puts the mushroom down and the two of you continue...
+								PRINTFORMDW 你告诉她可以将其晒干后碾碎制成药材
+								PRINTFORMDW 但是因为调合知识不足...所以不知道如何从中提取魔力
+								PRINTFORML 「既然如此我就直接去问魔理沙小姐好啦！」
+								PRINTFORMDW 她放下蘑菇，两人又继续前行...
 							CASEELSE
-								PRINTFORMDW You flaunt your mixing knowledge and tell her that you can dry and crush them to make medicine.
-								PRINTFORMDW %BREAKENG("Additionally you can submerge them in mountain stream water, boil them or smash different kinds together to create magic reactions.")%
-								PRINTFORML 「Ooohh... So that's how!」
-								PRINTFORMDW You add that the reactions vary wildly and the most common outcome is no reaction at all.
-								PRINTFORML 「Sounds kinda difficult then...」
-								PRINTFORMDW She puts the mushroom down and seems satisfied with your answer...
+								PRINTFORMDW 你告诉她可以晒干碾碎制成药材
+								PRINTFORMDW %BREAKENG("另外,还可以取山泉水浸泡,煮沸, 或者把各种材料捣在一起来产生反应")%
+								PRINTFORML 「哦哦哦... 原来如此!」
+								PRINTFORMDW 你补充说这些反应千变万化，最常见的结果是什么也不会发生。
+								PRINTFORML 「听起来有点难呢...」
+								PRINTFORMDW 她放下蘑菇，似乎对你的回答很满意......
 						ENDSELECT
 					CASE 2
 						SELECTCASE DAY:2
 							CASE 1
-								;Spring
-								PRINTFORMDW You come upon a clearing surrounded by white wisteria trees.
-								PRINTFORMDW Racemes of snowy white flowers, the size of your forearm, hang from the branches.
-								PRINTFORML 「White wisterias!」
-								PRINTFORMDW Aunn runs over to one of the trees.
-								PRINTFORMW 「Aren't they usually purple?」
-								PRINTFORMW 「Are these rare then?」
-								PRINTFORMDW She pokes one of the raceme and unleashes a cloud of pollen.
-								PRINTFORML 「Ugyah!」
-								PRINTFORMDW Aunn jumps back, but it's too late and her eyes start to water.
-								PRINTFORML 「Aaa... Aaaaa... Aaaachoooo!!!」
-								PRINTFORMDW She lets out a mighty sneeze.
-								PRINTFORML 「Achoo!」
-								PRINTFORMDW And another.
-								PRINTFORML 「A-Achoo!!!」
-								PRINTFORMDW This continues until the reaction finally settles down.
-								PRINTFORML 「Aaaa... Fuu...」
-								PRINTFORMDW You check on her and she smiles at you with snot hanging out of her nose.
-								PRINTFORML 「Ehehe～... It finally stopped!」
-								PRINTFORMDW You produce a handkerchief and clean her face...
+								;春
+								PRINTFORMDW 你来到一片被白色藤树环绕的空地
+								PRINTFORMDW 枝条上垂挂着雪白的花序，每串都有小臂那么长。
+								PRINTFORML 「白色的紫藤花！」
+								PRINTFORMDW 阿吽跑向其中一棵树。
+								PRINTFORMW 「它们通常不是紫色的吗？」
+								PRINTFORMW 「难道是稀有品种？」
+								PRINTFORMDW 她戳了戳一串花，顿时扬起一团花粉。
+								PRINTFORML 「呜呀!」
+								PRINTFORMDW 阿吽向后跳开，但为时已晚，眼睛已经开始流泪。
+								PRINTFORML 「阿————阿阿——————阿嚏————！！！」
+								PRINTFORMDW 一个惊天动地的大喷嚏！
+								PRINTFORML 「阿嚏！」
+								PRINTFORMDW 接着又一个！
+								PRINTFORML 「阿、阿嚏！！！」
+								PRINTFORMDW .......
+								PRINTFORMDW 直到好一会后,她才终于平息下来。
+								PRINTFORML 「哈～哈～... 呼～...」
+								PRINTFORMDW 她对你笑着...鼻涕还挂在鼻尖上...
+								PRINTFORML 「嘿嘿～... 终于停下来了！」
+								PRINTFORMDW 你掏出手帕替她擦干净脸...
 							CASE 2
-								;Summer
-								PRINTFORML 「It's surprising how cool the forest is.」
-								PRINTFORMDW You and Aunn take a short breather beneath the dense canopies.
-								PRINTFORMDW A cool breeze envelops you and the leaves rustle as they fervently shade the sun.
-								CALL COLORMESSAGE("「Waa～h! We found some visitors!」", C_TEAL, 2)
-								CALL COLORMESSAGE("「What are you guys doing here?!」", C_ORANGE, 2)
-								PRINTFORMDW Two excited fairies come flying over when they spot you.
-								PRINTFORMDW One has teal pigtails and wears a white dress with yellow rhombic patterns at the frills.
-								PRINTFORMDW The other has long orange-brown hair and wears a light blue dress with the same patterns, but in white.
+								;夏
+								PRINTFORML 「森林里真是让人意外的凉快呢」
+								PRINTFORMDW 你和阿吽在茂密的树冠下稍作歇息
+								PRINTFORMDW 凉爽的清风包裹着二人，树叶沙沙作响着为烈日投下荫蔽
+								CALL COLORMESSAGE("「「哇～！发现客人啦！」", C_TEAL, 2)
+								CALL COLORMESSAGE("「你们在这里做什么呀？！」", C_ORANGE, 2)
+								PRINTFORMDW 两只兴奋的妖精发现你们后飞了过来
+								PRINTFORMDW 一只蓝绿色的双马尾，穿着白色连衣裙，裙摆装饰着黄色的菱形花纹
+								PRINTFORMDW 另一个妖精留着橙褐色的长发，穿着浅蓝色连衣裙，裙摆处有相同的白色菱形花纹
 								IF TALENT:恋慕
-									PRINTFORML 「We're out on a date!」
-									PRINTFORMDW Aunn proclaims happily.
+									PRINTFORML 「我们在约会！」
+									PRINTFORMDW 阿吽
 								ELSEIF TALENT:思慕
-									PRINTFORML 「We're... Umm...」
-									PRINTFORMDW Aunn shoots glances at you.
-									PRINTFORMDW You tell them you're here on a date and Aunn blushes in response.
+									PRINTFORML 「我们……呃……」
+									PRINTFORMDW 阿吽偷偷朝你这边瞥了几眼。
+									PRINTFORMDW 你告诉她们你们是在约会，阿吽闻言立刻脸红了起来。
 								ELSE
-									PRINTFORML 「We're here to have fun!」
-									CALL COLORMESSAGE("「Ooo～h! Fun!」", C_TEAL, 2)
-									CALL COLORMESSAGE("「We wanna have fun too!」", C_ORANGE, 2)
-									PRINTFORML 「Let's play something then!」
-									PRINTFORMDW Aunn looks at you expectantly.
+									PRINTFORML 「我们是来玩的！」
+									CALL COLORMESSAGE("「哦～！！」", C_TEAL, 2)
+									CALL COLORMESSAGE("「我们也要一起玩！」", C_ORANGE, 2)
+									PRINTFORML 「那就来玩点什么吧！」
+									PRINTFORMDW 阿吽期待地看向你。
 									PRINTFORML 
-									CALL ASK_YN("Join them", "Decline")
+									CALL ASK_YN("加入她们", "拒绝")
 									IF !RESULT
 										PRINTFORML 
-										PRINTFORMDW The four of you play %SPLIT_G("Hide and Seek:Tic Tac Toe:Kick the Can:Hopscotch:Shrine Maiden and Youkai:Red Light, Green Light:Tag:Telephone")%...
+										PRINTFORMDW 四人玩起了 %SPLIT_G("捉迷藏:井字棋:踢罐子:跳房子:抓人游戏:木头人")%...
 									ELSE
 										PRINTFORML 
 										PRINTFORMDW The three of them play %SPLIT_G("Hide and Seek:Tic Tac Toe:Kick the Can:Hopscotch:Shrine Maiden and Youkai:Red Light, Green Light:Tag:Telephone")% while you continue your rest...
@@ -227,54 +228,57 @@ IF LOCAL
 									PRINTFORMDW That could only mean one thing...
 								ENDIF
 							CASE 3
-								;Fall
-								PRINTFORMDW You and Aunn come upon a large pile of leaves.
+								;秋
+								PRINTFORMDW 你和阿吽偶然发现了一大堆落叶。
 								PRINTFORML 「!!!」
-								PRINTFORMDW She turns into a blur and jumps straight into it.
-								PRINTFORMDW Her head briefly pops out, revealing a big grin on her face, before she goes back inside.
-								PRINTFORML 「Ahaha～!」
-								PRINTFORMDW You can hear her laughing through the rustling leaves and watch her jump repeatedly in and out of the pile.
-								PRINTFORMDW Every time she jumps in, she sends a handful of leaves flying everywhere and giggles to herself.
-								PRINTFORMDW You decide to rest here for a bit and let her have some more fun...
+								PRINTFORMDW 阿吽飞也似的直直跳了进去。
+								PRINTFORMDW 她从叶堆中探出头来，冲你做了个鬼脸后又立刻钻了回去。
+								PRINTFORML 「哈哈～!」
+								PRINTFORMDW 她穿梭于其中跳进跳出，落叶如水花般溅起
+								PRINTFORMDW 落叶沙沙作响，伴着阿吽欢快的笑声
+								PRINTFORMDW 你决定在此稍作休息，让她再尽情玩一会...
 							CASE 4
-								;Winter
-								PRINTFORMDW You pass under a tree and some snow slides off a branch and onto your head.
-								PRINTFORML 「You okay?」
-								PRINTFORMDW You wipe the snow of your head and nod.
-								PRINTFORML 「There's a bunch of snow piled up on the branches...」
-								PRINTFORMDW Aunn approaches a tree with a big grin.
-								PRINTFORMW 「Watch, I can make it snow!」
-								PRINTFORMW 「Fear the almighty Komainu that controls the seasons!」
-								PRINTFORMDW She kicks the tree with all of her might, causing it to shake violently.
-								PRINTFORMDW An avalanche of snow then falls from the tree and buries her underneath it.
-								PRINTFORMDW This was probably more than she expected.
-								PRINTFORMDW Her head pops out through the top of the pile and she shakes the snow off her head.
-								PRINTFORML 「Uwah... That was way more than I expected!」
-								PRINTFORMDW You watch her wiggle her head until she stops and blinks.
-								PRINTFORML 「I... uhh... can't move...」
-								PRINTFORMDW Aunn looks at you with pleading eyes.
-								PRINTFORMW 「Please...?」
-								PRINTFORMDW You spend some time to dig her out of her snowy jail...
+								;冬
+								PRINTFORMDW ! ! ! ! ? ?
+								PRINTFORMDW 你从一棵树下经过时，树枝上的积雪滑落到了你的头上。
+								PRINTFORML 「哇啊啊!? 你还好吗? 」
+								PRINTFORMDW 你拂去头上的雪并点了点头。
+								PRINTFORML 「树枝上积了好多雪呢…」
+								PRINTFORMDW 阿吽嘿嘿地笑着走到一棵树前
+								PRINTFORMW 「看好了，我能操控降雪！」
+								PRINTFORMW 「畏惧掌控季节的狛犬大人吧！」
+								PRINTFORMDW 她对着那棵树用尽全力踹了一脚，整棵树顷刻剧烈地摇晃起来
+								PRINTFORMDW ! ! !
+								PRINTFORMDW 大量积雪随即从树上倾泻而下，将她埋在了下面。
+								PRINTFORMDW 呃...大概超出了她的预料...
+								PRINTFORMDW 你正上前刨开雪堆时, 她的脑袋从雪堆顶部钻了出来，甩了甩头上的积雪
+								PRINTFORML 「呜哇哇...这也太多了...」
+								PRINTFORMDW 看着阿吽在雪堆中挣扎, 你打起了坏主意...
+								PRINTFORMDW 她的脑袋扭来扭去，直到她突然停下眨了眨眼
+								PRINTFORML 「呃...那个...我...好像动不了了...」
+								PRINTFORMDW 阿吽用恳求的眼神看着你。
+								PRINTFORMW 「求你了...？」
+								PRINTFORMDW 你花了一些时间把她从雪中挖出来...
 						ENDSELECT
 				ENDSELECT
 
-			;Forest of Magic -> Kourindou
+			;魔森 -> 香霖堂
 			CASE 香霖堂
 				;Intro - Firsttime below is the final (current) event
 				IF FIRSTTIME("AunnKourindouFindsPolaroidCamera", 1)
-					PRINTFORMDW Aunn browses through Kourindou's wares until she finds something she likes.
+					PRINTFORMDW 阿吽在香霖堂的商品中翻找着，好像发现了心仪之物。
 					PRINTFORML 
 				ELSE
-					PRINTFORMDW Aunn browses through Kourindou's wares but finds nothing of interest...
+					PRINTFORMDW 阿吽在香霖堂的商品中翻找着，但没发现感兴趣的东西...
 				ENDIF
 
 				;Events
 				IF FIRSTTIME("AunnKourindouFindsSlinky")
-					PRINTFORML 「Look %CALLNAME:MASTER%-san! It keeps bouncing back and forth!」
-					PRINTFORMDW Aunn plays with a rainbow-colored helical spring toy.
-					PRINTFORML 「This is pretty addicting!」
-					PRINTFORMDW She keeps letting it jump from one hand to another.
-					PRINTFORML 「What if I... Oh!!」
+					PRINTFORML 「%CALLNAME:MASTER%快看! 这个duangduang的东西是什么」
+					PRINTFORMDW 阿吽正拿着一个彩虹圈研究着
+					PRINTFORML 「这个...还挺好玩......」
+					PRINTFORMDW 她尝试着把彩虹圈从一只手弹到另一只手
+					PRINTFORML 「喔! 这个....」
 					PRINTFORMDW Aunn flips the toy down to the ground, pulls on it hard and it bounces back into her hand.
 					PRINTFORML 「And then if I do this...!」
 					PRINTFORMDW She spins it with both her hands and creates a mesmerizing pattern with it.
