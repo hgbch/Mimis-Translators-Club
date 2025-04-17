@@ -1,0 +1,1252 @@
+;※※※※※※※※※※※※※※※※※※※※※※※※※
+;性交系コマンド
+;※※※※※※※※※※※※※※※※※※※※※※※※※
+;TODO: 针对整个文件：基于sens V/A >=5进行内部描写 "她的内部急切地缠绕着你的阴茎" 等。可放入FUNC
+;TODO: 用独特回应替换所有肛交指令（当前是从V复制粘贴的）。考虑阿吽对肛交的看法。
+;      这有点难，因为我不希望阿吽对玩家的喜好发表负面评价。
+;      真正的问题是V和A体位没有区别，我觉得。
+;      或许应该打破V的格式，改用普通的SELECTCASE而不使用 SPLIT_Gs，这样可以通过A指令让阿吽在A体位时具体评论场景。
+;==================================================
+;正常位（阴道）
+;60,正常位
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_60
+CALL M_KOJO_EGG_MESSAGE_COM_K120_60_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_60_1
+
+;-------------------------------------------------
+;立位
+;立位
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL && TFLAG:193
+	;基本セット
+    ;时间停止或睡眠强奸
+	;時姦中
+	IF (FLAG:70 || CFLAG:MASTER:イタズラ == 2)
+		PRINTFORML 
+		RETURN 1
+	ENDIF
+
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初次
+	;初めて
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		;角色是处女
+		;処女
+		IF TCVAR:破瓜 == 1
+			CALL K120_FIRST_TIME_VAGINAL_SEX("standingMissionary")
+		ELSE
+			PRINTFORMW 
+		ENDIF
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;持续插入
+	;挿入継続
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1
+		IF (TEQUIP:体位２ == TEQUIP:体位 && TEQUIP:体位２ > 0)
+			;相同体位
+			PRINTFORMDW 你继续将 %TINKO(MASTER)% %FSYN("抽插")%进她的 %SLIT_TR(TARGET)%，%SPLIT_G("保持着站立交合的姿势:无视腰腿传来的阵阵悲鸣:每次挺腰都将她压在墙上")%。
+			;玩家上次射精了
+			;前回射精した
+			IF TCVAR:102
+				CALL K120_CONTINUED_VAGINAL_AFTER_EJAC()
+			ELSE
+				PRINTFORMW 「%SPLIT_G(@"腿一直这样张开会酸的...:你的眼神好认真啊、 %CALLNAME:MASTER%-san～:用这个姿势做这么久腿真的没问题吗？:站着做果然还是有点吃力...")%」
+			ENDIF
+			CALL K120_INSEMINATION_PLEA()
+			RETURN 1
+		ENDIF
+	ENDIF
+
+	;-------------------------------------------------
+	;基本描述
+	;-------------------------------------------------
+	PRINTFORMDW 你%SPLIT_G("将阿吽的右腿架到你的肩上:与阿吽正面相对:抓住阿吽的大腿根部抬起她的腰肢")%并%FSYN("抽送")%你的 %TINKO(MASTER)% 进入她的 %SLIT_TR(TARGET)%。
+	IF (TCVAR:100 == PLAYER && TCVAR:102)
+		;玩家之前射精过，但继续进入新体位（当前体位）
+		CALL K120_CONTINUED_VAGINAL_AFTER_EJAC()
+	ELSE
+		PRINTFORML 「%MOAN("嗯")%！%SPLIT_G(@"像这样站着做...:呜...我被压在墙上了:在这种困难的体位也成功插入了...:虽然进得不够深——%MOAN()%但顶到关键点了！:在这种地方也要插进来～")%」
+		PRINTFORMDW 阿吽%SPLIT_G("顺从地接纳了你:愉悦地叹息着:moan地欢愉着:在插入时颤抖")%并%SPLIT_G("你将脸埋入她的肩膀:她将脸埋入你的肩膀:你瞄准她最深处的部位:你调整腰部角度与她契合:她用手撑住墙壁保持平衡:她用右臂环住你的脖颈:她轻抚你的脸颊")%...
+	ENDIF
+	CALL K120_INSEMINATION_PLEA()
+	RETURN 1
+ENDIF
+;-------------------------------------------------
+;角色处于仰卧位
+;正常位
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL
+	;时间停止或睡眠强奸
+	;時姦中
+	IF (FLAG:70 || CFLAG:MASTER:イタズラ == 2)
+		PRINTFORML
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初めて
+	;初次体验
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		;処女
+		IF TCVAR:破瓜 == 1
+			CALL K120_FIRST_TIME_VAGINAL_SEX("lyingMissionary")
+			RETURN 1
+		ELSE
+			PRINTFORMW 
+		ENDIF
+	ENDIF
+
+	;-------------------------------------------------
+	;继续插入
+	;挿入継続
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1
+		IF (TEQUIP:体位２ == TEQUIP:体位 && TEQUIP:体位２ > 0)
+			;相同体位
+			PRINTFORMDW 你继续用%FSYN("抽插")%你的 %TINKO(MASTER)% 进入她的 %SLIT_TR(TARGET)%，%SPLIT_G("每次抽插都将她压在床褥上:每次抽插都逼迫出甜美的 moan :抽插时轻拍她的头:你的腰部发出悲鸣")%。
+			;玩家上次射精
+			;前回射精した
+			IF TCVAR:102
+				CALL K120_CONTINUED_VAGINAL_AFTER_EJAC()
+			ELSE
+				PRINTFORMW 「%SPLIT_G(@"Ehehe～ 每次抽插时你都会露出可爱的表情， %CALLNAME:MASTER%-san...:如果保持这个体位太久的话，你的腰没问题吗？:你真的很喜欢这个体位呢， %CALLNAME:MASTER%-san？不过我也很喜欢哦～！:在这个体位下我能感受到你全部的重量...有点安心呢...")%」
+			ENDIF
+			CALL K120_INSEMINATION_PLEA()
+			RETURN 1
+		ENDIF
+	ENDIF
+
+	;-------------------------------------------------
+	;基本描述
+	;-------------------------------------------------
+	PRINTFORMDW 你%SPLIT_G("将阿吽推倒在床:把阿吽的双腿架在肩上:托起阿吽的臀部:分开阿吽的双腿")%并%FSYN("插入")%你的 %TINKO(MASTER)% 到她的 %SLIT_TR(TARGET)%中。
+	IF (TCVAR:100 == PLAYER && TCVAR:102)
+		;玩家之前已射精但继续新体位（当前体位）
+		CALL K120_CONTINUED_VAGINAL_AFTER_EJAC()
+	ELSE
+		PRINTFORML 「%MOAN("嗯")%！%SPLIT_G(@"用这个体位果然最棒了...:呜啊...能感受到你全部的重量呢:这样每次插入都能清楚感受到...:顶得这么-%MOAN()-深！:诶嘿嘿～这样就能尽情看着你的脸啦～！")%」
+		PRINTFORMDW 阿吽%SPLIT_G("顺从地接纳了你:愉悦地叹息出声:moan地欢愉着:因进入而微微颤抖")%并%SPLIT_G("你将脸埋入她的颈窝:她寻找你的手与你十指相扣:你试图触及她最深处的部位:你调整角度与她的腰肢相契合:她用手撑住床单保持平衡:她用双臂环住你的脖颈:她张开双臂索求拥抱")%...
+	ENDIF
+	CALL K120_INSEMINATION_PLEA()
+	RETURN 1
+ENDIF
+RETURN 1
+
+;==================================================
+;犬式体位
+;61,後背位
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_61
+CALL M_KOJO_EGG_MESSAGE_COM_K120_61_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_61_1
+;-------------------------------------------------
+;站立位
+;立位
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL && TFLAG:193
+	;时间停止
+	;時姦中
+	IF (FLAG:70 || CFLAG:MASTER:イタズラ == 2)
+		PRINTFORML
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初次
+	;初めて
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		;処女
+		IF TCVAR:破瓜 == 1
+			CALL K120_FIRST_TIME_VAGINAL_SEX("standingDoggyStyle")
+			RETURN 1
+		ELSE
+			PRINTFORMW 
+		ENDIF
+	ENDIF
+
+	;-------------------------------------------------
+	;持续插入
+	;挿入継続
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1
+		IF (TEQUIP:体位２ == TEQUIP:体位 && TEQUIP:体位２ > 0)
+			;相同体位
+			PRINTFORMDW 你继续%FSYN("抽插")%着将 %TINKO(MASTER)% 顶入她的 %SLIT_TR(TARGET)% 后方，%SPLIT_G("每次抽插都让她欲仙欲死:每次抽插都发出淫靡的拍打声:腰肢完全停不下来:被这样配种的念头诱惑着:被她丰腴的大腿勾引着:被她摇摆的尾巴所魅惑")%。
+			;玩家上次射精了
+			;前回射精した
+			IF TCVAR:102
+				CALL K120_CONTINUED_VAGINAL_AFTER_EJAC()
+			ELSE
+				PRINTFORMW 「%SPLIT_G(@"用这样的站姿来做实在太、太不知羞耻了…:能感受到你如此急切地抽送、 %CALLNAME:MASTER%-san…:每次被你顶弄都会让脸颊撞到墙上…:再这样下去我的腿真的要站不住了…")%」
+			ENDIF
+			CALL K120_INSEMINATION_PLEA()
+			RETURN 1
+		ENDIF
+	ENDIF
+
+	;-------------------------------------------------
+	;基本描述
+	;-------------------------------------------------
+	PRINTFORMDW 你%SPLIT_G("移动到阿吽身后:将阿吽按在墙上:从后方对准她的入口:意图像配种犬类般对待阿吽:从背后抓住阿吽的丰腴大腿:将手放在她圆润的臀瓣上:指示阿吽将双手撑在墙上:将手搭在她肩上:抓住她的双臂")%并%FSYN("插入")%你的 %TINKO(MASTER)% 进入她 %SLIT_TR(TARGET)% 的后方。
+	IF (TCVAR:100 == PLAYER && TCVAR:102)
+		;玩家之前射精了，但继续进入新体位（当前体位）
+		CALL K120_CONTINUED_VAGINAL_AFTER_EJAC()
+	ELSE
+		PRINTFORML 「%MOAN("m")%！%SPLIT_G(@"你、你选这个体位不是因为我是狛犬对吧…？:这种姿势…为什么感觉如此自然呢…:这样子真的就像两只狗狗在交、交配…:啊嗯…等、等等用这种姿势的话…！:哈呜…这种姿势让我回想起当石像的日子…:看、看不见你的脸反而更让人害羞了…")%」
+		PRINTFORMDW %SPLIT_G("每次抽插时她的尾巴都会左右摇摆:你看着她的尾巴随着抽插的节奏前后摆动:你边抽插边抚摸她尾巴根部:你抓住尾巴根部作为施力点进行更深抽插:被她晃动的尾巴蛊惑得像野兽般抽插:她把脸颊贴在墙上允许你完全插入")%。
+		PRINTFORMDW 经过数次%FSYN("抽插:s")%后%SPLIT_G("最初的担忧逐渐消散:她开始愉悦地喘息:尾巴开始欢快地抽动:她因快感而颤抖")%，显然%SPLIT_G("她乐在其中:疑虑已被抚平:再无半分犹豫:那份不安已被满足感取代")%。
+		PRINTFORMW 「%MOAN("m",,2)%...%SPLIT_G("顶得实在太深了:双腿快要站不住了:每次碰撞都会发出淫靡声响:你抽插得如此急切:你在我体内翻江倒海:我再也控制不住自己的 moan了")%～♥！」
+	ENDIF
+	CALL K120_INSEMINATION_PLEA()
+	RETURN 1
+ENDIF
+;-------------------------------------------------
+;後背位
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL
+	;时间停止
+	;時姦中
+	IF (FLAG:70 || CFLAG:MASTER:イタズラ == 2)
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初次体验
+	;初めて
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		;処女
+		IF TCVAR:破瓜 == 1
+			CALL K120_FIRST_TIME_VAGINAL_SEX("doggyStyle")
+			RETURN 1
+		ELSE
+			PRINTFORMW 
+			RETURN 1
+		ENDIF
+	ENDIF
+	;-------------------------------------------------
+	;继续插入
+	;挿入継続
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1
+		IF (TEQUIP:体位２ == TEQUIP:体位 && TEQUIP:体位２ > 0)
+			;同一体位
+			PRINTFORMDW 你继续从后方将你的%TINKO(MASTER)% %FSYN("抽插")%进她的%SLIT_TR(TARGET)%里，%SPLIT_G("每次抽插都让她欲仙欲死:每次抽插都发出淫靡的拍打声:无法停止腰部的动作:被这样配种的想法所诱惑:被她丰满的大腿所吸引:被她摇摆的尾巴所魅惑")%。
+			;玩家上次射精了
+			;前回射精した
+			IF TCVAR:102
+				CALL K120_CONTINUED_VAGINAL_AFTER_EJAC()
+			ELSE
+				PRINTFORMW 「%SPLIT_G(@"我无法停止想象我们像野兽一样交合的样子...:我明白您很喜欢这个体位，但是...不...大概说讨厌的话就是在撒谎...:您每次抽插都顶得那么深...!:我总想回头看您的脸，但脖子好像快撑不住了...")%」
+			ENDIF
+			CALL K120_INSEMINATION_PLEA()
+			RETURN 1
+		ENDIF
+	ENDIF
+
+	;-------------------------------------------------
+	;基本描述
+	;-------------------------------------------------
+	PRINTFORMDW 你%SPLIT_G("绕到阿吽身后:将阿吽按趴在床:从后方对准她的入口:以犬交般的姿势配种阿吽:从背后抓住阿吽丰满的大腿:把手放在她圆润的臀部:将手搭在她肩头:抓住她的手臂")%并%FSYN("插入")%你的%TINKO(MASTER)%到她的%SLIT_TR(TARGET)%里。
+	IF (TCVAR:100 == PLAYER && TCVAR:102)
+		;玩家之前射精过但仍继续进入新体位（当前体位）
+		CALL K120_CONTINUED_VAGINAL_AFTER_EJAC()
+	ELSE
+		PRINTFORML 「%MOAN("m")%! %SPLIT_G(@"该、该不会是因为我是狛犬才选这种姿势的吧？:这种姿势...为什么感觉这么自然？:简直像是两只狗在交、交配一样...:啊嗯...等、等下用这种姿势的话...！:汪呜...这个姿势让我想起当石像的时候...:看、看不见脸反而更羞耻了...")%」
+		PRINTFORMDW %SPLIT_G("每次抽插都让她的尾巴左右摇摆:抽插时你注视着她尾巴有节奏地摆动:你边抽插边抚摸她尾巴根部:你抓住尾巴根部借力更猛烈地抽插:摇晃的尾巴让你像野兽般沉迷抽插")%。
+		PRINTFORMDW 经过几次%FSYN("抽插")%后%SPLIT_G("最初的担忧已烟消云散:她开始愉悦地喘息:尾巴欢快地抽动:她因快感而颤抖")%，显然%SPLIT_G("她很享受:顾虑已平复:再无犹豫迹象:怀疑已被满足取代")%。
+		PRINTFORMW 「%MOAN("m",,2)%...%SPLIT_G("顶得好深:这个姿势让我发疯:碰撞时发出淫靡声响:你抽插得这么急切:你在搅动我的深处:我 moan止不住了")%～♥！」
+	ENDIF
+	CALL K120_INSEMINATION_PLEA()
+	RETURN 1
+ENDIF
+RETURN 1
+
+;==================================================
+;后入式肛交
+;62,正常位肛門
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_62
+CALL M_KOJO_EGG_MESSAGE_COM_K120_62_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_62_1
+;-------------------------------------------------
+;立位
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL && TFLAG:193
+	;时间停止
+	;時姦中
+	IF (FLAG:70 || CFLAG:MASTER:イタズラ == 2)
+		PRINTFORML
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初次执行
+	;初めて
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		;肛門処女
+		IF TCVAR:Ａ破瓜
+			CALL K120_FIRST_TIME_ANAL_SEX("standingMissionary")
+			RETURN 1
+		ELSE
+			PRINTFORMW 
+			RETURN 1
+		ENDIF
+	ENDIF
+
+	;-------------------------------------------------
+	;继续插入
+	;挿入継続
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1
+		IF (TEQUIP:体位２ == TEQUIP:体位 && TEQUIP:体位２ > 0)
+			;同一体位
+			PRINTFORMDW 你继续%FSYN("抽插")%将你的%TINKO(MASTER)%埋入她的%FSYN("肛门")%里，%SPLIT_G("保持站立姿势相互连接:无视腰腿肌肉的哀鸣:每次挺腰都将她抵在墙上")%。
+			;玩家上次射精了
+			;前回射精した
+			IF TCVAR:102
+				CALL K120_CONTINUED_ANAL_AFTER_EJAC()
+			ELSE
+				PRINTFORMW 「%SPLIT_G(@"再这样下去腿都要酸了...:眼神这么认真、 %CALLNAME:MASTER%-san～:用这个体位做太多腿真的没问题吗？:站着做有点困难呢...")%」
+			ENDIF
+			CALL K120_INSEMINATION_WASTE_COMMENT("inAnus")
+			RETURN 1
+		ENDIF
+	ENDIF
+
+	;-------------------------------------------------
+	;基本描述
+	;-------------------------------------------------
+	PRINTFORMDW 你%SPLIT_G("将阿吽的左腿架在你的肩上:抓住阿吽的大腿根部抬起她的腰:掰开她的臀瓣")%并%FSYN("挺腰")%将 %TINKO(MASTER)% 插入她的%FSYN("肛门")%。
+	IF (TCVAR:100 == PLAYER && TCVAR:102)
+		;玩家之前射精过，但换到新体位（当前体位）继续
+		CALL K120_CONTINUED_ANAL_AFTER_EJAC()
+	ELSE
+		PRINTFORML 「%MOAN("呜")%！%SPLIT_G(@"像这样站着做…:哈呜…被挤到墙上去了…:在这种困难的姿势下都插进来了…:虽然进得不够深，但是-%MOAN()%-全都顶在舒服的地方！:连这种地方都要插进来～")%」
+		PRINTFORMDW 阿吽%SPLIT_G("顺从地接纳了你:因快感而发出叹息:moan地欢愉着:因插入而颤抖")%并%SPLIT_G("你将脸埋进她的肩头:她把脸埋进你的肩头:你试图顶到最深处:你调整腰部角度贴合她的曲线:她扶着墙保持平衡:她用右臂环住你的脖子:她轻抚你的脸颊")%...
+	ENDIF
+	CALL K120_INSEMINATION_WASTE_COMMENT("inAnus")
+	RETURN 1
+ENDIF
+;-------------------------------------------------
+;正常位
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL
+	IF (FLAG:70 || CFLAG:MASTER:イタズラ == 2)
+		PRINTFORML
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初次
+	;初めて
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		;肛門処女
+		IF TCVAR:Ａ破瓜
+			CALL K120_FIRST_TIME_ANAL_SEX("lyingMissionary")
+			RETURN 1
+		ELSE
+			PRINTFORMW 
+			RETURN 1
+		ENDIF
+	ENDIF
+
+	;-------------------------------------------------
+	;继续插入
+	;挿入継続
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1
+		IF (TEQUIP:体位２ == TEQUIP:体位 && TEQUIP:体位２ > 0)
+			;相同体位
+			PRINTFORMDW 你继续用%FSYN("抽插")%将你的%TINKO(MASTER)%插入她的%FSYN("肛门")%、%SPLIT_G("每次抽插都将她压在被褥上:用每次抽插逼出甜美的 moan :边抽插边轻抚她的头")%。
+			;玩家上次射精了
+			;前回射精した
+			IF TCVAR:102
+				CALL K120_CONTINUED_ANAL_AFTER_EJAC()
+			ELSE
+				PRINTFORMW 「%SPLIT_G(@"诶嘿嘿～每次抽插的时候你都会露出可爱的表情呢、 %CALLNAME:MASTER%-さん...:用这个姿势做这么多的话腰真的没问题吗？:你真的很中意这个体位呢 %CALLNAME:MASTER%-さん？不过我也超～喜欢这个体位的！:这个体位能完全感受到你的重量...有点安心感呢...")%」
+			ENDIF
+			CALL K120_INSEMINATION_WASTE_COMMENT("inAnus")
+			RETURN 1
+		ENDIF
+	ENDIF
+
+	;-------------------------------------------------
+	;基本描述
+	;-------------------------------------------------
+	PRINTFORMDW 你%SPLIT_G("将阿吽推倒在床上:把阿吽的双腿架在肩上:抓着阿吽的腰抬起她的臀部:分开阿吽的双腿和臀瓣")%并%FSYN("插入")%你的 %TINKO(MASTER)% 进她的%FSYN("肛门")%。
+	IF (TCVAR:100 == PLAYER && TCVAR:102)
+		;玩家先前已射精，但换新体位继续（当前体位）
+		CALL K120_CONTINUED_ANAL_AFTER_EJAC()
+	ELSE
+		PRINTFORML 「%MOAN("m")%！%SPLIT_G(@"用这个姿势果然最棒了...:哈呜...能感受到你全部的重量呢:这样能清楚感受到每次抽插...:这都顶到-%MOAN()%-最深处了！:诶嘿嘿～这样就能尽情看着你的脸了～！")%」
+		PRINTFORMDW 阿吽%SPLIT_G("顺从地接受了你:因快感而发出叹息:因喜悦而moan:在进入时颤抖")%并%SPLIT_G("你将脸埋入她的颈间:她寻找你的手与你十指相扣:你瞄准她最深处的部位:你调整腰部角度与她契合:她用手撑住床褥保持平衡:她用双臂环住你的脖颈:她张开双臂索求拥抱")%...
+	ENDIF
+	CALL K120_INSEMINATION_WASTE_COMMENT("inAnus")
+	RETURN 1
+ENDIF
+RETURN 1
+
+;==================================================
+;后入式
+;63,後背位肛門
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_63
+CALL M_KOJO_EGG_MESSAGE_COM_K120_63_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_63_1
+;-------------------------------------------------
+;立位
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL && TFLAG:193
+	IF (FLAG:70 || CFLAG:MASTER:イタズラ == 2)
+		PRINTFORML
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初めて
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		;肛門処女
+		IF TCVAR:Ａ破瓜
+			CALL K120_FIRST_TIME_ANAL_SEX("standingDoggyStyle")
+			RETURN 1
+		ELSE
+			RETURN 1
+		ENDIF
+	ENDIF
+	;-------------------------------------------------
+	;继续插入
+	;挿入継続
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1
+		IF (TEQUIP:体位２ == TEQUIP:体位 && TEQUIP:体位２ > 0)
+			;相同体位
+			PRINTFORMDW 你继续从后方%FSYN("抽插")%自己的%TINKO(MASTER)%进入她的%FSYN("肛门")%，%SPLIT_G("她的括约肌紧紧箍住你的肉棒:每次抽插都发出淫靡的拍打声:无法停止腰部的动作:深深顶入她的直肠:被她丰腴的大腿所引诱:被她摇摆的尾巴所魅惑")%。
+			;玩家上次射精
+			;前回射精した
+			IF TCVAR:102
+				CALL K120_CONTINUED_ANAL_AFTER_EJAC()
+			ELSE
+				PRINTFORMW 「%SPLIT_G(@"この体位だと奥まで擦られて…:こんなに熱心に挿入してくるなんて %CALLNAME:MASTER%-san…:突かれるたびに頬が壁に当たって…:このままじゃ足が持たないわ…")%」
+			ENDIF
+			CALL K120_INSEMINATION_WASTE_COMMENT("inAnus")
+			RETURN 1
+		ENDIF
+	ENDIF
+
+	;-------------------------------------------------
+	;基本描述
+	;-------------------------------------------------
+	PRINTFORMDW 你%SPLIT_G("移动到阿吽身后:将阿吽按在墙上:从后方瞄准她的后穴:像野兽般准备插入阿吽:从后方抓住阿吽的丰腴大腿:双手按住她的臀瓣:指示阿吽将手撑在墙上:把手搭在她肩上:抓住她的手臂")%并%FSYN("插入")%你的 %TINKO(MASTER)% 到她%FSYN("后穴")%中。
+	IF (TCVAR:100 == PLAYER && TCVAR:102)
+		;玩家先前已射精但仍继续新体位
+		CALL K120_CONTINUED_ANAL_AFTER_EJAC()
+	ELSE
+		PRINTFORML 「%MOAN("嗯")%！%SPLIT_G(@"选、选这个体位不是因为我是狛犬吧？:这种姿势...为什么感觉这么自然？:这样子简直像野兽在交尾...:啊嗯...等、等下这样太...！:呜...这姿势让我想起当石像的日子...:看、看不到你的脸反而更害羞了...")%」
+		PRINTFORMDW %SPLIT_G("她的尾巴随着每一次抽插左右摇摆:你看着她的尾巴随着抽插节奏前后摆动:你边抽插边抚摸她尾巴根部:你抓住她的尾巴根部作为着力点更用力抽插:被她晃动的尾巴所催眠像野兽般抽插:她把脸颊贴在墙上允许你完全进入")%。
+		PRINTFORMDW 经过数下%FSYN("抽插:s")%后%SPLIT_G("她最初的担忧逐渐消散:她开始因快感而喘息:她的尾巴开始愉悦地抽动:她因快感而颤抖")%，显然%SPLIT_G("她正在享受其中:她的顾虑已平息:不再存有疑虑:怀疑已被满足感取代")%。
+		PRINTFORMW 「%MOAN("m",,2)%... %SPLIT_G("进得好深:我的腿要站不住了:每次碰撞都发出下流的声音:你抽插得这么急切:你在搅动我的内部:我停不下 moan了")%～♥！」
+	ENDIF
+	CALL K120_INSEMINATION_WASTE_COMMENT("inAnus")
+	RETURN 1
+ENDIF
+;-------------------------------------------------
+;後背位
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL
+	IF (FLAG:70 || CFLAG:MASTER:イタズラ == 2)
+		PRINTFORML
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初めて
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		;肛門処女
+		如果 TCVAR:Ａ破瓜
+			调用 K120_FIRST_TIME_ANAL_SEX("doggyStyle")
+			返回 1
+		否则
+			打印表单W 
+			返回 1
+		结束如果
+	结束如果
+	;-------------------------------------------------
+	;持续插入
+	;挿入継続
+	;記入チェック
+	局部变量:1 = 1
+	;-------------------------------------------------
+	如果 局部变量:1
+		如果 (TEQUIP:体位２ == TEQUIP:体位 && TEQUIP:体位２ > 0)
+			;相同体位
+			打印表单DW 你继续从后方%FSYN("抽插")%自己的%TINKO(MASTER)%进入她的%FSYN("肛门")%，%SPLIT_G("她的括约肌紧紧箍住你的肉棒:每次抽插都发出淫靡的拍打声:无法停止腰部的动作:深深插入她的直肠:被她丰满的大腿所诱惑:被她摇摆的尾巴所吸引")%。
+			;玩家上次射精了
+			;前回射精した
+			IF TCVAR:102
+				CALL K120_CONTINUED_ANAL_AFTER_EJAC()
+			ELSE
+				PRINTFORMW 「%SPLIT_G(@"我无法停止思考我们像动物一样交合的方式...:我明白你真的很喜欢这个体位，不过...不、不是...说讨厌的话就是在撒谎了吧...:每次顶入都进得好深...!:总想回头看你的表情，但脖子好像要撑不住了...")%」
+			ENDIF
+			CALL K120_INSEMINATION_WASTE_COMMENT("inAnus")
+			RETURN 1
+		ENDIF
+	ENDIF
+
+	;-------------------------------------------------
+	;基础描述
+	;-------------------------------------------------
+	PRINTFORMDW 你%SPLIT_G("绕到阿吽身后:将阿吽按趴在榻榻米上:从后方瞄准她的肛门:准备像犬类般顶入阿吽:从背后抓住阿吽的丰腴大腿:双手按上她肉感十足的臀瓣:双手搭在她肩头:抓住她的手臂")%并%FSYN("顶入")%自己的%TINKO(MASTER)%到她的%FSYN("肛门")%里。
+	IF (TCVAR:100 == PLAYER && TCVAR:102)
+		;玩家之前已射精，但持续到新体位（当前体位）
+		CALL K120_CONTINUED_ANAL_AFTER_EJAC()
+	ELSE
+		PRINTFORML 「%MOAN("m")%! %SPLIT_G(@"该不会因为我是狛犬就选这种姿势吧？:这种姿势...为什么感觉这么自然...:简直像两只狗在交、交尾一样...:啊呜...这、这样弄的话...!:汪...这个姿势让人想起当石像的时候...:看、看不见脸反而更让人难为情了...")%」
+		PRINTFORMDW %SPLIT_G("每次抽插她的尾巴都会左右摇晃:你边抽插边注视着她尾巴的规律摆动:你边抽插边抚摸她尾巴根部:你抓住尾巴根部作为支点更用力地抽插:被晃动的尾巴魅惑着像野兽般抽插")%。
+		PRINTFORMDW 经过数次%FSYN("抽插:次")%后%SPLIT_G("最初的担忧逐渐消散:她开始因快感而喘息:她的尾巴开始欢快地抽动:她因快感而颤抖")%，%SPLIT_G("显然她很享受:她的疑虑已平息:已看不到任何不安的痕迹:那份迷茫已被满足感取代")%了。
+		PRINTFORMW 「%MOAN("m",,2)%...%SPLIT_G("进得好深:这个姿势让人发疯:每次碰撞都会发出下流声音:你抽插得这么急切:你在搅动我的内部:我止不住 moan了")%～♥！」
+	ENDIF
+	CALL K120_INSEMINATION_WASTE_COMMENT("inAnus")
+	RETURN 1
+ENDIF
+RETURN 1
+
+;==================================================
+;骑乘位
+;65,騎乗位
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_65
+CALL M_KOJO_EGG_MESSAGE_COM_K120_65_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_65_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL
+	IF (FLAG:70 || CFLAG:MASTER:イタズラ == 2)
+		PRINTFORML
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初次
+	;初めて
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		;処女
+		IF TCVAR:破瓜 == 1
+			CALL K120_FIRST_TIME_VAGINAL_SEX("doggyStyle")
+			RETURN 1
+		ELSE
+			PRINTFORMW 
+			RETURN 1
+		ENDIF
+	ENDIF
+
+	;-------------------------------------------------
+	;继续插入
+	;挿入継続
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1
+		IF (TEQUIP:体位２ == TEQUIP:体位 && TEQUIP:体位２ > 0)
+			;相同体位
+			PRINTFORMD 两人继续%SPLIT_G("交配:交媾:做爱:性交")%并且 
+			SELECTCASE RAND:2
+				CASE 0
+				;玩家主动：
+					PRINTFORMDW 你%SPLIT_G(@"抓住阿吽肥嘟嘟的%FSYN("屁股")%:双手环抱阿吽丰满的大腿:让阿吽将臀部悬在空中:与她十指相扣")%从下方%FSYN("抽插")%进入她体内。
+				;玩家上次射精了
+				;前回射精した
+					IF TCVAR:102
+						CALL K120_CONTINUED_VAGINAL_AFTER_EJAC()
+					ELSE
+						PRINTFORMW 「%SPLIT_G(@"明天你的腰會很酸喔...:來，把手給我！:這樣我沒辦法主動引導...:您真是積極啊 %CALLNAME:MASTER%-san～:每次您頂進來我都會稍微彈起來...")%」
+					ENDIF
+				CASE 1
+				;阿吽主動：
+					PRINTFORMDW 阿吽%SPLIT_G(@"%FSYN("賣力地扭動著:s")%腰肢:因快感而仰起頭:緊閉雙眼專注取悅您:配合她的 moan節奏擺動")%同時%SPLIT_G(@"用手撐著您的胸膛:將手指陷入您的側腹:前傾身體調整角度:持續將您的%FSYN("肉棒")%整根納入體內:抓住您的手十指交扣")%。
+				;前回射精した
+				;前回射精した
+					IF TCVAR:102
+						CALL K120_CONTINUED_VAGINAL_AFTER_EJAC_PROACTIVE()
+					ELSE
+						PRINTFORMW 「%SPLIT_G(@"我的腰自己動起來了...！:已經停不下腰部的動作了...！:對、對不起這樣擅自主導...:我-%MOAN()%-已經停不下來了...！")%」
+					ENDIF
+			ENDSELECT
+			CALL K120_INSEMINATION_PLEA()
+			RETURN 1
+		ENDIF
+	ENDIF
+
+	;-------------------------------------------------
+	;基本描述
+	;-------------------------------------------------
+	SELECTCASE RAND:2
+		CASE 0
+		;玩家主动：
+			PRINTFORMDW 你%SPLIT_G("让阿吽骑到你的身上:抓住阿吽的腰:环住阿吽的腰:让阿吽跨坐上来")%并%FSYN("抽插")%你的 %TINKO(MASTER)% 进她的 %SLIT_TR(TARGET)% 。
+			IF (TCVAR:100 == PLAYER && TCVAR:102)
+			;玩家先前射精过，但继续进入了新体位（当前体位）
+				CALL K120_CONTINUED_VAGINAL_AFTER_EJAC()
+			ELSE
+				PRINTFORML 「%MOAN()%... %SPLIT_G(@"明明是我在上面你却还这么激烈地抽插…:明明应该由我来主导的—_%MOAN()%:你太积极了让我都没法主导…:哈呜…看来主导权被拿走了呢…")%」
+				PRINTFORMDW 虽然嘴上抱怨着，她却%SPLIT_G("顺从地接受着你的抽插:完全没有抵抗的迹象:主动将你的肉棒吞入体内")%并%SPLIT_G("调整腰部角度方便你进入:因快感弓起后背:微微抬起臀部方便你插入:配合你的节奏扭动腰肢")%…
+			ENDIF
+		CASE 1
+		;阿吽主动：
+			PRINTFORMDW 阿吽 %SPLIT_G(@"向前倾身用手撑住你的 %SPLIT_G("胸:肩膀:腹部")%:向后仰倒用手撑住你的 %SPLIT_G("大腿:膝盖:小腿")%")%。
+			PRINTFORMDW 她调整着%SPLIT_G(@"你的 %TINKO(MASTER)%:她的 %SLIT_TR(TARGET)%")%并%SPLIT_G("将肉棒滑入体内:将身体沉入你的肉棒")%。
+			IF (TCVAR:100 == PLAYER && TCVAR:102)
+			;玩家之前已经射精，但继续进入新体位（当前体位）
+				CALL K120_CONTINUED_VAGINAL_AFTER_EJAC_PROACTIVE()
+			ELSE
+				PRINTFORML 「%SPLIT_G("能按自己节奏来稍微安心些...:我、我会全力以赴的！:要是动作太慢要告诉我哦？:我、我要主动了...!")%」
+				PRINTFORMDW 在%SPLIT_G("深呼吸几次:做好心理准备:下定决心调整姿势:找到舒适姿势")%后，她开始%FSYN("扭动")%腰肢并立即以%SPLIT_G("moan声:喘息声:呼哧声:抽气声")%回应...
+			ENDIF
+	ENDSELECT
+	CALL K120_INSEMINATION_PLEA()
+	RETURN 1
+ENDIF
+RETURN 1
+
+;==================================================
+;后背位肛交
+;66,騎乗位肛門
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_66
+CALL M_KOJO_EGG_MESSAGE_COM_K120_66_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_66_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL
+	IF (FLAG:70 || CFLAG:MASTER:イタズラ == 2)
+		PRINTFORML
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初めて
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		;肛門処女
+		IF TCVAR:Ａ破瓜
+		ELSE
+			CALL K120_FIRST_TIME_ANAL_SEX("cowGirl")
+			RETURN 1
+		ENDIF
+	ENDIF
+	;-------------------------------------------------
+	;继续插入
+	;挿入継続
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1
+		IF (TEQUIP:体位２ == TEQUIP:体位 && TEQUIP:体位２ > 0)
+			;相同体位
+			PRINTFORMD 两人继续着%SPLIT_G("交合:交媾:做爱:性交")%并且
+			SELECTCASE RAND:2
+				CASE 0
+				;玩家主动：
+					PRINTFORMDW 你%@SPLIT_G("抓住阿吽胖嘟嘟的%FSYN("屁股")%:将手绕到阿吽丰腴的大腿下:让阿吽把腰悬在半空中:与她十指相扣")%从下方%FSYN("抽插")%进去。
+				;玩家上次射精过
+				;前回射精した
+					IF TCVAR:102
+						CALL K120_CONTINUED_ANAL_AFTER_EJAC()
+					ELSE
+						PRINTFORMW 「%SPLIT_G(@"明天你的腰會酸痛哦...:來，把手給我！:這樣我可沒辦法主導啊...:您真積極呢， %CALLNAME:MASTER%-san～:每次被插入我都會輕輕彈起來...")%」
+					ENDIF
+				CASE 1
+				;Aunn proactive:
+					PRINTFORMDW 阿吽 %SPLIT_G(@"%FSYN("grind:s")% 勤奮地擺動腰肢:向後仰頭享受快感:緊閉雙眼專注取悅你:配合她的 moans節奏移動")% 同時 %SPLIT_G(@"用手撐在你胸口支撐身體:將手指陷入你腰側:前傾身體調整角度:持續將你的%FSYN("penis")%整根吞入:抓住你的手十指相扣")%。
+				;Player ejaculated last time
+				;前回射精した
+					IF TCVAR:102
+						CALL K120_CONTINUED_ANAL_AFTER_EJAC_PROACTIVE()
+					ELSE
+						PRINTFORMW 「%SPLIT_G(@"我的腰自己動起來了...！:已經停不下腰部的動作了...！:對、對不起這樣擅自主導...:我-%MOAN()%-已經停不下來了...！")%」
+					ENDIF
+			ENDSELECT
+			CALL K120_INSEMINATION_WASTE_COMMENT("inAnus")
+			RETURN 1
+		ENDIF
+	ENDIF
+
+	;-------------------------------------------------
+	;基本描述
+	;-------------------------------------------------
+	SELECTCASE RAND:2
+		CASE 0
+		;玩家主动：
+			PRINTFORMDW 你%SPLIT_G("让阿吽骑在你身上:抓住阿吽的腰:环住阿吽的纤腰:让阿吽跨坐上来")%并从下方将%TINKO(MASTER)%%FSYN("顶入")%她的%FSYN("后穴")%。
+			IF (TCVAR:100 == PLAYER && TCVAR:102)
+			;玩家之前射精过但仍继续进入新体位（当前体位）
+				CALL K120_CONTINUED_ANAL_AFTER_EJAC()
+			ELSE
+				PRINTFORML 「%MOAN()%...%SPLIT_G(@"明明我在上位却还这么积极地抽插:应该由我主导才对但是——%MOAN()%:这么主动让我根本没法掌握主导权...:Hau...看来要交给你来主导了呢...")%」
+				PRINTFORMDW 虽然嘴上抱怨着，她却%SPLIT_G("顺从地接受你的抽插:完全没有抵抗的迹象:主动将你的肉棒吞入体内")%并%SPLIT_G("调整腰肢角度让你更容易进入:因快感而弓起后背:微微抬起臀部方便你插入:配合你的节奏摆动腰肢")%...
+			ENDIF
+		CASE 1
+		;Aunn proactive:
+			PRINTFORMDW 阿吽 %SPLIT_G(@"向前倾身用手撑在你的 %SPLIT_G("胸肌:肩膀:腹部")%:向后仰去用手撑在你的 %SPLIT_G("大腿:膝盖:小腿")%")%
+			PRINTFORMDW 她随后将%SPLIT_G(@"你的 %TINKO(MASTER)%:她的 %FSYN("菊穴")%")%对准并 %SPLIT_G("将你的肉棒滑入:顺势将身体沉入你的肉棒")%
+			IF (TCVAR:100 == PLAYER && TCVAR:102)
+			;Player ejaculated previously, but continued into a new position (this one)
+				CALL K120_CONTINUED_ANAL_AFTER_EJAC_PROACTIVE()
+			ELSE
+				PRINTFORML 「%SPLIT_G("按照自己的节奏来反而更安心...:我、我要全力以赴了哦!:要是觉得太慢的话要说哦?:我、我要主动了...！")%」
+				PRINTFORMDW 经过%SPLIT_G("几次深呼吸调整:短暂的心理建设:下定决心的准备动作:调整到舒适的姿势")%后，她开始 %FSYN("扭动")%腰肢，并立即以 %SPLIT_G("moan声:娇喘声:呼哧声:急促呼吸声")%回应...
+			ENDIF
+	ENDSELECT
+	CALL K120_INSEMINATION_WASTE_COMMENT("inAnus")
+	RETURN 1
+ENDIF
+RETURN 1
+
+;==================================================
+;莲花坐姿
+;67,対面座位
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_67
+CALL M_KOJO_EGG_MESSAGE_COM_K120_67_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_67_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL
+	IF (FLAG:70 || CFLAG:MASTER:イタズラ == 2)
+		PRINTFORML
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初次
+	;初めて
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		;処女
+		IF TCVAR:破瓜 == 1
+			CALL K120_FIRST_TIME_VAGINAL_SEX("lotusPosition")
+			RETURN 1
+		ELSE
+			PRINTFORMW 
+			RETURN 1
+		ENDIF
+	ENDIF
+
+	;-------------------------------------------------
+	;继续插入
+	;挿入継続
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1
+		IF (TEQUIP:体位２ == TEQUIP:体位 && TEQUIP:体位２ > 0)
+			;同一体位
+			PRINTFORMD 两人继续着%SPLIT_G("交配:交媾:做爱:性交")%并
+			SELECTCASE RAND:2
+				CASE 0
+				;玩家主动:
+					PRINTFORMDW 你%SPLIT_G(@"抓住阿吽胖乎乎的%FSYN("屁股")%:将双手绕到阿吽丰满的大腿下方:让阿吽将臀部悬在空中")%从下方 %FSYN("挺入")%她体内。
+				;玩家上次射精了
+				;前回射精した
+					IF TCVAR:102
+						CALL K120_CONTINUED_VAGINAL_AFTER_EJAC()
+					ELSE
+						PRINTFORMW 「%SPLIT_G(@"明天你的腰肯定会痛的……:来，把手给我！:我不能这样掌握主动权……:你还真是积极啊、 %CALLNAME:MASTER%-san～:每次你挺进来我都会轻轻弹起来……")%」
+					ENDIF
+				CASE 1
+				;阿吽主动:
+					PRINTFORMDW 阿吽%SPLIT_G(@"%FSYN("扭动:s")%着腰肢:忘情地向后仰起头:紧闭双眼专注于取悦你:配合节奏摆动她的 moans")%同时%SPLIT_G(@"用手撑着你的胸口:将手指陷入你的侧腹:前倾身体调整角度:持续将你的%FSYN("肉棒")%全部吞入体内:抓住你的手与你十指相扣")%。
+				;玩家上次射精了
+				;前回射精した
+					IF TCVAR:102
+						CALL K120_CONTINUED_VAGINAL_AFTER_EJAC_PROACTIVE()
+					ELSE
+						PRINTFORMW 「%SPLIT_G(@"我的腰自己在动...!:已经停不下腰了...!:对、对不起擅自做主了...:我-%MOAN()%-已经停不下来了...!")%」
+					ENDIF
+			ENDSELECT
+			CALL K120_INSEMINATION_PLEA()
+			RETURN 1
+		ENDIF
+	ENDIF
+
+	;-------------------------------------------------
+	;基本描述
+	;-------------------------------------------------
+	SELECTCASE RAND:2
+		CASE 0
+		;玩家主动：
+			PRINTFORMDW 你%SPLIT_G("将阿吽拉到腿上:抓住阿吽的大腿:双手环住阿吽丰腴的臀部:让阿吽坐在腿上")%并从下方用%FSYN("挺动")%你的%TINKO(MASTER)%进入她的%SLIT_TR(TARGET)%。
+			IF (TCVAR:100 == PLAYER && TCVAR:102)
+			;玩家之前射精过，但继续进入新体位（当前体位）
+				CALL K120_射精後膣内継続()
+			ELSE
+				PRINTFORML 「%MOAN()%... %SPLIT_G(@"明明是我在上位却动得这么激烈...:这种姿势能好好看清你的眼睛呢...:这个姿势让我们的距离好近...:我的体重不会太重吧？:虽然进入得比较浅但触感更清晰了...")%」
+				PRINTFORMDW 你%SPLIT_G("感受着怀中她的全部重量:感受着她身体散发的热量:用嘴唇轻抚她的脖颈:感受她拂过耳际的吐息")%的同时%FSYN("抽插")%着...
+			ENDIF
+		CASE 1
+		;阿吽主动：
+			PRINTFORMDW 阿吽%SPLIT_G("缓缓沉入你的怀中:坐在你的大腿上:将全身重量压在你的膝上")%将你的%TINKO(MASTER)%纳入她的%SLIT_TR(TARGET)%之中
+			IF (TCVAR:100 == PLAYER && TCVAR:102)
+			;玩家之前已射精但仍继续新体位（当前体位）
+				CALL K120_射精後膣内継続_主動式()
+			ELSE
+				PRINTFORML 「%MOAN(,,2)%... %SPLIT_G(@"这样真的好亲密啊...:能感受到你身体的温度...:你的味道真好闻...:心跳完全平静不下来...")%」
+				PRINTFORMDW 她随后%SPLIT_G("环抱住你的身体:将额头贴在你的额前:用手轻抚你的脸颊:把脸埋进你的肩膀")%开始%FSYN("扭动")%腰肢...
+			ENDIF
+	ENDSELECT
+	CALL K120_INSEMINATION_PLEA()
+	RETURN 1
+ENDIF
+RETURN 1
+
+;==================================================
+;逆莲座式
+;68,背面座位
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_68
+CALL M_KOJO_EGG_MESSAGE_COM_K120_68_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_68_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL
+	IF (FLAG:70 || CFLAG:MASTER:イタズラ == 2)
+		PRINTFORML
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初次
+	;初めて
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		;処女
+		IF TCVAR:破瓜 == 1
+			CALL K120_FIRST_TIME_VAGINAL_SEX("reverseLotus")
+		ELSE
+		ENDIF
+	ENDIF
+
+	;-------------------------------------------------
+	;持续插入
+	;挿入継続
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1
+		IF (TEQUIP:体位２ == TEQUIP:体位 && TEQUIP:体位２ > 0)
+			;相同体位
+			PRINTFORMD 你们继续%SPLIT_G("mate:fornicate:have sex:have intercourse")%并
+			SELECTCASE RAND:2
+				CASE 0
+				;玩家主动:
+					PRINTFORMDW 你%SPLIT_G(@"抓住阿吽肉乎乎的%FSYN("屁股")%:将双手环绕在阿吽丰满的大腿下:让阿吽把臀部悬在半空中")% 以%FSYN("抽插")%的姿势从下方进入她。
+				;玩家上次射精
+				;前回射精した
+					IF TCVAR:102
+						CALL K120_CONTINUED_VAGINAL_AFTER_EJAC()
+					ELSE
+						PRINTFORMW 「%SPLIT_G(@"你的腰明天肯定会酸痛的...:你在这个姿势下好积极啊!:这样我可没法掌握主动权了...:真是猴急呢， %CALLNAME:MASTER%-桑～:每次你顶进来时我都会轻轻弹起来...")%」
+					ENDIF
+				CASE 1
+				;阿吽主动:
+					PRINTFORMDW 阿吽%SPLIT_G(@"%FSYN("扭动:s")%腰肢勤奋地动作着:因快感而向后仰起头:紧闭双眼专注于取悦你:配合着她的 moans节奏摆动")% 同时%SPLIT_G(@"用手撑着你的肩膀:因快感弓起后背:为了更好地调整角度而贴近你:持续吞吐着你%FSYN("肉棒")%的全部长度:抓住你的手与你十指相扣")%。
+				;玩家上次射精
+				;前回射精した
+					IF TCVAR:102
+						CALL K120_CONTINUED_VAGINAL_AFTER_EJAC_PROACTIVE()
+					ELSE
+						PRINTFORMW 「%SPLIT_G(@"我的腰自己动了起来……！:已经停不下腰部的动作了……！:对、对不起擅自主导了……:我-%MOAN()%-已经停不下来了……！")%」
+					ENDIF
+			ENDSELECT
+			CALL K120_INSEMINATION_PLEA()
+			RETURN 1
+		ENDIF
+	ENDIF
+
+	;-------------------------------------------------
+	;基本描述
+	;-------------------------------------------------
+	SELECTCASE RAND:2
+		CASE 0
+		;主控方主导:
+			PRINTFORMDW 你%SPLIT_G("将阿吽拉进自己膝上:抓住阿吽丰腴的臀部:双手环住阿吽的腰肢:让阿吽坐在你膝上")%并从后方%FSYN("抽插")%着将你的%TINKO(MASTER)%插入她的%SLIT_TR(TARGET)%。
+			IF (TCVAR:100 == PLAYER && TCVAR:102)
+			;玩家之前射精过，但继续进入新姿势（当前姿势）
+				CALL K120_CONTINUED_VAGINAL_AFTER_EJAC()
+			ELSE
+				PRINTFORML 「%MOAN()%... %SPLIT_G(@"尽管我在上面你还是这么急切地抽插…:Hau… 看不到你的脸有点…:这样感觉有点困难…:我是不是太重了？")%」
+				PRINTFORMDW 你在%FSYN("抽插")%她的同时%SPLIT_G(@"能感受到她整个体重压在你的腿上:能感受到她身体散发的热量:用嘴唇爱抚她的%SPLIT_G("脖子:背部")%:观察她性感的背部:还被她的尾巴抵着肚子爱抚")%…
+			ENDIF
+		CASE 1
+		;阿吽主动时：
+			PRINTFORMDW 阿吽%SPLIT_G("缓缓坐进你的大腿:坐在你大腿上:将全身重量压进你的大腿")%并%SPLIT_G(@"前倾用手撑住你的%SPLIT_G("大腿:腿:膝盖")%:后仰用背抵住你的%SPLIT_G("身体:胸膛")%")%。
+			PRINTFORMDW 随后调整好%SPLIT_G(@"你的 %TINKO(MASTER)%:她的 %SLIT_TR(TARGET)%")%位置%SPLIT_G("将你的分身滑入体内:缓缓坐进你的分身")%。
+			IF (TCVAR:100 == PLAYER && TCVAR:102)
+			;玩家之前射精过，但继续进入新姿势（当前姿势）
+				CALL K120_CONTINUED_VAGINAL_AFTER_EJAC_PROACTIVE()
+			ELSE
+				PRINTFORML 「%SPLIT_G("能按照自己的节奏来做稍微安心些…:我、我要全力以赴了！:要是觉得太慢要告诉我哦？:我、我要主动了…！")%」
+				PRINTFORMDW 在%SPLIT_G("深呼吸了几次:做好心理准备:下定决心般绷紧身子:调整到足够舒适的姿势")%之后 她开始用%FSYN("研磨")%腰肢 并立即以%SPLIT_G("moan声:喘息声:急促呼吸声:倒抽气声")%回应...
+			ENDIF
+	ENDSELECT
+	CALL K120_INSEMINATION_PLEA()
+	RETURN 1
+ENDIF
+RETURN 1
+
+;==================================================
+;Anal Lotus
+;69,対面座位肛門
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_69
+CALL M_KOJO_EGG_MESSAGE_COM_K120_69_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_69_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL
+	IF (FLAG:70 || CFLAG:MASTER:イタズラ == 2)
+		PRINTFORML
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初めて
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		;肛門処女
+		IF TCVAR:Ａ破瓜
+			CALL K120_FIRST_TIME_ANAL_SEX("莲华体位")
+			RETURN 1
+		ELSE
+			PRINTFORMW 
+			RETURN 1
+		ENDIF
+	ENDIF
+
+	;-------------------------------------------------
+	;继续插入
+	;挿入継続
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1
+		IF (TEQUIP:体位２ == TEQUIP:体位 && TEQUIP:体位２ > 0)
+			;相同体位
+			PRINTFORMD 你们继续着%SPLIT_G("交配:交媾:做爱:性交")%并
+			SELECTCASE RAND:2
+				CASE 0
+				;玩家主动：
+					PRINTFORMDW 你%SPLIT_G(@"抓住阿吽丰满的%FSYN("ass")%:将手环抱在阿吽肉感的大腿下:让阿吽把臀部悬在半空")%从下方%FSYN("挺入")%她体内。
+				;玩家上次射精过
+				;前回射精した
+					IF TCVAR:102
+						CALL K120_CONTINUED_ANAL_AFTER_EJAC()
+					ELSE
+						PRINTFORMW 「%SPLIT_G(@"明天你的腰肯定会酸痛...:来，把手给我！:我不能这样带头...:你真是积极， %CALLNAME:MASTER%-san～:每次你插入时我都会轻轻弹起...")%」
+					ENDIF
+				CASE 1
+				;阿吽主动:
+					PRINTFORMDW 阿吽%SPLIT_G(@"%FSYN("grind:s")%她的腰肢勤快地:愉悦地向后仰起头:紧闭双眼专注取悦你:随着她 moans的节奏摆动")%的同时%SPLIT_G(@"用手支撑在你的胸口:将手指深陷你的侧腹:前倾身体调整角度:持续将你的%FSYN("penis")%完全纳入体内:抓住你的手十指相扣")%。
+				;前回射精した
+				;前回射精した
+					IF TCVAR:102
+						CALL K120_CONTINUED_ANAL_AFTER_EJAC_PROACTIVE()
+					ELSE
+						PRINTFORMW 「%SPLIT_G(@"我的腰自己动起来了...!:已经停不下腰部的动作了...!:这、这样擅自主导真是抱歉...:我-%MOAN()%-已经停不下来了...!")%」
+					ENDIF
+			ENDSELECT
+			CALL K120_INSEMINATION_WASTE_COMMENT("inAnus")
+			RETURN 1
+		ENDIF
+	ENDIF
+
+	;-------------------------------------------------
+	;基本描述
+	;-------------------------------------------------
+	SELECTCASE RAND:2
+		CASE 0
+		;玩家主动：
+			PRINTFORMDW 你%SPLIT_G("将阿吽抱到腿上:抓住阿吽的大腿:用手环住阿吽丰腴的臀部:让阿吽坐在腿上")%并%FSYN("插入")%你的%TINKO(MASTER)%从下方顶入了她的%FSYN("肛门")%中。
+			IF (TCVAR:100 == PLAYER && TCVAR:102)
+			;玩家此前已射精但仍继续新体位（当前体位）
+				CALL K120_CONTINUED_ANAL_AFTER_EJAC()
+			ELSE
+				PRINTFORML 「%MOAN()%...%SPLIT_G(@"明明都骑乘位了还这么卖力地抽插...:这样的体位能好好看清你的眼睛呢...:这么近的距离连心跳声都能听见...:我的体重没问题吧？:虽然插入深度变浅了但亲密感却倍增...")%」
+				PRINTFORMDW 你%SPLIT_G("能感受到她整个体重压在腿上的分量:能感受到她体内散发的热度:用嘴唇轻吻她的脖颈:感受到她呼出的气息撩拨着你")%的同时继续%FSYN("抽插")%着...
+			ENDIF
+		CASE 1
+		;阿吽主动：
+			PRINTFORMDW 阿吽%SPLIT_G("主动坐到了你腿上:将全身重量压在你腿上:缓缓沉腰坐入你怀中")%将你的%TINKO(MASTER)%纳入了她的%FSYN("后庭")%。
+			IF (TCVAR:100 == PLAYER && TCVAR:102)
+			;玩家此前已射精但仍继续新体位（当前体位）
+				CALL K120_CONTINUED_ANAL_AFTER_EJAC_PROACTIVE()
+			ELSE
+				PRINTFORML 「%MOAN(,,2)%... %SPLIT_G("我们这样真的好近啊...:我能感受到你身体散发的热量...:你的味道真好闻...:我的心跳停不下来...:")%」
+				PRINTFORMDW 她随后%SPLIT_G("用双臂环抱住你:把额头贴在你的额头上:用手轻抚你的脸颊:把脸埋进你的肩膀")%并开始%FSYN("扭动")%腰肢...
+			ENDIF
+	ENDSELECT
+	CALL K120_INSEMINATION_WASTE_COMMENT("inAnus")
+	RETURN 1
+ENDIF
+RETURN 1
+
+;==================================================
+;Reverse Anal Lotus
+;70,背面座位肛門
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_70
+CALL M_KOJO_EGG_MESSAGE_COM_K120_70_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_70_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL
+	IF (FLAG:70 || CFLAG:MASTER:イタズラ == 2)
+		PRINTFORML
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初めて
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		;肛門処女
+		IF TCVAR:Ａ破瓜
+			CALL K120_FIRST_TIME_ANAL_SEX("reverseLotus")
+			RETURN 1
+		ELSE
+			PRINTFORMW 
+			RETURN 1
+		ENDIF
+	ENDIF
+	;-------------------------------------------------
+	;継続挿入
+	;挿入継続
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1
+		IF (TEQUIP:体位２ == TEQUIP:体位 && TEQUIP:体位２ > 0)
+			;同一体位
+			PRINTFORMD 两人继续%SPLIT_G("交配:交合:性交:交媾")%着
+			SELECTCASE RAND:2
+				CASE 0
+				;主动方：
+					PRINTFORMDW 你%SPLIT_G(@"抓住阿吽肥嘟嘟的%FSYN("屁股")%:将手环在阿吽丰满的大腿下:让阿吽把臀部悬在半空中")% 从下方%FSYN("挺入")%她体内
+				;前次射精
+				;前回射精した
+					IF TCVAR:102
+						CALL K120_CONTINUED_ANAL_AFTER_EJAC()
+					ELSE
+						PRINTFORMW 「%SPLIT_G(@"明天你的腰会痛的...:在这个姿势下好积极啊!:我这样没法掌握主导权了...:真是猴急呢， %CALLNAME:MASTER%-san～:每次插入我都会让我稍微弹起来...")%」
+					ENDIF
+				CASE 1
+				;阿吽主动：
+					PRINTFORMDW 阿吽%SPLIT_G(@"%FSYN("勤奋地扭动:s")%腰肢:愉悦地后仰着头:紧闭双眼专注于取悦你:配合着她的 moans节奏摆动")%同时%SPLIT_G(@"用手撑着你的肩膀:愉悦地弓起背部:为了更好地角度而贴向你:持续将你的%FSYN("肉棒")%全部纳入体内:抓住你的手与你十指交扣")%。
+				;前回射精した
+				;前回射精した
+					IF TCVAR:102
+						CALL K120_CONTINUED_ANAL_AFTER_EJAC_PROACTIVE()
+					ELSE
+						PRINTFORMW 「%SPLIT_G(@"腰擅自动起来了...!:已经停不下腰部的动作了...!:对、对不起这样擅自做主...:我-%MOAN()%-已经停不下来了...!")%」
+					ENDIF
+			ENDSELECT
+			CALL K120_INSEMINATION_WASTE_COMMENT("inAnus")
+			RETURN 1
+		ENDIF
+	ENDIF
+
+	;-------------------------------------------------
+	;基本描述
+	;-------------------------------------------------
+	SELECTCASE RAND:2
+		CASE 0
+		;玩家主动：
+			PRINTFORMDW 你%SPLIT_G("将阿吽拉到自己腿上:抓住阿吽丰腴的臀部:双手环住阿吽的腰肢:让阿吽坐在自己腿上")%并从后方将你的 %TINKO(MASTER)% %FSYN("抽插")%进她的%FSYN("inAnus")%。
+			IF (TCVAR:100 == PLAYER && TCVAR:102)
+			;玩家先前射精过但仍继续进入新体位（当前体位）
+				CALL K120_CONTINUED_ANAL_AFTER_EJAC()
+			ELSE
+				PRINTFORML 「%MOAN()%... %SPLIT_G(@"明明是我在上面却还这么积极地抽插...:哈呜...看不见你的脸感觉...:这个姿势有点吃力呢...:我...不会太重吧？")%」
+				PRINTFORMDW 在你%FSYN("抽插")%的同时%SPLIT_G(@"能感受到她整个人的重量压在腿上:能感受到她身体散发的热量:用嘴唇爱抚她的%SPLIT_G("脖颈:后背")%:欣赏她性感的背部:还被她的尾巴按压着腹部摩挲")%...
+			ENDIF
+		CASE 1
+		;阿吽主动：
+			PRINTFORMDW 阿吽 %SPLIT_G("缓缓坐入你的膝间:坐在你的大腿上:将全身重量压在你的膝上")%并 %SPLIT_G(@"前倾扶着你的 %SPLIT_G("大腿:腿部:膝盖")%:后仰靠着你的 %SPLIT_G("身躯:胸膛")%")%。
+			PRINTFORMDW 她随后调整好%SPLIT_G(@"你的 %TINKO(MASTER)%:她的%FSYN("菊穴")%")%与%SPLIT_G("将你的肉棒纳入体内:沉腰吞入你的阳具")%。
+			IF (TCVAR:100 == PLAYER && TCVAR:102)
+			;玩家先前已射精，但继续进入新体位（当前体位）
+				CALL K120_CONTINUED_ANAL_AFTER_EJAC_PROACTIVE()
+			ELSE
+				PRINTFORML 「%SPLIT_G("能按自己节奏来稍微安心些...:我、我要全力以赴了!:觉得太慢要告诉我哦?:我、我要主动了...!")%」
+				PRINTFORMDW 经过%SPLIT_G("数次深呼吸:心理准备:下定决心调整姿势:找到合适位置")%后，她开始用腰肢%FSYN("研磨")%，随即以%SPLIT_G("moan声:娇喘:吐息:喘息")%回应...
+			ENDIF
+	ENDSELECT
+	CALL K120_INSEMINATION_WASTE_COMMENT("inAnus")
+	RETURN 1
+ENDIF
+RETURN 1
+
+;==================================================
+;双重插入
+;71,二穴挿し
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_71
+CALL M_KOJO_EGG_MESSAGE_COM_K120_71_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_71_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	IF FLAG:70
+		PRINTFORML
+		RETURN 1
+    ;睡姦中
+    ;睡眠强奸
+	ELSEIF CFLAG:MASTER:イタズラ == 2
+		PRINTFORML
+		RETURN 1
+	ENDIF
+
+	;考えうる分岐が多すぎるので地の文の大まかな分岐だけ
+	;連続
+	IF PREVCOM == SELECTCOM
+		PRINTFORMW 
+		RETURN 1
+	;主人V挿入→助手A挿入
+	ELSEIF TCVAR:100 == MASTER
+		PRINTFORMW 
+		RETURN 1
+	;主人A挿入→助手V挿入
+	ELSEIF TCVAR:101 == MASTER
+		PRINTFORMW 
+		RETURN 1
+	;助手V挿入→主人A挿入
+	ELSEIF TCVAR:100 == ASSI
+		PRINTFORMW 
+		RETURN 1
+	;助手A挿入→主人V挿入
+	ELSEIF TCVAR:101 == ASSI
+		PRINTFORMW 
+		RETURN 1
+	ENDIF
+ENDIF
+RETURN 1

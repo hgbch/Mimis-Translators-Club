@@ -1,0 +1,124 @@
+;==================================================
+;弾幕勝負
+;==================================================
+;
+@M_KOJO_EGG_MESSAGE_COM_K120_DANMAKU(ARGS, 相手残機)
+#DIM 相手残機
+;全体の流れ
+;①【戦闘前】→②ダイスロールとプレイヤー選択肢、ハンデをつけた場合は【ハンデ口上】→③対応スキルが発動した場合【スキル口上】→④被弾判定、キャラが被弾したなら【被弾口上】→
+;どちらかの残機が0になっていなければ②に戻る→⑤【戦闘後口上】
+
+;--------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------
+IF LOCAL
+	SIF FLAG:口上色
+		TRYCALLFORM M_KOJO_COLOR_K{NO:TARGET}
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;戦闘前
+	;記入チェック（=0, 非表示、1, 表示）
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && ARGS == "戦闘前"
+		PRINTFORML 「弾幕勝負か！　ならば私が相手になってやろう！」
+		IF TALENT:恋人
+			PRINTFORML 「恋人同士でも弾幕勝負なら手加減はしないぞ！」
+		ELSE
+			PRINTFORML 「舐めてかかったら痛い目を見るぞ！　本気を出すからな！」
+		ENDIF
+		PRINTFORML 「狗符「山狗的散步」!」
+		PRINTFORMDW 细长的黄色弹幕追踪着你，最终分裂成红色细长弹幕随机扩散。
+		PRINTFORML 
+	ENDIF
+
+	;-------------------------------------------------
+	;戦闘中TARGET被弾時口上
+	;記入チェック（=0, 非表示、1, 表示）
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && ARGS == "被弾"
+		;別に一律で「やられたー」だけでもいいよ
+		SELECTCASE 相手残機
+			;残り残機3が表示されるのは【洽覧深識】持ちのみ
+			CASE 2
+				PRINTFORMDW 当子弹每隔一秒左右就改变方向追踪你时，你首先将它们引向左侧。
+				PRINTFORMDW %BREAKENG("随后退回中央进行更多攻击的你，又将它们引向右方继续这般左右来回直到破解她的符卡。")%
+				PRINTFORML 
+				PRINTFORML 「不错嘛！但接下来试试这招！」
+				PRINTFORML 「陀螺『Curl Up And Die』（蜷缩死去）！」
+				PRINTFORMDW 阿吽发射出红色激光，这些激光旋转并弯曲后向你逼近。
+				PRINTFORMDW 她随后用五发彼此平行的短小黄色子弹覆盖部分空白区域。
+			CASE 1
+				PRINTFORMDW 你轻松找到了符卡破解的关键，保持中央位置通过微幅左右移动专注闪避黄色弹幕。
+				PRINTFORML 
+				PRINTFORML 「这、这点程度不算什么！下一张符卡绝对要解决你！」
+				PRINTFORML 「狛符「独り阿吽の呼吸」！」
+				PRINTFORMDW %BREAKENG("阿吽分裂成两个分身，从两个方向同时发射五连组粉色漩涡弹与追踪位置的粉色大玉。")%
+			CASE 0
+				PRINTFORMDW %BREAKENG("你集中火力优先击破左侧分身，随后缓缓向右方本体移动，将粉色大玉留在身后，并在密集的小弹幕间隙中穿梭躲避。")%
+				PRINTFORMDW 如此反复操作，最终成功破解了她的符卡。
+		ENDSELECT
+	ENDIF
+
+		;-------------------------------------------------
+	;戦闘後
+	;記入チェック（=0, 非表示、1, 表示）
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && ARGS == "戦闘後"
+		PRINTFORML 
+		SELECTCASE 相手残機
+			CASE 3
+				PRINTFORMDW 你惊慌失措地四处发射黄色子弹，最终被逼入角落败下阵来。
+				CALL COLORMESSAGE("砰咻！",C_YELLOW)
+				PRINTFORML 
+				IF TALENT:恋人
+					PRINTFORML 「已、已经结束了？」
+					PRINTFORML 「您不要紧吗？几乎都没怎么还手啊！」
+					PRINTFORMDW 阿吽似乎担心自己是不是出手太重了...
+				ELSE
+					PRINTFORML 「咱可是狛犬，所以咱的胜利是理所当然的！」
+					PRINTFORMDW 阿吽双手叉腰挺起胸膛，摆出胜利者的姿态...
+				ENDIF
+			CASE 2
+				PRINTFORMDW 弯曲的激光让你晕头转向，黄色子弹更是让你无法集中注意力，最终被彻底打乱阵脚。
+				CALL COLORMESSAGE("砰咻！",C_YELLOW)
+				PRINTFORML 
+				PRINTFORML 「你还没意识到你面前的这只狛犬有多厉害吗？」
+				PRINTFORMDW 阿吽得意洋洋地摆了几个姿势向你炫耀...
+				PRINTFORML 「啊、不过别灰心！」
+				PRINTFORMW 「你还有很大的成长空间！要继续修行再来挑战我哦！」
+				PRINTFORMW 「明白了嘛？」
+				PRINTFORMDW 尽管如此，阿吽还是努力为你加油打气...
+			CASE 1
+				PRINTFORMDW 因为无法确定该集中攻击哪个阿吽，你很快就被铺天盖地的弹幕压制了——
+				CALL COLORMESSAGE("Pichuun!",C_YELLOW)
+				PRINTFORML 
+				PRINTFORML 「呼～真是千钧一发啊！」
+				IF TALENT:恋人
+					PRINTFORML 「不愧是我爱的人呢！」
+				ELSE
+					PRINTFORML 「你比表面看起来要强得多呢」
+				ENDIF
+				PRINTFORML 「要是不小心点的话，下次说不定会被你打败哦！」
+				PRINTFORMDW 虽然嘴上说着要小心，但她还是充满鼓励地朝你挥了挥拳头...
+			CASE 0
+				PRINTFORML 「呜哇...我投降！真是强大的力量...」
+				IF TALENT:恋人
+					PRINTFORML 「反而有点担心会变成由你来保护我了...」
+					PRINTFORML 「不过...这样也不错啦...」
+					PRINTFORMDW 阿吽蹭了蹭你并朝你咯咯笑着...
+				ELSE
+					PRINTFORML 「真的打败我了！」
+					PRINTFORML 「但只要我努力训练的话一定能打败你！」
+					PRINTFORMDW 阿吽伸展身体开始空挥拳击，为下次挑战做着准备...
+				ENDIF
+		ENDSELECT
+	ENDIF
+	RESETCOLOR
+ENDIF
+RETURN 1
+

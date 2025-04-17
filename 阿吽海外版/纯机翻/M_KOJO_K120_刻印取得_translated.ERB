@@ -1,0 +1,98 @@
+;-------------------------------------------
+;刻印取得
+;-------------------------------------------
+@M_KOJO_EGG_MESSAGE_MARKCNG_K120
+;このままだと地の文が表示されません
+;地の文を表示したい方は、下記のコメントアウトを削除して下さい
+
+;疼痛刻印
+;苦痛刻印
+IF FLAG:70 == 1
+    ;
+ELSE
+    SELECTCASE TFLAG:22
+        CASE 1
+            PRINTFORML 「好、好痛啊， %CALLNAME:MASTER%-桑...」
+            PRINTFORMDW 阿吽皱起眉头恳求你停下...
+        CASE 2
+            PRINTFORML 「好痛...好痛痛痛...  %CALLNAME:MASTER%-san！！」
+            PRINTFORMDW 阿吽因疼痛而叫喊，眼角开始泛起泪光。
+            PRINTFORML 「为、为什么要伤害我？请、请停下来...」
+            PRINTFORMDW 她畏缩着避开你，拼命地恳求你停下...
+        CASE 3
+            PRINTFORMDW 阿吽痛得尖叫起来，试图从你身边爬开。
+            PRINTFORML 「咕唔……为、为什么？我到底做错了什么……明明都叫你住手了……」
+            PRINTFORMDW 她紧闭双眼，积蓄在眼角的泪水终于沿着脸颊滑落。
+            PRINTFORML 「呜、呜咽……我不明白啊……为、为什么…… %CALLNAME:MASTER%-さん？」
+            IF TALENT:恋人
+                PRINTFORML 「明明说过、呜咽……爱着我的……」
+            ENDIF
+            PRINTFORMDW 她的身体因疼痛和恐惧不断颤抖着，蜷缩成团抱紧了自己……
+    ENDSELECT
+ENDIF
+
+;Rape Mark
+;時姦刻印
+SELECTCASE TFLAG:時姦刻印取得
+    CASE 1
+    ;
+    CASE 2
+    ;
+    CASE 3
+    ;
+ENDSELECT
+
+;快楽刻印
+;快楽刻印
+IF !FLAG:70
+    SELECTCASE TFLAG:23
+        CASE 1
+            PRINTFORML 「%MOAN(,2)%!」
+            PRINTFORMDW 阿吽的身体因快感的奔流而微微扭动。
+            PRINTFORML 「哈啊... %CALLNAME:MASTER%-san...」
+            PRINTFORMDW 她小心翼翼地呼唤着你的名字，寻求着你的体温...
+        CASE 2
+            PRINTFORML 「%SLUR(MOAN("m",2),-2)%!」
+            PRINTFORMDW 阿吽扭动着身躯，与逐渐支配身体的快感抗争着。
+            PRINTFORML 「%MOAN(,2)%... %CALLNAME:MASTER%-s..san...」
+            PRINTFORMDW 虽然呼唤着你的名字，但她的目光已然涣散，呼吸也变得紊乱...
+        CASE 3
+            PRINTFORML 「%SLUR(MOAN("h",4),-2)%!!」
+            PRINTFORMDW 阿吽睁大了双眼、挣扎着对抗那席卷全身的强烈快感。
+            PRINTFORML 「%MOAN("m",4)%... %CALLNAME:MASTER%-shan～♥...」
+            PRINTFORMDW 你轻抚她的头给她休息平复的时间。
+            PRINTFORMDW 休息确实有效、但你很快意识到她已经无法再平静下来了。
+            PRINTFORML 「哈...还要...还要%CALLNAME:MASTER%-san。还要～♥♥♥！」
+            PRINTFORMDW 阿吽用爪子紧紧攀住你、像饥饿的野兽般凝视着你...
+    ENDSELECT
+ENDIF
+
+;淫纹
+;11, 12, 13 = 通过快感宝石获得时
+;31, 32, 33 = 通过忠从宝石获得时
+;不埒刻印
+;快楽による刻印
+;屈服、恭順による刻印
+IF !FLAG:70
+    SELECTCASE TFLAG:24
+        CASE 11, 31
+            ;LV1
+        CASE 12, 32
+            ;LV2
+        CASE 13, 33
+            ;LV3
+    ENDSELECT
+ENDIF
+
+;憎恨刻印
+;反発刻印
+IF !FLAG:70
+    SELECTCASE TFLAG:21
+        CASE 1
+        ;
+        CASE 2
+        ;
+        CASE 3
+        ;
+    ENDSELECT
+ENDIF

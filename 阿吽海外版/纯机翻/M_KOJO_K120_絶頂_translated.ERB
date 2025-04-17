@@ -1,0 +1,967 @@
+;-------------------------------------------------
+;奴隷の絶頂時の口上
+;NOWEX:0～4 CVABM絶頂
+;NOWEX:6 二重絶頂
+;NOWEX:7 三重絶頂
+;NOWEX:8 四重絶頂
+;NOWEX:9 五重絶頂
+;NOWEX:10 噴乳
+;NOWEX:11 射精
+;NOWEX:12 放尿
+;適当に組み合わせて使ってください
+;TODO: 将本文件裁减至特定案例
+;TODO: 由于我已在服务与性行为文件中根据当前动作单独处理绝顶事件，此处无需过多内容。仅需保留喷乳、多重绝顶等特殊案例，但需确认
+;TODO: 后续重新评估并将相关内容移至此文件亦可接受，据我所知当前方法会在图片动画前显示绝顶文本，但能保持动作检查逻辑简洁。需完成所有案例后方可验证
+;-------------------------------------------------
+@M_KOJO_EGG_MESSAGE_PALAMCNG_B_K120
+;-------------------------------------------------
+;lactation
+;噴乳
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL && NOWEX:噴乳
+	PRINTFORMW 
+ENDIF
+;-------------------------------------------------
+;射精
+;射精
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL && NOWEX:射精
+	PRINTFORMW 
+ENDIF
+;-------------------------------------------------
+;放尿
+;放尿
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL && NOWEX:放尿
+	PRINTFORMW 
+ENDIF
+;-------------------------------------------------
+;絶頂
+;絶頂
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL
+	;時間停止
+	IF FLAG:時間停止 && NOWEX:TotalEX
+		;
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;五重絶頂
+	;五重絶頂
+	;記入チェック（=0, 非表示、1, 表示）
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF NOWEX:五重絶頂
+		IF FIRSTTIME("AunnFivefoldClimax")
+			PRINTFORMDW 阿吽因五重絶頂的强烈刺激而浑身颤抖战栗，爱液四处飞溅。
+			PRINTFORMDW 所有孔穴都在剧烈痉挛，失去身体控制的她不断扭动着身躯。
+			PRINTFORML 「%SLUR(MOAN("h",,3), -2)%！！」
+			PRINTFORMDW 她试图说些什么，但口中只能溢出难以理解的 moan声音。
+			PRINTFORML 「%SLUR(MOAN("h",,4), -2)%...！」
+			PRINTFORMDW 阿吽根本无法抵抗在体内奔涌的无法抵抗的快感，你迅速扶稳了她的身体。
+			PRINTFORML 「%SLUR(MOAN("m",,3), -2)%...」
+			IF TALENT:恋慕
+				PRINTFORMDW 你温柔地轻拍阿吽的头，等待她缓过来。
+			ELSE
+				PRINTFORMDW 你专注地看着她逐渐缓过来。
+			ENDIF
+			PRINTFORML 「%SLUR(MOAN("l",,3), -2)%...」
+			PRINTFORMDW 她用迷离的眼神凝视着你，终于再次找回了说话的力气。
+			PRINTFORML 「%SLUR(CALLNAME:MASTER)%-酱...哈哇...」
+			IF TALENT:恋慕
+				PRINTFORMDW 阿吽随着逐渐恢复力气，小心翼翼地抓住并握紧你的手。
+			ELSE
+				PRINTFORMDW 阿吽发出最后的叹息直到终于平静下来。
+			ENDIF
+			PRINTFORML 「我的...整个身体刚刚都像触电般抖个不停...」
+			PRINTFORML 「我到达了比最高的山还要高的地方...」
+			PRINTFORMDW 尽管明显疲惫不堪，她的目光却变得淫靡起来。
+			PRINTFORML 「真的、真的好舒服 %CALLNAME:MASTER%-san...」
+			PRINTFORMDW 她的尾巴开始摇晃，重新回到急促喘息的状态。
+			PRINTFORML 「哈...哈...你还会继续更多的...对吧？」
+			PRINTFORMDW 看来她已沉溺于你展现的极致愉悦之中...
+		ELSE
+			PRINTFORML 「%SLUR(MOAN("h",,4), -2)%！！」
+			PRINTFORMDW 阿吽\@RAND:2 ==0 ? %SPLIT_G("扭动:扭动:蠕动:挣扎")%于 %FSYN("剧烈")%的%SPLIT_G("快感:绝顶:极乐:高潮")%中 # %SPLIT_G("双眼翻白:眼神失焦")%并 %SPLIT_G("大量流涎:剧烈喘息:吐出舌头")% %SPLIT_G("满脸通红:双颊绯红:面色发烫:神情恍惚")%\@ 当你刺激她所有五处敏感带时。
+			PRINTFORML 「%SLUR(MOAN("h",,3), -2)%...！」
+			PRINTFORMDW 她的%SPLIT_G("小穴:入口:肉洞")%开始%SPLIT_G("痉挛:起伏:收缩:夹紧:摆动")%得%SPLIT_G("剧烈地:失控地:激烈地")%，%SPLIT_G("喷出:射出:释放:迸发:涌出")%的%FSYN("爱液")%%SPLIT_G("四处飞溅:呈高弧线喷出:形成宽阔扇面:洒得到处都是")%。
+			PRINTFORML 「%SLUR(MOAN("h",,1), -2)%～♥！」
+			PRINTFORML 「%SLUR(SPLIT_G(@"人家的穴穴:整个身体:发情部位:所有地方:眼睛要:敏感带:%CALLNAME:MASTER%-大人"), -2)%～♥...」
+			PRINTFORML 「%SLUR(SPLIT_G("全都这么爽:感觉好舒服:浑身发烫:要发疯了:太厉害了:这么多:这种感觉太棒了:要撑不住了"), -2)%～♥♥！」
+			PRINTFORMDW 她花了一会儿时间恢复，但很快又继续示意你继续...
+		ENDIF
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;高潮情况
+	;記入チェック（=0, 非表示、1, 表示）
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF (NOWEX:四重絶頂 || NOWEX:三重絶頂 || NOWEX:二重絶頂)
+		;要簡易書寫不指定部位時，請解除[SKIPSTART]&[SKIPEND]的注釋，並在[SKIPSTART]與本注釋之間書寫
+		;[SKIPSTART]
+		;不同高潮的對話
+		PRINTFORML 
+		CALL K120_CLIMAX_DIALOGUE()
+		RETURN 1
+		;[SKIPEND]
+	ENDIF
+ENDIF
+;-------------------------------------------------
+;奴隷の睡眠絶頂時の口上
+;-------------------------------------------------
+@M_KOJO_EGG_MESSAGE_PALAMCNG_B2_K120
+;-------------------------------------------------
+;噴乳
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL && NOWEX:噴乳
+	PRINTFORMW 
+ENDIF
+;-------------------------------------------------
+;射精
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL && NOWEX:射精
+	PRINTFORMW 
+ENDIF
+;-------------------------------------------------
+;放尿
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL && NOWEX:放尿
+	PRINTFORMW 
+ENDIF
+;-------------------------------------------------
+;絶頂
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	;-------------------------------------------------
+	;五重絶頂
+	;記入チェック（=0, 非表示、1, 表示）
+	LOCAL:1 = 0
+	;-------------------------------------------------
+	IF NOWEX:五重絶頂
+		PRINTFORMW 
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;四重絶頂
+	;記入チェック（=0, 非表示、1, 表示）
+	LOCAL:1 = 0
+	;-------------------------------------------------
+	IF NOWEX:四重絶頂
+		;部位を指定せず簡易的に書く場合、[SKIPSTART]&[SKIPEND]のコメントアウトを外して、[SKIPSTART]とこのコメントの間に書いてください
+		;[SKIPSTART]
+		SELECTCASE NOWEX:四重絶頂
+			;Ｃ＆Ｖ＆Ａ＆Ｂ絶頂
+			CASE 1
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆Ｖ＆Ａ＆Ｍ絶頂
+			CASE 2
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆Ｖ＆Ｂ＆Ｍ絶頂
+			CASE 3
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆Ａ＆Ｂ＆Ｍ絶頂
+			CASE 4
+				PRINTFORMW 
+				RETURN 1
+			;Ｖ＆Ａ＆Ｂ＆Ｍ絶頂
+			CASE 5
+				PRINTFORMW 
+				RETURN 1
+		ENDSELECT
+		;[SKIPEND]
+	ENDIF
+	;-------------------------------------------------
+	;三重絶頂
+	;記入チェック（=0, 非表示、1, 表示）
+	LOCAL:1 = 0
+	;-------------------------------------------------
+	IF NOWEX:三重絶頂
+		;部位を指定せず簡易的に書く場合、[SKIPSTART]&[SKIPEND]のコメントアウトを外して、[SKIPSTART]とこのコメントの間に書いてください
+		;[SKIPSTART]
+		SELECTCASE NOWEX:三重絶頂
+			;Ｃ＆Ｖ＆Ａ絶頂
+			CASE 1
+				PRINTFORMW 
+				RETURN 1
+			;Ｂ＆Ｖ＆Ａ絶頂
+			CASE 2
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆Ｂ＆Ａ絶頂
+			CASE 3
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆Ｖ＆Ｂ絶頂
+			CASE 4
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆Ｖ＆Ｍ絶頂
+			CASE 5
+				PRINTFORMW 
+				RETURN 1
+			;Ｂ＆Ｖ＆Ｍ絶頂
+			CASE 6
+				PRINTFORMW 
+				RETURN 1
+			;Ａ＆Ｖ＆Ｍ絶頂
+			CASE 7
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆Ｂ＆Ｍ絶頂
+			CASE 8
+				PRINTFORMW 
+				RETURN 1
+			;Ａ＆Ｂ＆Ｍ絶頂
+			CASE 9
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆Ａ＆Ｍ絶頂
+			CASE 10
+				PRINTFORMW 
+				RETURN 1
+		ENDSELECT
+		;[SKIPEND]
+	ENDIF
+	;-------------------------------------------------
+	;二重絶頂
+	;記入チェック（=0, 非表示、1, 表示）
+	LOCAL:1 = 0
+	;-------------------------------------------------
+	IF NOWEX:二重絶頂
+		;部位を指定せず簡易的に書く場合、[SKIPSTART]&[SKIPEND]のコメントアウトを外して、[SKIPSTART]とこのコメントの間に書いてください
+		;[SKIPSTART]
+		SELECTCASE NOWEX:二重絶頂
+			;Ｃ＆Ｖ絶頂
+			CASE 1
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆Ａ絶頂
+			CASE 2
+				PRINTFORMW 
+				RETURN 1
+			;Ｖ＆Ａ絶頂
+			CASE 3
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆Ｂ絶頂
+			CASE 4
+				PRINTFORMW 
+				RETURN 1
+			;Ｖ＆Ｂ絶頂
+			CASE 5
+				PRINTFORMW 
+				RETURN 1
+			;Ａ＆Ｂ絶頂
+			CASE 6
+				PRINTFORMW 
+				RETURN 1
+			;Ａ＆Ｍ絶頂
+			CASE 7
+				PRINTFORMW 
+				RETURN 1
+			;Ｖ＆Ｍ絶頂
+			CASE 8
+				PRINTFORMW 
+				RETURN 1
+			;Ｃ＆Ｍ絶頂
+			CASE 9
+				PRINTFORMW 
+				RETURN 1
+			;Ｂ＆Ｍ絶頂
+			CASE 10
+				PRINTFORMW 
+				RETURN 1
+		ENDSELECT
+		;[SKIPEND]
+	ENDIF
+	IF NOWEX:Ｃ絶頂
+		;超強絶頂Ｃ
+		IF NOWEX:Ｃ絶頂 == 3
+			PRINTFORMW 
+		;強絶頂Ｃ
+		否则如果 NOWEX:Ｃ絶頂 == 2
+			PRINTFORMW 
+		;絶頂Ｃ
+		否则
+			PRINTFORMW 
+		结束条件
+	结束条件
+	如果 NOWEX:Ｖ絶頂
+		;超強絶頂Ｖ
+		如果 NOWEX:Ｖ絶頂 == 3
+			PRINTFORMW 
+		;強絶頂Ｖ
+		否则如果 NOWEX:Ｖ絶頂 == 2
+			PRINTFORMW 
+		;絶頂Ｖ
+		否则
+			PRINTFORMW 
+		结束条件
+	结束条件
+	如果 NOWEX:Ａ絶頂
+		;超強絶頂Ａ
+		如果 NOWEX:Ａ絶頂 == 3
+			PRINTFORMW 
+		;強絶頂Ａ
+		否则如果 NOWEX:Ａ絶頂 == 2
+			PRINTFORMW 
+		;絶頂Ａ
+		否则
+			PRINTFORMW 
+		结束如果
+	结束如果
+	如果 NOWEX:Ｂ絶頂
+		;強絶頂Ｂ
+		如果 NOWEX:Ｂ絶頂 == 3
+			PRINTFORMW 
+		;強絶頂Ｂ
+		否则如果 NOWEX:Ｂ絶頂 == 2
+			PRINTFORMW 
+		;絶頂Ｂ
+		否则
+			PRINTFORMW 
+		ENDIF
+	ENDIF
+	如果 NOWEX:Ｍ絶頂
+		;超強絶頂Ｍ
+		如果 NOWEX:Ｍ絶頂 == 3
+			PRINTFORMW 
+		;強絶頂Ｍ
+		否则如果 NOWEX:Ｍ絶頂 == 2
+			PRINTFORMW 
+		;絶頂Ｍ
+		否则
+			PRINTFORMW 
+		ENDIF
+	ENDIF
+ENDIF
+
+
+;-------------------------------------------------
+;射精に関する口上の表示
+;一時的にTARGETを口上主に設定している
+;-------------------------------------------------
+
+;==================================================
+;可选：确定是否应跳过标准描述。
+;返回0表示应显示描述且 KOJO_EGG ，1表示应隐藏描述并显示 KOJO_EGG ，2表示应显示描述并隐藏 KOJO_EGG ，3表示应同时隐藏描述和 KOJO_EGG 
+;==================================================
+@M_KOJO_EGG_MESSAGE_PALAMCNG_MESSAGECHECK_A_K120_00
+RETURN 0
+
+@M_KOJO_EGG_MESSAGE_PALAMCNG_A_K120_00(ARG)
+;-------------------------------------------------
+;TARGETの手による射精で、射精対象が非TARGET
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+;==================================================
+;Optional: 确定是否跳过标准描述
+;返回0表示应显示描述且 KOJO_EGG ，1表示应隐藏描述并显示 KOJO_EGG ，2表示应显示描述并隐藏 KOJO_EGG ，3表示应同时隐藏描述和 KOJO_EGG 
+;==================================================
+@M_KOJO_EGG_MESSAGE_PALAMCNG_MESSAGECHECK_A_K120_0
+RETURN 0
+
+@M_KOJO_EGG_MESSAGE_PALAMCNG_A_K120_0(ARG)
+;-------------------------------------------------
+;避孕套
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+;==================================================
+;可选：确定是否应跳过标准描述。
+;返回0表示应显示描述和 KOJO_EGG ，1表示应隐藏描述并显示 KOJO_EGG ，2表示应显示描述并隐藏 KOJO_EGG ，3表示应同时隐藏描述和 KOJO_EGG 。
+;==================================================
+@M_KOJO_EGG_MESSAGE_PALAMCNG_MESSAGECHECK_A_K120_23
+RETURN 0
+
+@M_KOJO_EGG_MESSAGE_PALAMCNG_A_K120_23(ARG)
+;-------------------------------------------------
+;イラマチオ
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL
+	;時姦中
+	IF FLAG:70
+		RETURN 1
+	ENDIF
+
+	IF FIRSTTIME("AunnIrrumatioCumshot")
+		PRINTFORMDW 你抵达高潮，抓住阿吽的石耳将肉棒深深顶入她的喉咙深处。
+		PRINTFORMDW 当你直接射进她的喉咙时，阿吽睁大的眼角泛起了泪花。
+		PRINTFORML 「唔嗯！唔唔...」
+		PRINTFORMDW 她轻拍着你的胯侧，但你却得寸进尺地顶得更深。
+		PRINTFORML 「嗯唔嗯...」
+		PRINTFORMDW 阿吽垂下双臂，任由你支配她的喉咙。
+		PRINTFORMDW %BREAKENG("随着最后一滴精液射出，你缓缓拔出肉棒，精液与唾液形成的粘稠丝线在阴茎与她的嘴唇间藕断丝连，最终垂落地面。")%
+		PRINTFORMDW 阿吽立即开始剧烈咳嗽并喘着粗气，几滴泪珠顺着脸颊滑落。
+		PRINTFORMDW 你递给她一张纸巾，她擦拭着黏在鼻孔上的精液泡沫。
+		PRINTFORMDW 你满怀歉意地快速道歉，她却摇着头在咳嗽间隙尽力向你挤出笑容。
+		PRINTFORML 「咳... %CALLNAME:MASTER%-san 是自愿的...咳咳...」
+		PRINTFORML 「没关系的咳...真的...！」
+		PRINTFORMDW 你轻拍她的脑袋作为嘉奖，她便咧嘴朝你一笑，露出依然黏在牙齿间的精液残渣...
+	ELSE
+		PRINTFORMDW %BREAKENG(@"你抓住阿吽%SPLIT_G("的角:耳朵:后脑勺")%， %FSYN("猛插")%你的 %TINKO(MASTER)% %SPLIT_G("整根没入:直抵根部:深入到底:捅进喉咙深处")%并向 %SPLIT_G("她喉咙深处:胃袋直接")%%FSYN("发射")%了%SEMEN(-1, 1)%")%。
+		PRINTFORML 「%RANDLIPS(,"吮吸")%...%SPLIT_G("嗯唔:嗯嗯:唔嗯:唔唔")%...!」
+		PRINTFORMDW 阿吽%SPLIT_G("勤恳地:耐心地:勇敢地:心甘情愿地")%%SPLIT_G("承受着你的侵犯:等待你结束:咽下所有精液:为你保持不动")%。
+		PRINTFORMDW 你%SPLIT_G("拔出:退开:挣脱")%后她%SPLIT_G("大口喘气:剧烈咳嗽起来:喘息着重新吸入氧气")%。
+		IF (TALENT:MASTER:濃厚精液 && RAND:10 == 0)
+			;浓厚精液导致打嗝事件的概率
+			PRINTFORML 「这么浓的话-嗝!」
+			PRINTFORMDW 阿吽慌忙用手捂住嘴巴，羞得满脸通红。
+			PRINTFORML 「那、那那那才不是打嗝...那是...呃呃...」
+			PRINTFORMDW 你拍拍她的头安慰说没关系。
+			PRINTFORML 「呜呜...太丢人了...」
+			PRINTFORMDW 她移开视线，你继续轻抚她的头直到她终于平静下来...
+		ELSE
+			SELECTCASE RAND:4
+				CASE 0
+				;从鼻腔里吹出精液泡沫
+					PRINTFORML 「呜嘎…呜…」
+					PRINTFORMDW 当她重新获得氧气后，立即从鼻腔里吹出了精液泡沫。
+					PRINTFORMDW 你帮她擦拭并擤了擤鼻子。
+					PRINTFORML 「哈哇…谢、谢谢…」
+					PRINTFORMDW 阿吽似乎因为自己狼狈的模样而感到纠结...
+				CASE 1
+					PRINTFORML 「全都吞下去了…」
+					PRINTFORMDW 你指示她张开嘴让你检查。
+					PRINTFORML 「啊～…看、看到了嘛？」
+					PRINTFORMDW 她照做后，残留的精液在她舌头与上颚之间形成了淫靡的丝线...
+				CASE 2
+					PRINTFORML 「谢、谢谢款待…哈、哈哈…」
+					PRINTFORMDW 阿吽刚说完展示就羞得满脸通红，把脸埋进双手里。
+					PRINTFORMDW 你坏笑着表示刚才没听清楚，让她再说一遍。
+					PRINTFORML 「没、没有...我什么都没说...」
+					PRINTFORMDW 你又继续捉弄了她好一会儿...
+				CASE 3
+					PRINTFORML 「哈哇...有、有点可怕呢，因为会突然喘不上气...」
+					PRINTFORMDW 阿吽把手放在胸口上，怯生生地望着你。
+					PRINTFORML 「不过因为是 %CALLNAME:MASTER%-san的话，我马上就能冷静下来啦！」
+					PRINTFORMDW 她似乎对你完全信赖，你赞许地摸了摸她的头...
+			ENDSELECT
+		ENDIF
+	ENDIF
+	PRINTFORML 
+	RETURN 1
+ENDIF
+RETURN 1
+
+;==================================================
+;可选：决定是否跳过标准描述
+;返回0时显示描述和 KOJO_EGG ，返回1时隐藏描述并显示 KOJO_EGG ，返回2时显示描述并隐藏 KOJO_EGG ，返回3时同时隐藏描述和 KOJO_EGG 
+;==================================================
+@M_KOJO_EGG_MESSAGE_PALAMCNG_MESSAGECHECK_A_K120_22
+RETURN 0
+
+@M_KOJO_EGG_MESSAGE_PALAMCNG_A_K120_22(ARG)
+;-------------------------------------------------
+;シックスナイン
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	;同時射精
+	IF NOWEX:射精 && NOWEX:MASTER:射精
+		PRINTFORMW
+		RETURN 1
+	;仅TARGET射精
+	ELSEIF NOWEX:射精
+		;附着于PLAYER
+		IF GETBIT(TALENT:PLAYER:性別,1)
+			PRINTFORMW
+			RETURN 1
+		;付いてない
+		ELSE
+			PRINTFORMW
+			RETURN 1
+		ENDIF
+	;PLAYER单独射精
+	ELSE
+		;TARGET处于附着状态
+		IF GETBIT(TALENT:性別,1)
+			PRINTFORMW
+			RETURN 1
+		;付いてない
+		ELSE
+			PRINTFORMW
+			RETURN 1
+		ENDIF
+	ENDIF
+ENDIF
+RETURN 1
+
+;==================================================
+;可选：决定是否应跳过标准描述。
+;返回0表示应显示描述和 KOJO_EGG ，1表示应隐藏描述并显示 KOJO_EGG ，2表示应显示描述并隐藏 KOJO_EGG ，3表示应同时隐藏描述和 KOJO_EGG 。
+;==================================================
+@M_KOJO_EGG_MESSAGE_PALAMCNG_MESSAGECHECK_A_K120_21
+RETURN 0
+
+@M_KOJO_EGG_MESSAGE_PALAMCNG_A_K120_21(ARG)
+;-------------------------------------------------
+;パイズリフェラ
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+;==================================================
+;可选功能：决定是否跳过标准描述
+;返回0表示应显示描述和 KOJO_EGG ，1表示应隐藏描述并显示 KOJO_EGG ，2表示应显示描述并隐藏 KOJO_EGG ，3表示应同时隐藏描述和 KOJO_EGG 
+;==================================================
+@M_KOJO_EGG_MESSAGE_PALAMCNG_MESSAGECHECK_A_K120_20
+RETURN 0
+
+@M_KOJO_EGG_MESSAGE_PALAMCNG_A_K120_20(ARG)
+;-------------------------------------------------
+;手淫フェラ
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+;==================================================
+;可选功能：决定是否跳过标准描述
+;返回0表示应显示描述和 KOJO_EGG ，1表示应隐藏描述并显示 KOJO_EGG ，2表示应显示描述并隐藏 KOJO_EGG ，3表示应同时隐藏描述和 KOJO_EGG 
+;==================================================
+@M_KOJO_EGG_MESSAGE_PALAMCNG_MESSAGECHECK_A_K120_9
+RETURN 0
+
+@M_KOJO_EGG_MESSAGE_PALAMCNG_A_K120_9(ARG)
+;-------------------------------------------------
+;肛門奉仕
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+;==================================================
+;可选：决定是否跳过标准描述
+;返回0以显示描述和 KOJO_EGG ，1隐藏描述并显示 KOJO_EGG ，2显示描述并隐藏 KOJO_EGG ，3同时隐藏描述和 KOJO_EGG 
+;==================================================
+@M_KOJO_EGG_MESSAGE_PALAMCNG_MESSAGECHECK_A_K120_8
+RETURN 0
+
+@M_KOJO_EGG_MESSAGE_PALAMCNG_A_K120_8(ARG)
+;-------------------------------------------------
+;泡踊り
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	;同時射精
+	IF NOWEX:射精 && NOWEX:MASTER:射精
+		PRINTFORMW
+		RETURN 1
+	;TARGET单独射精
+	ELSEIF NOWEX:射精
+		;PLAYER处于附着状态
+		IF GETBIT(TALENT:PLAYER:性别,1)
+			PRINTFORMW
+			RETURN 1
+		;付いてない
+		ELSE
+			PRINTFORMW
+			RETURN 1
+		ENDIF
+	;PLAYER单独射精
+	ELSE
+		;TARGET处于附着状态
+		IF GETBIT(TALENT:性別,1)
+			PRINTFORMW
+			RETURN 1
+		;付いてない
+		ELSE
+			PRINTFORMW
+			RETURN 1
+		ENDIF
+	ENDIF
+ENDIF
+RETURN 1
+
+;==================================================
+;可选：决定是否应跳过标准描述。
+;返回0表示应显示描述和 KOJO_EGG ，返回1表示应隐藏描述并显示 KOJO_EGG ，返回2表示应显示描述并隐藏 KOJO_EGG ，返回3表示应同时隐藏描述和 KOJO_EGG 
+;==================================================
+@M_KOJO_EGG_MESSAGE_PALAMCNG_MESSAGECHECK_A_K120_7
+RETURN 0
+
+@M_KOJO_EGG_MESSAGE_PALAMCNG_A_K120_7(ARG)
+;-------------------------------------------------
+;足コキ
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+;==================================================
+;可选：确定是否应跳过标准描述。
+;返回0表示应显示描述和 KOJO_EGG ，1表示隐藏描述并显示 KOJO_EGG ，2表示显示描述并隐藏 KOJO_EGG ，3表示应隐藏描述和 KOJO_EGG 。
+;==================================================
+@M_KOJO_EGG_MESSAGE_PALAMCNG_MESSAGECHECK_A_K120_6
+RETURN 0
+
+@M_KOJO_EGG_MESSAGE_PALAMCNG_A_K120_6(ARG)
+;-------------------------------------------------
+;素股
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+;==================================================
+;可选：确定是否应跳过标准描述。
+;返回0表示描述和 KOJO_EGG 都应显示，1表示描述应隐藏而 KOJO_EGG 显示，2表示描述应显示而 KOJO_EGG 隐藏，3表示描述和 KOJO_EGG 都应隐藏。
+;==================================================
+@M_KOJO_EGG_MESSAGE_PALAMCNG_MESSAGECHECK_A_K120_5
+RETURN 0
+
+@M_KOJO_EGG_MESSAGE_PALAMCNG_A_K120_5(ARG)
+;-------------------------------------------------
+;パイズリ
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+;==================================================
+;可选：确定是否应跳过标准描述。
+;返回0表示描述和 KOJO_EGG 都应显示，1表示描述应隐藏而 KOJO_EGG 显示，2表示描述应显示而 KOJO_EGG 隐藏，3表示描述和 KOJO_EGG 都应隐藏。
+;==================================================
+@M_KOJO_EGG_MESSAGE_PALAMCNG_MESSAGECHECK_A_K120_4
+RETURN 0
+
+@M_KOJO_EGG_MESSAGE_PALAMCNG_A_K120_4(ARG)
+;-------------------------------------------------
+;フェラチオ
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+;==================================================
+;可选：决定是否应跳过标准描述。
+;返回0表示应显示描述和 KOJO_EGG ，1表示应隐藏描述并显示 KOJO_EGG ，2表示应显示描述并隐藏 KOJO_EGG ，3表示应同时隐藏描述和 KOJO_EGG 。
+;==================================================
+@M_KOJO_EGG_MESSAGE_PALAMCNG_MESSAGECHECK_A_K120_3
+RETURN 0
+
+@M_KOJO_EGG_MESSAGE_PALAMCNG_A_K120_3(ARG)
+;-------------------------------------------------
+;手淫
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+;==================================================
+; 可选：确定是否应跳过标准描述。
+; 返回0表示应显示描述和 KOJO_EGG ，1表示隐藏描述并显示 KOJO_EGG ，2表示显示描述并隐藏 KOJO_EGG ，3表示同时隐藏描述和 KOJO_EGG 。
+;==================================================
+@M_KOJO_EGG_MESSAGE_PALAMCNG_MESSAGECHECK_A_K120_2
+RETURN 0
+
+@M_KOJO_EGG_MESSAGE_PALAMCNG_A_K120_2(ARG)
+;-------------------------------------------------
+;肛門
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+;==================================================
+;可选：决定是否跳过标准描述
+;返回0表示应显示描述和 KOJO_EGG ，1表示应隐藏描述并显示 KOJO_EGG ，2表示应显示描述并隐藏 KOJO_EGG ，3表示应同时隐藏描述和 KOJO_EGG 
+;==================================================
+@M_KOJO_EGG_MESSAGE_PALAMCNG_MESSAGECHECK_A_K120_1
+RETURN 0
+
+@M_KOJO_EGG_MESSAGE_PALAMCNG_A_K120_1(ARG)
+;-------------------------------------------------
+;膣内
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL
+	IF (TALENT:恋慕 && K120_INSEMINATION_POSSIBLE() && K120_IS_DANGEROUS_DAYS())
+		IF FIRSTTIME("AunnReceivingDangerousCreampie")
+			PRINTFORML 
+			PRINTFORMDW 你重重地撞进阿吽体内，将全部注入她的子宫深处。
+			PRINTFORMDW 阿吽睁大双眼承受着首次危险的中出，动物性的喜悦与困惑在她脸上交织。
+			PRINTFORMDW 她茫然地望向你，涣散的瞳孔中似乎有什么正在觉醒。
+			PRINTFORMDW 她将你更深地拉入体内，显然还未满足。
+			PRINTFORMW 「%MOAN()%...这种感觉...」
+			PRINTFORMW 「能感受到...正在注入体内...」
+			PRINTFORMW 「有种幸福从内心深处不断涌出 %CALLNAME:MASTER%-san...」
+			PRINTFORMW 「脑袋变得迷迷糊糊的无法集中精神」
+			PRINTFORMW 「但是心跳...却跳得这么快」
+			PRINTFORMW 「现在...我大概是真正幸福着的吧」
+			PRINTFORMW 「新生命的可能性...」
+			PRINTFORML 「%CALLNAME:MASTER%-さん...」
+			PRINTFORMDW 阿吽完全沉浸在繁殖的肉欲中 用混杂着复杂欲望的眼神看向你
+			PRINTFORML 「%CALLNAME:MASTER%-さん...还要...」
+			IF TALENT:恋人
+				PRINTFORML  「%CALLNAME:MASTER%-さん...我还想要更多你的爱～♥！」
+			ENDIF
+			PRINTFORMDW 保持着结合的姿势 你能感受到她正在不断收缩阴道挤压着肉棒 渴求着更多的...
+		ELSE
+			PRINTFORML 
+			PRINTFORMDW 阿吽%SPLIT_G("'因喜悦而表情松懈:在极乐中呼唤你的名字:欢愉地向后仰头:臣服于授精的兽性快感:沉醉于深层的欲望之中")%感受着你的 %SEMEN(,1)% %FSYN("充满:正在充满")%她的子宫。
+			IF EX:TARGET:膣内精液 >= 1000
+				PRINTFORML 「%SPLIT_G(@"好满啊...还在不断注入:明明已经这么满还在继续:肚子都被精液顶起来了:这么努力地注入呢:这么多都让肚子鼓起来了:这么多绝对会怀孕的:好多...做得很棒哦 %CALLNAME:MASTER%-san")%～♥!」
+			ELSEIF EX:TARGET:膣内精液 >= 500
+				PRINTFORML 「%SPLIT_G("子宫在充满:正在源源不断地注入:越来越多了:释放了这么多呢:已经有这么多了:真的在往里面填满精液呢")%～♥!」
+			ELSEIF EX:TARGET:膣内精液 > 0
+				PRINTFORML 「%MOAN()%... %SPLIT_G("里面...全都注入了:能感觉到在往里流:真的全都射在里面了:再多释放些吧")%～♥!」
+			ENDIF
+			IF ABL:Ｖ感覚 >= 5
+				PRINTFORMDW 她的 %SLIT(TARGET)% \@ RAND:2 == 0 ? %FSYN("缠绕")%激烈地缠绕着你的# %FSYN("夹紧")%用力箍住你的 \@ %FSYN("阴茎")%并%SPLIT_G("贪婪地:急切地:渴望地:焦躁地")% %FSYN("榨取")%你的%FSYN("睾丸")% %SEMEN(,1)%
+			ENDIF
+			PRINTFORMDW 射精结束后，阿吽%SPLIT_G("满足地揉着肚子:试图阻止精液溢出:收缩内壁让精液深入:双手合十祈祷")%并%SPLIT_G("朝你幸福地微笑:满意地点头:发出惬意的叹息")%...
+			IF TALENT:恋人
+				PRINTFORMW  「诶嘿嘿～... %SPLIT_G(@"我爱你 %CALLNAME:MASTER%-san!:这就是相爱的证明...:我们再多做几次吧?:我的子宫和内心都满溢着你的爱～!")%」
+			ENDIF
+		ENDIF
+	ENDIF
+ENDIF
+RETURN 1
+
+;-------------------------------------------------
+;眠姦射精に関する口上の表示
+;一時的にTARGETを口上主に設定している
+;-------------------------------------------------
+
+;==================================================
+;可选：决定是否跳过标准描述
+;返回0显示描述且 KOJO_EGG ，返回1隐藏描述并显示 KOJO_EGG ，返回2显示描述并隐藏 KOJO_EGG ，返回3同时隐藏描述和 KOJO_EGG 
+;==================================================
+@M_KOJO_EGG_MESSAGE_PALAMCNG_MESSAGECHECK_A2_K120_0
+RETURN 0
+
+@M_KOJO_EGG_MESSAGE_PALAMCNG_A2_K120_0(ARG)
+;-------------------------------------------------
+;避孕套
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+;==================================================
+;可选：决定是否跳过标准描述
+;返回0表示应显示描述并 KOJO_EGG ，1表示应隐藏描述并 KOJO_EGG ，2表示应显示描述并[P23]，3表示应同时隐藏描述和[P24]
+;==================================================
+@M_KOJO_EGG_MESSAGE_PALAMCNG_MESSAGECHECK_A2_K120_23
+RETURN 0
+
+@M_KOJO_EGG_MESSAGE_PALAMCNG_A2_K120_23(ARG)
+;-------------------------------------------------
+;イラマチオ
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+;==================================================
+;可选：决定是否跳过标准描述
+;返回0表示应显示描述并 KOJO_EGG ，1表示应隐藏描述并 KOJO_EGG ，2表示应显示描述并 KOJO_EGG ，3表示应同时隐藏描述和 KOJO_EGG 
+;==================================================
+@M_KOJO_EGG_MESSAGE_PALAMCNG_MESSAGECHECK_A2_K120_7
+RETURN 0
+
+@M_KOJO_EGG_MESSAGE_PALAMCNG_A2_K120_7(ARG)
+;-------------------------------------------------
+;足コキ
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+
+;==================================================
+;可选：确定是否应跳过标准描述。
+;返回0表示应显示描述和 KOJO_EGG ，1表示应隐藏描述并显示 KOJO_EGG ，2表示应显示描述并隐藏 KOJO_EGG ，3表示应同时隐藏描述和 KOJO_EGG 。
+;==================================================
+@M_KOJO_EGG_MESSAGE_PALAMCNG_MESSAGECHECK_A2_K120_5
+RETURN 0
+
+@M_KOJO_EGG_MESSAGE_PALAMCNG_A2_K120_5(ARG)
+;-------------------------------------------------
+;パイズリ
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+;==================================================
+;可选：判断是否应跳过标准描述。
+;返回0表示应显示描述和 KOJO_EGG ，返回1表示应隐藏描述并显示 KOJO_EGG ，返回2表示应显示描述并隐藏 KOJO_EGG ，返回3表示应同时隐藏描述和 KOJO_EGG 。
+;==================================================
+@M_KOJO_EGG_MESSAGE_PALAMCNG_MESSAGECHECK_A2_K120_4
+RETURN 0
+
+@M_KOJO_EGG_MESSAGE_PALAMCNG_A2_K120_4(ARG)
+;-------------------------------------------------
+;フェラチオ
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+;==================================================
+;可选：决定是否跳过标准描述。
+;返回0表示应显示描述和 KOJO_EGG ，1表示应隐藏描述并显示 KOJO_EGG ，2表示应显示描述并隐藏 KOJO_EGG ，3表示应同时隐藏描述和 KOJO_EGG 。
+;==================================================
+@M_KOJO_EGG_MESSAGE_PALAMCNG_MESSAGECHECK_A2_K120_3
+RETURN 0
+
+@M_KOJO_EGG_MESSAGE_PALAMCNG_A2_K120_3(ARG)
+;-------------------------------------------------
+;手淫
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+;==================================================
+;可选：决定是否跳过标准描述。
+;返回0表示应显示描述和 KOJO_EGG ，1表示应隐藏描述并显示 KOJO_EGG ，2表示应显示描述并隐藏 KOJO_EGG ，3表示应同时隐藏描述和 KOJO_EGG 。
+;==================================================
+@M_KOJO_EGG_MESSAGE_PALAMCNG_MESSAGECHECK_A2_K120_2
+RETURN 0
+
+@M_KOJO_EGG_MESSAGE_PALAMCNG_A2_K120_2(ARG)
+;-------------------------------------------------
+;肛門
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+;==================================================
+;可选: 决定是否跳过标准描述
+;返回0表示应显示描述和 KOJO_EGG ，1表示隐藏描述并显示 KOJO_EGG ，2表示显示描述并隐藏 KOJO_EGG ，3表示同时隐藏描述和 KOJO_EGG 
+;==================================================
+@M_KOJO_EGG_MESSAGE_PALAMCNG_MESSAGECHECK_A2_K120_1
+RETURN 0
+
+@M_KOJO_EGG_MESSAGE_PALAMCNG_A2_K120_1(ARG)
+;-------------------------------------------------
+;膣内
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1
+
+
+@M_KOJO_EGG_MESSAGE_PALAMCNG_F_K120(ARG)
+;-------------------------------------------------
+;焦らし
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	PRINTFORMW 
+	RETURN 1
+ENDIF
+RETURN 1

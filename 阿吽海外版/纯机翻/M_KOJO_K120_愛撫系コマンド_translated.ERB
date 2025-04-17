@@ -1,0 +1,2256 @@
+;更新日期：2025年1月29日
+;※※※※※※※※※※※※※※※※※※※※※※※※※
+;愛撫系コマンド
+;※※※※※※※※※※※※※※※※※※※※※※※※※
+;==================================================
+;0,爱抚
+;0,愛撫
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_0
+CALL M_KOJO_EGG_MESSAGE_COM_K120_0_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_0_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+如果 LOCAL
+	如果 (FLAG:70 || CFLAG:TARGET:睡眠)
+		RETURN 1
+	结束条件
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初次
+	;初めて
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	如果 LOCAL:1 && FIRSTTIME(SELECTCOM)
+		PRINTFORML 「触摸……我的身体？好、好吧……」
+		PRINTFORMDW 阿吽仰面躺下，双手虚握成拳放在胸前。
+		PRINTFORMDW 当你把手放在她的脖颈和锁骨上时，她紧紧盯着你的动作。
+		PRINTFORML 「哈哇！」
+		PRINTFORMDW 脖颈被触碰的瞬间她受惊般缩起脖子，用颈窝和肩膀夹住了你的手掌。
+		PRINTFORMDW 你空闲的另一只手从锁骨继续向下游走，抚弄着她上臂柔软的肌肉。
+		PRINTFORML 「啊、啊...抱歉我没什么肌肉...」
+		PRINTFORMDW 阿吽重新抬起头时，你顺势将原本被夹住的手滑向她胸口与手臂间的柔嫩区域。
+		PRINTFORML 「%MOAN()%？！腋、腋下！不、不要碰...说不定会有汗臭味...」
+		CALL ASK_YN("把鼻子埋进她的腋窝","既然有味道还是算了吧...")
+		IF !RESULT
+			PRINTFORMDW 你举起她的手臂，把鼻子凑近腋下亲自确认气味。
+			PRINTFORML 「哇哇哇哇？！」
+			PRINTFORMDW 鼻尖触碰到细密汗珠的同时，微甜中带着咸涩的气息钻入鼻腔。
+			PRINTFORMDW 包含在体味中的费洛蒙刺激着你的阴茎不断脉动。
+			BASE:MASTER:勃起 += 250
+			PRINTFORML 「呼、呼吸好痒...」
+			CALL ASK_YN("舔一下吧","后仰并继续")
+			IF !RESULT
+				CFLAG:1001 = 1; 现在假设玩家真的对腋下有兴趣
+				PRINTFORML 「舔、舔?! 你居然想舔?!」
+				PRINTFORMDW 你像高僧回答弟子般庄严地点了点头
+				PRINTFORML 「...」
+				PRINTFORMDW 她的视线在你和她的腋下之间来回游移，最终移开目光并默默点头
+				PRINTFORMDW 你凑近过去，用舌头扫过柔软的肌肤，在舌根处收集了些许她的汗液
+				PRINTFORML 「%MOAN()%...!」
+				PRINTFORMDW 你咂了咂嘴，用舌头在口腔中搅动分析着味道
+				PRINTFORML 「别、别说出来啊! 呜哇好羞耻! 为、为什么要答应这种事...?」
+				PRINTFORMDW 你告诉她味道虽然咸但不算难吃，正如预期
+				PRINTFORML 「啊---! 别、别告诉我!! 为、为什么要告诉我这种事...?!」
+				PRINTFORMDW 她用双手掩住泛红的脸庞
+			ENDIF
+		ENDIF
+
+		CFLAG:1001 = CFLAG:1001 == 1 ? 1 # 2; 若玩家跳過先前事件（CFLAG 仍為0）則假設其對腋下不感興趣，否則保持為1
+		PRINTFORMDW 你的雙手滑過她的腰側向內移動，停留在乳房下方的前胸處。
+		PRINTFORML 「%MOAN(,,5)%...!」
+		PRINTFORMDW 你的撫摸讓阿吽發癢，她咬住食指抑制喘息聲。
+		PRINTFORMDW 你將手指滑入她的 %OPPAI_DESCRIPTION_TR(TARGET)% 下方輕輕托起。
+		PRINTFORMDW 你鬆手後它們緩緩晃動了幾下。
+		PRINTFORMDW 你用指尖描摹輪廓後繼續向下探索。
+		PRINTFORML 「%MOAN()%...」
+		PRINTFORMDW 你的雙手逐漸下移在她肚臍周圍畫圈。
+		PRINTFORML 「那裡好癢...」
+		PRINTFORMDW 你將手移回腰際輕捏她的胯骨。
+		PRINTFORMDW 指尖微微陷入肌膚直到觸及清晰可辨的骨盆輪廓。
+		PRINTFORMDW 滿足於此的你將手移回腹部，沿著豐腴大腿外側滑動。
+		PRINTFORML 「%MOAN()%...它、它們不胖，對吧？」
+		PRINTFORMDW 正面触感颇为紧实，她的大腿四头肌毫不退让，但两侧却像枕头般柔软。
+		PRINTFORMDW %BREAKENG("看着手指深深陷入其中，你评价说她的腿型属于偏丰腴的类型，但随即又安慰说这样反而更显魅力。")%
+		PRINTFORML 「既然 %CALLNAME:MASTER%-san 都这么说了...」
+		PRINTFORMDW 你将双手稍微上移，专注观察她海沫色的阴毛。
+		PRINTFORML 「啊、那、那里的毛发有点...毕竟我是...我、我是说，生、生长速度太快了啦！」
+		PRINTFORMDW %BREAKENG("你用指尖梳理着享受绒毛的蓬松感，发丝在指缝间搔弄着柔软肌肤。试着压平后，毛发立刻又弹回原状。")%
+		PRINTFORMDW %BREAKENG("毛发向下延伸至阴唇中部位置，从顶端到此处的中段最为浓密，密集部分几乎形成可见的T字形。")%
+		PRINTFORMDW 然而当你再次后仰时，由于原本阴毛量就相当可观，T字形状已不再明显。
+		PRINTFORML 「差、差不多好了吗...？」
+		PRINTFORMDW 你点头表示接下来的爱抚将更具侵略性而减少探索性质。
+		PRINTFORML 「侵略性？那、那就...拜托温柔些...」
+		PRINTFORMDW 在脑海中完整绘制出阿吽的身体地图后，你感受到了内心的平静与顿悟...
+		CALL COLORMESSAGE(@"元气最大值 + 100！",C_GREEN,2,1)
+		MAXBASE:MASTER:精力 += 100
+
+		RETURN 1
+	ELSE
+		PRINTFORML 「%MOAN(,,2)%...」
+		SELECTCASE RAND:4
+			CASE 0
+				PRINTFORMDW 你抚摸着阿吽的身体，但特别专注于她的腹部。
+				PRINTFORMDW 你抓住能找到的些许脂肪让手掌陷入其中。
+				PRINTFORML 「我、我我我没变胖对吧…？」
+				PRINTFORMDW 你通过不回答来折磨她...
+			CASE 1
+				PRINTFORMDW 你抚摸着阿吽的身体，但特别专注于她的脖颈。
+				PRINTFORMDW 你用手指掠过她的颈项，温柔地托住后脑发际线。
+				PRINTFORML 「哈呜...哈哇...」
+				PRINTFORMDW 阿吽每次手指移动时都会颤抖...
+			CASE 2
+				PRINTFORMDW 你抚摸着阿吽的身体，但特别专注于她柔软的玉腿。
+				PRINTFORMDW 你揉捏按摩着它们，随后用手指沿着内侧轻轻划过
+				PRINTFORML 「哈啊... 嗯嗯...!」
+				PRINTFORMDW 阿吽扭动着身体试图忍受你的攻势...
+			CASE 3
+				IF CFLAG:1001 == 1
+					PRINTFORMDW 你爱抚着阿吽的身体，但特别专注于她光滑的腋下
+					PRINTFORML 「啊... 那里...!」
+					PRINTFORMDW 你将脸埋进她的腋下，再次尽情享受着那里的芬芳与咸涩气息
+					PRINTFORML 「好、好痒啊！」
+					PRINTFORMDW 她扭动着试图逃离你的攻击...
+				ELSE
+					PRINTFORMDW 你爱抚着阿吽的身体，平等地关注每个部位...
+				ENDIF
+
+				RETURN 1
+		ENDSELECT
+	ENDIF
+	;-------------------------------------------------
+	;插入时
+	;挿入中
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	;Vaginal insertion
+	;V挿入
+	IF LOCAL:1 && TEQUIP:50 == PLAYER
+		PRINTFORML 「%MOAN("m",,2)%...!」
+		PRINTFORML %SPLIT_G(@"明明还在里面还摸我...!: %MOAN()%...全身都在发麻了！")%
+		PRINTFORMDW 你边%FSYN("研磨")%着腰部边%FSYN("抚摸")%阿吽的身体，将她送往快乐的深渊...
+		CALL K120_INSEMINATION_PLEA()
+		RETURN 1
+	;Anal insertion
+	;A挿入
+	ELSEIF LOCAL:1 && TEQUIP:51 == PLAYER
+		PRINTFORML 「%MOAN("m",,2)%...!」
+		PRINTFORML %SPLIT_G(@"你还在里面的时候就碰我的话——…！:%MOAN()%…整个身体都在发麻！")%
+		PRINTFORMDW 你 %FSYN("揉弄")% 阿吽的身体同时 %FSYN("研磨")% 腰肢，将她送往极乐的深渊...
+		CALL K120_INSEMINATION_WASTE_COMMENT("inAnus")
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;Futanari
+	;ふたなり
+	;記入チェック
+	LOCAL:1 = 0
+	;-------------------------------------------------
+	IF LOCAL:1 && (TALENT:2 & 3) == 3
+		PRINTFORMDW 
+		RETURN 1
+	ENDIF
+	;基本セット
+	;恋慕
+	IF TALENT:恋慕
+	;
+	;不埒3
+	ELSEIF MARK:不埒刻印 == 3
+	;それ以外
+	;
+	ELSE
+	;
+	ENDIF
+ENDIF
+RETURN 1
+
+;==================================================
+;1,舔阴
+;1,クンニ
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_1
+CALL M_KOJO_EGG_MESSAGE_COM_K120_1_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_1_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL
+	;時姦中
+	IF FLAG:70
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初次
+	;初めて
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		PRINTFORML 「你、你要舔吗……？」
+		PRINTFORMDW 阿吽将双手按在你的头上，你带着探究的目光抬头望向她
+		PRINTFORML 「啊、不……不用了……只是……」
+		PRINTFORMDW 你没有等她说完就缩短了距离
+		PRINTFORMDW 她的 %SLIT_TR(TARGET)% 立刻迎接了你的前进。带着咸涩本质的气味激起了你的兴趣，你迫不及待地舔了上去
+		PRINTFORML 「%MOAN()%……！」
+		PRINTFORMDW 铜钱般的味道在舌面上扩散，麻痹了你的味蕾。然而这绝非难以下咽的味道
+		PRINTFORMDW 你再次进攻，集中在她逐渐硬起的阴蒂上，用舌尖轻轻挑弄
+		PRINTFORML 「%MOAN(,,2)%……好、好奇怪的感觉……」
+		PRINTFORMDW %BREAKENG("你将头向前移动，鼻尖触碰到她的阴毛，在继续用舌头爱抚的同时轻轻吸吮她的阴蒂。")%
+		PRINTFORML 「%MOAN("m")%……！」
+		PRINTFORMDW 你并拢食指与中指，以画圆的方式仔细摩挲她的入口
+		PRINTFORML 「%MOAN("m",,2)%！」
+		PRINTFORMDW 她的入口随着每次抚摸而颤抖，你已分不清口中是自己的唾液还是她的爱液
+		PRINTFORMDW 你后仰稍作休息，拭去唇边的湿润时，发现阿吽正带着恍惚的神情剧烈喘息着……
+		RETURN 1
+
+	ENDIF
+	;-------------------------------------------------
+	;阴道内射精后立即
+	;膣内射精直後
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && TCVAR:100 == PLAYER
+		IF TCVAR:102
+			IF FIRSTTIME("AunnSemenCunnilingus")
+				PRINTFORML 「等、等等，现在舔的话你的——」
+				PRINTFORMDW 你已下定决心用舌头帮她清理残留的精液
+				PRINTFORML 「%MOAN("m")%...! 感、感觉到你在吸出来！」
+				PRINTFORMDW 当你将舌头探入试图清理能找到的精液时，阿吽颤抖着身体...
+			ELSE
+				PRINTFORML 「我、我可以自己清理的，所以不用担——%MOAN("m")%！」
+				PRINTFORMDW 你坚持要亲自用舌头清理她的%SLIT_TR()%
+				PRINTFORML 「%MOAN(,,2)%... 为、为什么总是这样...？」
+				PRINTFORMDW 尽管阿吽嘴上抱怨着，但她无法抑制自己的 moan和愉悦的喘息...
+			ENDIF
+			RETURN 1
+		ENDIF
+	ENDIF
+	;-------------------------------------------------
+	;高潮
+	;絶頂した
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && NOWEX:0
+		IF FIRSTTIME("AunnCummingFromCunnilingus")
+			PRINTFORML 「等、等等！停下...我要-...%MOAN("h",,2)%!」
+			PRINTFORMDW 阿吽突然绷紧身体直接对着你的脸喷了出来。
+			PRINTFORML 「%MOAN("m",,4)%...」
+			PRINTFORMDW %BREAKENG(@"你用胳膊擦掉咸涩的液体恢复视野后，看到阿吽正艰难地处理着高潮余韵；她的%SLIT_TR(TARGET)%和双腿正淫靡地抽搐着。")%
+			PRINTFORMDW 真是干得漂亮。
+			PRINTFORML 「%MOAN("l",,2)%...哈呜...-啊!」
+			PRINTFORMDW 她看到你浑身湿透，连忙掏出手帕帮你擦干。
+			PRINTFORML 「对、对不起！我应该早点提醒你的……」
+			PRINTFORMDW 你微笑着竖起大拇指表示没关系。
+			PRINTFORML 「欸？那个...本来就是目的吗？啊、那、那以后...也请多关照...？」
+			PRINTFORMDW 阿吽困惑地歪着头，不知道该怎么回应你这奇怪的决心...
+		ELSE
+			PRINTFORML 「%SPLIT_G("再...那里:啊～...舌头在:嗯～、那个位置是:哈呜...哈哇...阴蒂")%～♥! %SPLIT_G("我要--:要去了--:要来了--:要--")%♥! ...%MOAN("h",,2)%!」
+			PRINTFORMDW 阿吽的%SLIT_TR()%随着高潮%SPLIT_G("抽搐:颤抖:痉挛:扭动")%着，%FSYN("战栗")%不止。
+			PRINTFORMDW 你辛勤工作的回报是她的%FSYN("潮吹")%。
+			PRINTFORMW 「啊...又把您弄脏了...」
+			PRINTFORMDW 她带着歉意的眼神看着你...
+		ENDIF
+		RETURN 1
+	ENDIF
+
+	;-------------------------------------------------
+	;Basic description
+	;-------------------------------------------------
+	SELECTCASE RAND:3
+		CASE 0
+			PRINTFORMDW 你勤勉地从下到上舔舐着阿吽的 %SLIT_TR(TARGET)% 。
+			PRINTFORML 「%MOAN()%...」
+			PRINTFORMDW 你回应着她的每次颤抖，继续给予新的舔舐...
+		CASE 1
+			PRINTFORMDW 你一边用拇指揉搓着阿吽的阴蒂，一边舔舐着她 %SLIT_TR(TARGET)%的入口。
+			PRINTFORML 「%MOAN()%...!」
+			PRINTFORMDW 她的阴道口在你的舌头上悸动着，而你继续充满活力地侍奉着它...
+		CASE 2
+			PRINTFORMDW 你用舌头分开她的阴唇，热情地在褶皱间上下滑动。
+			PRINTFORML 「%MOAN()%...」
+			PRINTFORMDW 她的阴唇颤抖着，阿吽因快感而绷紧了身体...
+	ENDSELECT
+
+ENDIF
+RETURN 1
+
+;あとは適当な分岐を追加してください
+;==================================================
+;2,Fellatio (玩家为目标口交)
+;2,フェラする
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_2
+CALL M_KOJO_EGG_MESSAGE_COM_K120_2_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_2_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	;時姦中
+	IF FLAG:70
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初めて
+	;記入チェック
+	LOCAL:1 = 0
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		RETURN 1
+	ENDIF
+ENDIF
+RETURN 1
+
+;==================================================
+;3、手指插入
+;3,指挿入れ
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_3
+CALL M_KOJO_EGG_MESSAGE_COM_K120_3_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_3_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL
+	IF FLAG:70
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初次时
+	;初めて
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		PRINTFORMDW 你用食指在阿吽的%SLIT_TR(TARGET)%入口处反复摩擦直至充分湿润。
+		PRINTFORML 「%MOAN()%...是在戏弄我吗...？」
+		PRINTFORMDW 你轻轻顶开穴口缓慢探入指尖，内壁立刻应激性地收缩夹住手指。
+		PRINTFORMDW 你继续推进直到第二指节也被吞没，指根完全陷入柔软的包裹之中。
+		IF TALENT:TARGET:処女
+			PRINTFORMDW 指尖尽头能感受到些许阻力，想必是触碰到那层薄膜了。
+		ENDIF
+		PRINTFORML 「明明还没进去多少...%MOAN()%...但被这么慢慢弄着感觉好奇怪...」
+		PRINTFORMDW 手指逐渐变得温热湿润，被内壁的褶皱全方位挤压吮吸着。
+		PRINTFORMDW 你转动手指开始剐蹭甬道上壁，寻找着那处敏感点的位置。
+		PRINTFORML 「%MOAN("m")%！呜哇、能清楚感觉到手指在动啊！」
+		PRINTFORMDW 你屈起指节有节奏地顶弄摩擦，又故意在退出时浅浅地勾挑。
+		PRINTFORMDW 如此反复数次之后——
+		PRINTFORML 「%MOAN("h")%！！...哈呜？！」
+		PRINTFORMDW ——指尖在第二关节与指根之间准确命中了那处凸起。
+		PRINTFORML 「那、那那那是什么感觉？就像有电流窜过整个下半身！」
+		PRINTFORMDW 你抽出手指并牢记了这个位置......
+		RETURN 1
+	ENDIF
+
+	;-------------------------------------------------
+	;Climax
+	;絶頂した
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && NOWEX:0
+		IF FIRSTTIME("AunnCummingFromFingering")
+			PRINTFORMDW 阿吽的双腿开始抽搐，突然弓起了后背。
+			PRINTFORML 「%MOAN("h",,2)%…我…%MOAN("h")%！要去了——！」
+			PRINTFORMDW 她高潮时喷出的液体溅在你的手臂和胸口上。
+			PRINTFORML 「%MOAN("m",,4)%…」
+			PRINTFORMDW 你甩了甩手臂想甩掉液体，但像糖水般黏在皮肤上。
+			PRINTFORML 「%MOAN("l",,2)%…哈呜…」
+			PRINTFORMDW 高潮平复后的阿吽注意到你浑身沾满她的%FSYN("juice")%，慌忙掏出手帕擦拭。
+			PRINTFORML 「あっ…こんなに出るなんて…恥ずかしい…」
+			PRINTFORMDW 你轻轻拍着满脸通红的阿吽的脑袋...
+		ELSE
+			PRINTFORML 「%SPLIT_G("更深些…:手指…再弯曲点:嗯、好舒服:再快点…再做快点")%～♥! %SPLIT_G("要去了—:要去了—:要高潮了—:要—")%♥! ...%MOAN("h",,2)%!」
+			PRINTFORMDW 阿吽%FSYN("颤抖:s")%着，她的%FSYN("蜜穴")%%FSYN("紧紧夹住:s")%你的手指%FSYN("缠绕")%着迎来高潮。
+			PRINTFORMDW 作为辛勤劳动的回报，你获得了她的%FSYN("潮吹")%。
+			PRINTFORMW 「%MOAN("m",,3)%… 又这么多…」
+			PRINTFORMDW 她歉疚地看着你...
+		ENDIF
+		RETURN 1
+	ENDIF
+
+	;-------------------------------------------------
+	;Basic description
+	;-------------------------------------------------
+	SELECTCASE RAND:3
+		CASE 0
+			PRINTFORMDW 你%COND_STR(@"将阿吽%SPLIT_G("仰面推倒:摆成四足体位")%", SELECTCOM == PREVCOM)% %FSYN("插入:f")%两根手指在她 %SLIT_TR(TARGET)% 里勤恳地抽插着。
+			IF ABL:Ｖ感覚 >= 3
+				PRINTFORML 「%MOAN("m",,2)%... 快、快一点～♥!」
+				PRINTFORMDW 你遵从她的命令加快了速度，她%FSYN("juice")%的咕啾声在空气中交织成淫靡的合奏。
+				PRINTFORML 「%MOAN("m")%...%CALLNAME:MASTER%-san...～♥!」
+				PRINTFORMDW 阿吽扭动着身体，在欢愉中 moan着你的名字...
+			ELSE
+				PRINTFORML 「%MOAN(,,2)%... 别、别这么快...!」
+				PRINTFORMDW 你稍稍放慢速度，通过观察她的反应来寻找合适的节奏。
+				PRINTFORML 「%MOAN("m",,2)%...!」
+				PRINTFORMDW 阿吽紧闭双眼 moan着发出愉悦的呻吟，你最终维持着中低速的动作...
+			ENDIF
+		CASE 1
+			PRINTFORMDW 你%COND_STR(@"将阿吽推成%SPLIT_G("仰躺姿势:四足着地姿势")%", SELECTCOM == PREVCOM)% %FSYN("插入:f")%两根手指进入她的 %SLIT_TR(TARGET)% 并微微分开。
+			IF ABL:Ｖ感覚 >= 3
+				PRINTFORMDW 她的内壁%FSYN("紧紧夹住")%你的手指试图将它们重新合拢。
+				PRINTFORML 「%%MOAN(,,3)%…我的里面在跳动～♥!」
+				PRINTFORMDW 它们最终放弃了抵抗，转而淫靡地%FSYN("扭动")%并%FSYN("缠绕")%着你的手指，明显想要%FSYN("榨取")%根本不存在的精液...
+			ELSE
+				PRINTFORML 「%MOAN(,,2)%…不、不要分开…!」
+				PRINTFORMDW 她的内壁屈服于你的手指，但仍保留些许抵抗。
+				PRINTFORML 「嗯…能感觉到被撑开了。我想应该没问题，但请温柔点…」
+				PRINTFORMDW 它们最终完全放弃了抵抗，彻底臣服于你的侵入...
+			ENDIF
+		CASE 2
+			PRINTFORMDW 你%COND_STR(@"将阿吽%SPLIT_G("推成仰躺姿势:摆成趴跪姿势")%", SELECTCOM == PREVCOM)% %FSYN("插入:f")%两根手指，几乎直达她的 %SLIT_TR(TARGET)%深处。
+			PRINTFORMDW 你弯曲手指，开始按压、刮擦并摩擦她的G点。
+			IF ABL:Ｖ感覚 >= 3
+				PRINTFORML 「%MOAN("h",,2)%! 就是那里…感觉好舒服～♥!」
+				PRINTFORMDW 她四肢失控地抽搐着，身体因快感不断震颤。
+				PRINTFORML 「%MOAN("h")%! 还要…%MOAN()%…%CALLNAME:MASTER%大人～…再多些～♥!」
+				PRINTFORMDW 她的内部%FSYN("蠕动")%且 %FSYN("缠绕")%得厉害，同时渴求着更多刺激，你顺从了这份请求...
+			ELSE
+				PRINTFORML 「%MOAN("m")%...？！」
+				PRINTFORMDW 她反应剧烈地绷紧身体紧闭双眼。
+				PRINTFORMDW 内部同样产生反应，%FSYN("紧箍")%着你的手指试图阻止进一步攻势。
+				PRINTFORML 「%MOAN(,,3)%...」
+				PRINTFORMDW 阿吽因强烈快感而喘息着，你继续进攻她的G点，享受每个反应...
+			ENDIF
+	ENDSELECT
+
+	;50%概率暂停并注意到大量体液
+	IF (PALAM:潤滑 >= PALAMLV:4 && !NOWEX:0 && RAND:1 == 1)
+		PRINTFORML 
+		PRINTFORMDW 你暂时抽出手指，%SPLIT_G(@"注意到它们完全浸透了阿吽的%FSYN("爱液")%:残留着她%FSYN("爱液")%的痕迹:大量%FSYN("爱液")%顺着手指流淌到手掌")%。
+		PRINTFORMDW 回望她的%FSYN("蜜穴")%，发现正%SPLIT_G("淫靡地蠕动着:溢满汁液:下流地抽搐痉挛")%，明显渴求更多%SPLIT_G("欢愉:刺激:满足")%。
+		IF TALENT:恋人
+			PRINTFORML 「%MOAN(,,3)%... 要休息吗、 %CALLNAME:MASTER%さん？ ...啊、那就辛苦您了」
+			PRINTFORMDW 阿吽向你露出了充满爱意的微笑...
+		ELSEIF TALENT:恋慕
+			PRINTFORML 「%MOAN(,,3)%... 要休息了吗...？」
+			PRINTFORMDW 阿吽用混杂着欲望与担忧的目光看着你...
+		ELSE
+			PRINTFORML 「%MOAN(,,3)%... 已经结束了吗...？」
+			PRINTFORMDW 阿吽对你的休息显得不太满意...
+		ENDIF
+	ENDIF
+ENDIF
+RETURN 1
+
+;==================================================
+;4,Rimjob
+;4,肛門舐め
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_4
+CALL M_KOJO_EGG_MESSAGE_COM_K120_4_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_4_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL
+	IF FLAG:70
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初次
+	;初めて
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		PRINTFORMDW 你指示阿吽趴下身子并微微抬起臀部。
+		PRINTFORML 「像这样...？」
+		PRINTFORMDW 你分开阿吽柔软的臀瓣，凑近用舌头舔舐她菊门的褶皱。
+		PRINTFORML 「哈哇？！呜欸-... 这-... 哈呜...？！」
+		PRINTFORMDW 阿吽因未知的刺激不断变换着反应，最终定格在恍惚的表情上。
+		PRINTFORMDW 你试图将舌头推进去，但阻力太大只能勉强让尖端进入。
+		PRINTFORML 「はわ…我的脊椎全都麻麻的…」
+		PRINTFORMDW 你能感受到她的肛门因快感发热，阿吽放松愉悦的表情就像在做按摩般享受。
+		PRINTFORML 「虽、虽然很奇怪…但也不坏…？」
+		PRINTFORMDW 见她似乎并不讨厌，你继续用舌头描摹着褶皱…
+		RETURN 1
+	ENDIF
+
+	;-------------------------------------------------
+	;高潮
+	;絶頂した
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && NOWEX:0
+		IF FIRSTTIME("AunnCummingFromRimjob")
+			PRINTFORMDW 阿吽的呼吸变得紊乱，双腿发软地夹紧。
+			PRINTFORML 「%MOAN("h",,2)%…はぅ…%MOAN("h")%！我的洞和脊椎要——%MOAN("h")%！！！」
+			PRINTFORMDW 她的肛门开始蠕动，全身颤抖着在你的舌技下迎来高潮。
+			PRINTFORML 「%MOAN()%…%MOAN()%…我居然因为那里就…怎么可能…」
+			PRINTFORMDW 她用双手遮掩涨红的脸庞，你温柔地轻抚她的头顶...
+		ELSE
+			PRINTFORML 「%SPLIT_G("再舔些...:你的舌头...再深入:脊椎在发麻:又湿又痒:从那里扩散开来")%～♥! %SPLIT_G("我要--:快要--:要去了--:就要--")%♥! ...%MOAN("h",,2)%!」
+			PRINTFORMDW 阿吽的%FSYN("菊穴")%随着高潮%FSYN("淫靡地")%%FSYN("扭动")%，全身%FSYN("颤抖")%。
+			PRINTFORMW 「%MOAN(,,3)%...又从那裡去了...」
+			PRINTFORMDW 她对於因菊穴被舔舐而高潮仍显得有些难为情...
+		ENDIF
+		RETURN 1
+	ENDIF
+
+	;-------------------------------------------------
+	;基本描述
+	;-------------------------------------------------
+	IF SELECTCOM == PREVCOM
+		PRINTFORMDW 你%SPLIT_G("后仰暂停:稍作歇息")%来%SPLIT_G("检查工作进度:短暂休息:观察她的反应")%，随后再次%SPLIT_G("贴近俯身:倾身向前:继续作业")%。
+	ELSE
+		PRINTFORMDW 你将阿吽按成%SPLIT_G("俯卧姿势:四肢着地:仰面交合体位")%，%SPLIT_G("在丰臀沟间游走舌尖:用舌苔画圈抚触褶皱:舔舐皱襞并顶弄菊门:将整条舌头压上菊穴")%。
+	ENDIF
+	SELECTCASE RAND:3
+		CASE 0
+			IF ABL:Ａ感覚 >= 3
+				PRINTFORML 「%MOAN("m",,2)%... 汪呜～♥!」
+				PRINTFORMDW 她完全放松下来，坦率地接受着舌头的按摩。
+				PRINTFORML 「%MOAN("m")%...%CALLNAME:MASTER%-san...～♥!」
+				PRINTFORMDW 阿吽舒适地叹息着 moan...
+			ELSE
+				PRINTFORML 「%MOAN(,,2)%... 呜...我的屁股...」
+				PRINTFORMDW 随着舌头的持续工作，她开始逐渐放松...
+			ENDIF
+		CASE 1
+			IF ABL:Ａ感覚 >= 3
+				PRINTFORML 「%MOAN("m",,2)%... 肌肉都变得软绵绵的～♥!」
+				PRINTFORMDW 她像煮过头的意大利面般瘫软，脸上浮现出极乐的表情...
+			ELSE
+				PRINTFORML 「%MOAN(,,2)%... 哈哇... 感觉好奇怪...」
+				PRINTFORMDW 她还没有完全接受你的舌头动作，你能感觉到她有些紧张地收缩着...
+			ENDIF
+		CASE 2
+			IF ABL:Ａ感覚 >= 3
+				PRINTFORML 「%MOAN("m",,2)%... 屁、屁股... 我无法思考了～♥!」
+				PRINTFORMDW 阿吽在你的肛吻中完全沦陷，将自己彻底交给了你。
+				PRINTFORML 「%CALLNAME:MASTER%-san～... 发生什么了～♥?!」
+				PRINTFORMDW 你继续按摩着她，享受着从她肛门传递到你舌头上的热量。
+			ELSE
+				PRINTFORML 「%MOAN("m")%... 你的舌头感觉好奇怪...」
+				PRINTFORMDW 她有些紧张地闭上眼睛，但你觉得除此之外她其实很享受...
+			ENDIF
+	ENDSELECT
+ENDIF
+RETURN 1
+
+;==================================================
+;5,肛门爱抚
+;5,肛門愛撫
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_5
+CALL M_KOJO_EGG_MESSAGE_COM_K120_5_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_5_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL
+	IF FLAG:70
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初次
+	;初めて
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM) && ABL:Ａ感覚 < 3
+		PRINTFORMDW 你用食指抚摸并戳弄着她的肛门，沿着褶皱来回滑动
+		PRINTFORML 「%MOAN()%…那、那里是错的洞，你知道吗…？」
+		PRINTFORMDW 你缓缓将指尖压入她的屁眼，穴口立刻紧缩着试图排除异物
+		PRINTFORML 「%GROAN()%…停、停下，不要那里…！」
+		PRINTFORMDW 你继续推进直到手指半数陷入臀肉，抵抗变得异常强烈
+		PRINTFORML 「%GROAN()%…哈呜…为、为什么是那里…？」
+		PRINTFORMDW 她持续紧绷着身躯，内壁强力绞缠着你的手指
+		PRINTFORMDW 你要求她放松身体
+		PRINTFORML 「放、放松？要怎么做…？」
+		PRINTFORMDW 虽然她不知所措，但内壁略微松弛让你得以深入些许
+		PRINTFORML 「%GROAN()%…有、有点痛…」
+		PRINTFORMDW 阿吽泪眼婆娑地望着你，你缓缓抽出手指发出响亮的「啵」声
+		PRINTFORML 「%MOAN()%… %CALLNAME:MASTER%-さん…」
+		PRINTFORMDW 她的恳求是不要再探索那个肮脏的洞穴，但你知道只要足够训练她就会享受...
+		RETURN 1
+	ENDIF
+
+	;-------------------------------------------------
+	;高潮
+	;絶頂した
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && NOWEX:0
+		IF FIRSTTIME("阿吽因肛爱抚高潮")
+			PRINTFORMDW 阿吽紧闭双眼，体内突然剧烈扭动并紧紧夹住了你的手指。
+			PRINTFORML 「%MOAN("h",,2)%...不...不行... %MOAN("h")%...屁股！要去了——！」
+			PRINTFORMDW 她高潮时体内剧烈收缩将你的手指弹出，留下淫靡抽搐着的后穴。
+			PRINTFORML 「%MOAN("l",,2)%... 哈呜...」
+			PRINTFORMDW 阿吽用充满羞耻的泪眼望着你，在与你的目光交汇后又慌忙移开视线。
+			PRINTFORML 「我...从屁股那里...去了...」
+			PRINTFORMDW 你温柔地轻拍着羞耻的阿吽的脑袋安抚她...
+		ELSE
+			PRINTFORML 「%SPLIT_G("再…再深一点:手指…再弯曲些:嗯、好舒服:快…再快些")%～♥! %SPLIT_G("要去了…:要去了…:要高潮了…:要…")%♥! ...%MOAN("h",,2)%!」
+			PRINTFORMDW 阿吽的%FSYN("肛门")%在%FSYN("颤抖:s")%中%FSYN("夹紧:s")%你的手指，%FSYN("缠绕")%着迎来了高潮。
+			PRINTFORMW 「%MOAN("l",,3)%... 我的屁股…又…」
+			PRINTFORMDW 她似乎仍然感到羞耻、你再次轻柔地拍了拍她的头…
+		ENDIF
+		RETURN 1
+	ENDIF
+
+	;-------------------------------------------------
+	;基本描述
+	;-------------------------------------------------
+	IF SELECTCOM == PREVCOM
+		PRINTFORMDW 你%SPLIT_G("后仰身子:抽身离开")%以%SPLIT_G("检视自己工作的进展:稍作休息:观察她的反应")%、随后%SPLIT_G("贴近身子:俯身向前:继续作业")%。
+	ELSE
+		PRINTFORMDW 你将阿吽摆成%SPLIT_G("俯卧姿势:四肢着地:背位交合体位")%并仔细端详她洁净的后庭。
+	ENDIF
+	SELECTCASE RAND:3
+		CASE 0
+			PRINTFORMDW 你开始用指尖轻轻抚弄褶皱处的纹路。
+			IF ABL:Ａ感覚 >= 3
+				PRINTFORML 「%MOAN("m",,2)%... 我、我的小穴～♥!」
+				PRINTFORMDW 你继续以画圈的方式勤勉地侍奉着她的后庭。
+				PRINTFORML 「%MOAN("m")%...%CALLNAME:MASTER%-桑...～♥!」
+				PRINTFORMDW 阿吽欢愉地扭动着身体 moan着你的名字...
+			ELSE
+				PRINTFORML 「%MOAN(,,2)%... 那、那里是...!」
+				PRINTFORMDW 你稍微放慢节奏，给予她足够的喘息时间来适应快感。
+				PRINTFORML 「%MOAN(,,2)%...!」
+				PRINTFORMDW 阿吽紧紧闭着双眼，依然不习惯肛交的快感...
+			ENDIF
+		CASE 1
+			PRINTFORMDW 你接着爱抚并戳刺她的肛门。
+			IF ABL:Ａ感覚 >= 3
+				PRINTFORML 「%MOAN("m",,3)%... 全身都在发麻～♥!」
+				PRINTFORMDW 每次戳刺都让她扭动身体--
+				PRINTFORML 「%MOAN("m",,2)%... 哈呜～♥...」
+				PRINTFORMDW --随着每次爱抚而颤抖...
+			ELSE
+				PRINTFORML 「%MOAN(,,2)%... 不、不要！那个洞是...」
+				PRINTFORMDW 她抗拒着每一次戳刺--
+				PRINTFORML 「%MOAN(,,2)%... 哈呜...为、为什么我会...」
+				PRINTFORMDW --又在每次爱抚中感到羞耻...
+			ENDIF
+		CASE 2
+			PRINTFORMDW 你随后将手指插入到最深处。
+			IF ABL:Ａ感覚 >= 3
+				PRINTFORML 「%MOAN("m",,2)%! 哈呜...好深～♥!」
+				PRINTFORMDW 你弯曲手指刮蹭她的内壁，快感的涟漪在她体内扩散。
+				PRINTFORML 「%MOAN("m")%! 屁股感觉好舒服～♥!」
+				PRINTFORMDW 她的内部%FSYN("squirm")%并%FSYN("twine")%地缠绕着你的手指...
+			ELSE
+				PRINTFORML 「%GROAN()%... %MOAN()%...!」
+				PRINTFORMDW 她轻轻地呻吟着，无论是她还是她的肛门都还未适应这种侵入。
+				PRINTFORML 「%MOAN(,,3)%...」
+				PRINTFORMDW 但随着你小心地进行手指的活塞运动，些许 moan从她唇间逸出...
+			ENDIF
+	ENDSELECT
+
+ENDIF
+RETURN 1
+
+;==================================================
+;6,爱抚胸部
+;6,胸愛撫
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_6
+CALL M_KOJO_EGG_MESSAGE_COM_K120_6_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_6_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL
+	IF FLAG:70
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初次触发
+	;初めて
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		PRINTFORMDW 阿吽将松垮的拳头摆出招牌犬式姿势放在胸前，你示意她允许你的接触。
+		IF TALENT:胸圍 <= 0
+			PRINTFORML 「那、那个...我的胸...根本没什么好看的啦...」
+		ELSE
+			PRINTFORML 「我的胸部吗？啊...那...这样...」
+		ENDIF
+		PRINTFORMDW 你用手轻轻托住阿吽的%OPPAI_DESCRIPTION_TR(TARGET)% 用手指沿着边缘滑动
+		PRINTFORML 「%MOAN()%...」
+		PRINTFORMDW 她身体微微僵硬起来，你通过眼神接触确认她的状态。
+		PRINTFORMDW 阿吽注意到你关切的目光，怯生生地摇了摇头。
+		PRINTFORML 「没问题的、你可以继续…」
+		PRINTFORMDW 你回到原本的任务再次抚摸她的胸部。
+		PRINTFORMDW 肌肤有着难以置信的柔软与顺滑；完美无瑕。
+		IF TALENT:胸围 <= 0
+			PRINTFORMDW 虽然没什么可抓握的部分，但你仍用手指寻找着能触及的微小起伏愉快地爱抚。
+		ELSE
+			PRINTFORMDW 你让手指陷入她胸部的柔软中，非凡的幸福充盈着内心。
+		ENDIF
+		PRINTFORML 「我的胸部…%MOAN()%…你满意吗？」
+		PRINTFORMDW 你在毫秒间用热切的点头作为回应。
+		IF TALENT:恋慕
+			PRINTFORML 「那么我也真的很开心呢、 %CALLNAME:MASTER%-san」
+			PRINTFORMDW 阿吽充满爱意地将双手覆上你的手背…
+		ELSE
+			PRINTFORML 「急、急急忙忙地回答什么的...要、要我怎么回应才好啊...」
+			PRINTFORMDW 阿吽因你认真的回应而面颊泛红，别过了视线。
+		ENDIF
+		PRINTFORMDW 隔着右手能感受到她的心跳正在加速搏动...
+		RETURN 1
+	ENDIF
+
+	;-------------------------------------------------
+	;Climax
+	;絶頂した
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && NOWEX:0
+		IF FIRSTTIME("AunnCummingFromBreastCaress")
+			PRINTFORML 「%MOAN("m",,3)%...被、被摸了这么久之后肌肤变得这么敏感，这样下去的话我就要——%MOAN("h")%！！」
+			PRINTFORMDW 你再度用指尖袭击她的敏感肌肤，瞬间将她推上了顶峰。
+			PRINTFORMDW 她上半身扭动翻转着，紧闭双眼强忍着突然袭来的绝顶冲击。
+			PRINTFORML 「%MOAN(,,4)%...居、居然会...仅仅是被玩弄胸部就......」
+			PRINTFORMDW 阿吽用双手掩住羞红的脸，你轻轻抚摸她的头安抚着...
+		ELSE
+			PRINTFORML 「%SPLIT_G("我的胸部像着火了一样:我的胸部感觉真好:我的胸部...继续吧:继续刺激我的胸部:我的胸部快要...")%～♥! %SPLIT_G("我要--:我快要--:我要去了--:我会--")%♥! ...%MOAN("h",,2)%!」
+			PRINTFORMDW 阿吽迎来高潮，全身%FSYN("颤抖:s")%地%SPLIT_G("左右甩头:紧抱自己的身体:扭动上半身")%。
+			PRINTFORMW 「%MOAN(,,4)%...%CALLNAME:MASTER%-さん...」
+		ENDIF
+		RETURN 1
+	ENDIF
+
+	;-------------------------------------------------
+	;基本描述
+	;-------------------------------------------------
+	PRINTFORMDW 你随心所欲地%SPLIT_G("揉捏:按摩:用手指划过:挑逗:戳弄:戳刺:玩弄")%她的%OPPAI_DESCRIPTION_TR(TARGET)%。
+	IF TALENT:胸围 <= 0
+		PRINTFORML 「%MOAN()%... %SPLIT_G("明明几乎没什么料...:就算这么小也能满足吗?:我的小胸部...真的能满足你吗？")%」
+	ELSE
+		IF TALENT:恋慕
+			PRINTFORML 「%MOAN()%... %SPLIT_G("尽情享受吧...:还想继续的话也可以哦...:")%%MOAN()%」
+		ELSE
+			PRINTFORML 「%MOAN()%... %SPLIT_G("你好像真的很喜欢它们...:你看起来真的很享受...:真的这么有趣吗...")%%MOAN()%」
+		ENDIF
+	ENDIF
+	PRINTFORMDW 你通过持续进攻阿吽的 %OPPAI_DESCRIPTION_TR(TARGET)% 向她展示着自己有多喜欢...
+
+ENDIF
+RETURN 1
+
+;==================================================
+;7,乳头挑逗
+;TODO
+;7,乳首責め
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_7
+CALL M_KOJO_EGG_MESSAGE_COM_K120_7_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_7_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初次
+	;初めて
+	;記入チェック
+	LOCAL:1 = 0
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		PRINTFORMW 
+		RETURN 0
+	ENDIF
+	;基本セット
+	;時姦中
+	IF FLAG:70
+		PRINTFORMW 
+		RETURN 0
+	;恋慕
+	ELSEIF TALENT:恋慕
+		PRINTFORMW 
+		RETURN 0
+	;屈服3
+	ELSEIF MARK:不埒刻印 == 3
+		PRINTFORMW 
+		RETURN 0
+	;それ以外
+	ELSE
+		PRINTFORMW 
+		RETURN 0
+	ENDIF
+ENDIF
+RETURN 1
+
+;==================================================
+;8,Spread Labia
+;8,秘貝開帳
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_8
+CALL M_KOJO_EGG_MESSAGE_COM_K120_8_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_8_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL
+	IF FLAG:70
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初次
+	;初めて
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		PRINTFORML 「S-S-Spread it? ...W-Why?」
+		PRINTFORMDW 你点头向她解释说自己想要获得好运
+		PRINTFORML 「Ah, but... O... Okay...」
+		PRINTFORMDW 她将食指和中指抵在丰腴的唇瓣之间，缓缓向外分开
+		PRINTFORML 「H-Hau... 好、好难为情...」
+		PRINTFORMDW 她的脸瞬间涨得通红，羞耻地移开了视线
+		PRINTFORMDW 你凑近身子仔细端详她的 %SLIT_TR(TARGET)%
+		PRINTFORMDW 稚嫩的阴唇小巧玲珑，顶端整齐地收束成直线
+		PRINTFORMDW 微小的阴蒂隐约可见，但并未明显凸起
+		PRINTFORMDW 当你更贴近观察阴道入口时，发现不仅内壁开始泛起晶莹的爱液
+		IF PALAM:潤滑 < PALAMLV:3
+			PALAM:潤滑 = PALAMLV:3
+		ENDIF
+		PRINTFORML 「啊！」
+		PRINTFORMDL 阿吽的手指滑脱后立刻尝试再次掰开自己的阴唇，却因缺乏着力点反而让爱液扩散得更加厉害。
+		PRINTFORMW 「对、对不起…这有点困难…哈呜…」
+		PRINTFORMDW 你转而欣赏着惊慌失措的阿吽，以及她阴唇周围因淫蜜湿润而颜色加深的阴毛...
+		RETURN 1
+	ENDIF
+
+	;-------------------------------------------------
+	;高潮
+	;絶頂した
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && NOWEX:0
+		IF FIRSTTIME("AunnCummingFromSpreadingLabia")
+			PRINTFORML 「%MOAN("m",,3)%...等、等下，必须停下来否则我会...」
+			PRINTFORMDW 你意识到阿吽濒临极限，反而怂恿她继续动作。
+			PRINTFORML 「要去了——%MOAN("h")%！！」
+			PRINTFORMDW 她闭上眼睛，用小指微微撑开入口时突然开始抽搐并 %FSYN("squirt:s")%了。
+			PRINTFORML 「%MOAN(,,4)%...居、居然只是撑开就...不、不可能...」
+			PRINTFORMDW 阿吽想用手遮住脸，却发现手上沾满了自己的汁液，只好咬着嘴唇羞愧地看向...
+		ELSE
+			PRINTFORML 「%SPLIT_G("再继续撑开的话:像这样撑开着:为什么会这么舒服:我的下面已经...:变得这么湿了")%～♥! %SPLIT_G("要去了--:要来了--:要高潮了--:要--")%♥! ...%MOAN("h",,2)%!」
+			PRINTFORMDW 阿吽达到高潮时全身%FSYN("tremble:s")%着，同时%SPLIT_G("用手指揉搓阴部完成高潮:夹紧大腿:moan边咬着嘴唇:把阴唇再撑开些")%。
+			PRINTFORMW 「%MOAN(,,4)%...%CALLNAME:MASTER%-桑...您、您不觉得我的下面已经足够准备好了吗...？」
+		ENDIF
+		RETURN 1
+	ENDIF
+
+	;-------------------------------------------------
+	;基本描述
+	;-------------------------------------------------
+	IF SELECTCOM == PREVCOM
+		PRINTFORMDW 阿吽为了你努力把 %SLIT_TR(TARGET)% 再撑开些。
+	ELSE
+		PRINTFORMDW 阿吽%SPLIT_G("撑开:让你仔细看:确保你能看到全部:张开双腿方便你观察")%她的 %SLIT_TR(TARGET)%
+	ENDIF
+	PRINTFORML 「%SPLIT_G("这样可以吗...？:只、只是看看而已吗...？:要我自己掰开什么的有点...:只是看看就满足了吗...？:这、这样真的好羞耻啊...")%」
+	PRINTFORMDW 她%SPLIT_G("羞怯地:害臊地:腼腆地:难为情地:怯生生地")%望着你，眼中却暗含几分%SPLIT_G("渴望:渴求:期盼:焦渴")%...
+
+ENDIF
+RETURN 1
+
+;==================================================
+;9,自慰
+;9,自慰
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_9
+CALL M_KOJO_EGG_MESSAGE_COM_K120_9_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_9_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL
+	IF FLAG:70
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初次
+	;初めて
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		PRINTFORML 「D-让我自己来？你就只是看着…？」
+		PRINTFORMDW 你点头解释说观察她的做法对你很重要
+		PRINTFORML 「这样反过来就能让我更舒服…好吧…」
+		PRINTFORMDW 阿吽向后仰倒，夹紧双膝开始将手滑向小腹
+		PRINTFORMDW 你急忙制止，让她张开双腿并开始口述自己的动作
+		PRINTFORML 「要、要、要讲出来？但、但是…呜…」
+		PRINTFORMDW 她满脸纠结地低头看向私处，又抬头望你，羞耻地大大张开双腿
+		CALL COLORMESSAGE("要边听边记录观察结果吗？",C_YELLOW,1)
+		CALL ASK_YN("写进日记", "不用了")
+		IF !RESULT
+			PRINTFORML 「等、等、等等。为、为什么突然掏出日记本？！」
+			PRINTFORMDW 你竖起大拇指示意继续
+			PRINTFORML 「怎、怎么对竖起大拇指回应啊...」
+			PRINTFORMDW 你再次竖起大拇指催促她继续。
+			PRINTFORMW 「好、好吧...」
+			CALL MASTER_DIARY_WRITE, "我观察了阿吽自慰并发现了她的弱点。<br>果然她的阴蒂非常敏感，但似乎更喜欢整个阴道被刺激的感觉。<br>此外她对阴道插入抵抗力较弱。<br>应以画圈方式揉搓阴蒂并快速抽插手指，才能获得最佳反应。"
+		ENDIF
+		PRINTFORML 「这、这里...感觉舒服...」
+		PRINTFORMDW 阿吽用手掌平贴着整个阴道部位滑动。
+		PRINTFORML 「%MOAN()%...然后就这样画圈...」
+		PRINTFORMDW 她保持手掌平贴，在阴道上端反复揉搓刺激阴蒂。
+		PRINTFORML 「%MOAN(,,3)%...等、等到开始湿、湿润的时候...就...」
+		PRINTFORMDW 阿吽将另一只手的食指滑入小穴。
+		PRINTFORML 「%MOAN("m")%...往、往那里...插手指...」
+		PRINTFORMDW 你假装不懂追问具体要插到哪里。
+		PRINTFORML 「下、下面...」
+		PRINTFORMDW 下面是指哪里？
+		PRINTFORML 「插、插进我的小…小穴里…」
+		PRINTFORMDW 你要求她用更容易理解的俚语词来说。
+		PRINTFORML 「别、别捉弄我了…！」
+		PRINTFORMDW 你用灼热的视线继续注视着她。
+		PRINTFORML 「我的…我的…我的…小、小穴…」
+		PRINTFORMDW 你追问她具体是怎么做的。
+		PRINTFORML 「我…我把手指插进我的小、小穴里…」
+		PRINTFORMDW 你满意地点了点头，让已经脸红得像番茄一样的阿吽继续。
+		PRINTFORML 「然后我… %MOAN(,,3)%…动动手指…」
+		PRINTFORMDW ......
+		PRINTFORMDL 她注意到你直勾勾的视线后慌忙补充道：
+		PRINTFORML 「我…我…把手指在我的小、小、小…小穴里…进进出出…」
+		IF TALENT:TARGET:処女
+			PRINTFORML 「啊…但是因为人家…那个…从来没做过——」
+			PRINTFORMDW 你高高举起了手，就像是课堂上要向老师提问的学生一样。
+			PRINTFORMDW 阿吽咬着嘴唇重新开始讲述。
+			PRINTFORML 「因、因为我是处…处女…所、所以…不、不要插得太深…免、免得弄破处…处女膜…」
+			PRINTFORMDW 你像学到了极为重要的知识般用力点头回应。
+		ENDIF
+		PRINTFORML 「然后当手指抽动的时候…%MOAN("m")%…用另、另一只手抚、抚摸阴蒂和小…小穴…」
+		PRINTFORMDW 你点着头继续往日记本上记录。
+		PRINTFORML 「%MOAN(,,3)%…这、这样重复…直到…直到高、高潮…」
+		PRINTFORMDW 你追问她最享受哪个部分的快感。
+		PRINTFORML 「最、最舒服的…？那个…」
+		PRINTFORMDW 她的目光突然变得躲闪游移。
+		PRINTFORML 「阴、阴蒂会让下半身都酥麻…但、但手指能带来让人安心的暖意…所、所以我更喜欢后者…」
+		IF CFLAG:29:好感度 > 1500
+			; 与文好感度＞1500时的彩蛋
+			PRINTFORMDW 你对所学内容感到满意，继续追问阿吽的感想。
+			PRINTFORMDW 你意识到自己简直像在做杂志采访，看来是受了文的影响…
+		ELSE
+			PRINTFORMDW 你对所了解到的感到满意并继续向阿吽追问更多意见，但没能得到新的信息...
+		ENDIF
+		RETURN 1
+	ENDIF
+
+	;-------------------------------------------------
+	;高潮
+	;絶頂した
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && NOWEX:0
+		IF FIRSTTIME("AunnCummingFromMasturbation")
+			PRINTFORML 「%MOAN("m",,3)%...%CALLNAME:MASTER%-san...再深一点！给我吧～♥！！」
+			PRINTFORMDW 阿吽完全沉浸在自我抚慰中紧闭双眼，彻底忘记了你的存在般追逐着高潮。
+			PRINTFORML 「%CALLNAME:MASTER%-san...%MOAN("h")%～♥！！」
+			PRINTFORMDW 她终于迎来高潮，身躯剧烈抽搐着，双腿疯狂扭动并喷出了大股爱液。
+			PRINTFORML 「%MOAN(,,3)%...呼…刚刚那是—啊！」
+			PRINTFORMDW 当意识到你显然还在现场时，阿吽震惊地瞪大了双眼浑身一颤。
+			PRINTFORML 「才、才不是在做这种事的时候想着和你那样的事情…！」
+			PRINTFORMDW 她慌张地在面前挥舞着手臂，整张脸变得通红，最后头顶冒着蒸汽背过身去。
+			PRINTFORML 「那、那个…你不会讨厌这样的我吧…？」
+			PRINTFORMDW 阿吽小心翼翼地询问着，肉眼可见地紧绷着身体，尾巴直挺挺地僵住。
+			PRINTFORMDW 你轻笑着安慰她这样反而更惹人怜爱更可爱了。
+			PRINTFORML 「惹人怜爱…可、可爱什么的…既然你都这么说了…」
+			PRINTFORMDW 虽然看不到她的表情，但尾巴欢快地左右摇摆着散发出强烈的喜悦感...
+		ELSE
+			PRINTFORMDW 阿吽 %SPLIT_G("加快动作:自慰得更快:加快节奏")%， %SPLIT_G("湿漉漉的:噗啾噗啾的:噗哧噗哧的:啪啪作响的:湿透的")%声响逐渐变大，她的 moan也越发激烈。
+			PRINTFORML 「%SPLIT_G(@"%CALLNAME:MASTER%-san...:已经停不下来了...:身体都麻木了...:汁液到处都是...")%～♥！%SPLIT_G("要去了--:要来了--:高潮了--:要--")%♥！...%MOAN("h",,2)%！」
+			PRINTFORMDW 阿吽%SPLIT_G("高潮:绝顶:达到顶峰")%并%SPLIT_G(@"整个身体%FSYN("颤抖:着")%:将%FSYN("颤抖:着")%的双腿紧紧并拢:腹部和私处%FSYN("颤抖")%")%同时%SPLIT_G("向四周喷射出大量爱液:moan最后一次欢愉地呼唤你的名字:咬住嘴唇用手堵住喷发:因快感冲击而睁大双眼:抓住身边任何可以支撑的东西")%。
+			PRINTFORMW 「%MOAN(,,3)%...%SPLIT_G("虽然你说没关系但还是好羞耻...:真的可以让你看到这样的我吗...?:不会就在这里结束吧...?:事后果然还是很羞耻啊...")%」
+		ENDIF
+		RETURN 1
+	ENDIF
+
+	;-------------------------------------------------
+	;基本描述
+	;-------------------------------------------------
+	IF SELECTCOM == PREVCOM
+		PRINTFORML 「%KISS("吸吮")%... %MOAN()%...」
+		PRINTFORMDW 阿吽 %SPLIT_G("将手举到嘴边:缩回手:把手抽回")%并 %SPLIT_G("吮吸手指:将手指放入口中:舔舐手指")%，随后 %SPLIT_G("沿着腹部滑下:重新投入工作:物尽其用")%继续动作。
+	ELSE
+		PRINTFORMDW 阿吽 %SPLIT_G("张开:让你清楚看到:确保你能看见全部:分开双腿方便你观察")%她的 %SLIT_TR(TARGET)%
+	ENDIF
+	SELECTCASE RAND:3
+		CASE 0
+		;手指操作相关
+			PRINTFORMDW 她接着%FSYN("插入:f:s")%手指进入%FSYN("阴部")%开始%SPLIT_G("活塞运动:向上弯曲:旋转底部:取悦穴口:探索内部")%。
+			PRINTFORMW 「%MOAN(,,2)%... %SPLIT_G(@"被看着实在太羞耻了...:你的视线好炙热...:真的只是看着就可以吗、 %CALLNAME:MASTER%-san...?:里面好烫...:为什么被看着会心跳加速...?:里面在淫靡地蠕动...:手都湿透了...")%」
+		CASE 1
+		;爱抚相关
+			PRINTFORMDW 她随后%FSYN("抚弄:s")%%SPLIT_G("阴部上端:阴蒂:整个阴部长度")%%SPLIT_G("勤恳地:以圆周运动:左右来回:长时间地:不规则地")%。
+			PRINTFORMW 「%%MOAN(,,2)%... %SPLIT_G(@"被看着真的好羞耻...:你的视线好炙热...:只是看着真的可以吗、 %CALLNAME:MASTER%-san...?:小穴变得好热...:为什么被看着心脏会跳这么快...?:阴蒂都硬起来了...:手上沾满了汁液...")%」
+		CASE 2
+		;连击动作
+			PRINTFORMDW 她接着用右手食指%FSYN("insert:f:s")%插入自己的%FSYN("vagina")%，同时用左手%FSYN("stroke")%抚弄阴蒂。
+			PRINTFORMDL 她的食指在%FSYN("vagina")%里%SPLIT_G("pistons in and out of:curls upwards inside:rotates and wiggles in:ardently pleasures:explores the inside of")%。
+			PRINTFORMDW 右手持续%FSYN("stroke:s")%着%SPLIT_G("the upper part of her vagina:her clit:the full length of her vagina")%的%SPLIT_G("diligently:in circular motions:from left to right:in long acts:erratically")%。
+			PRINTFORMW 「%MOAN("m",,3)%... %SPLIT_G(@"停不下来...:为什么做得这么起劲...?:这么认真在做...都是 %CALLNAME:MASTER%-san的错...:里面好热阴蒂也硬成这样...:碰、碰到阴蒂里面就会蠕动...:手和心跳都停不下来...:两只手都沾满了...:%CALLNAME:MASTER%-san...为什么会这么舒服...？")%」
+	ENDSELECT
+ENDIF
+RETURN 1
+[SKIPSTART]
+;別コマンド化
+
+;==================================================
+;10,乳首吸い
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_10
+CALL TRAIN_MESSAGE
+CALL M_KOJO_EGG_MESSAGE_COM_K120_10_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_10_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初めて
+	;記入チェック
+	LOCAL:1 = 0
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		PRINTFORMW 
+		RETURN 0
+	ENDIF
+	;基本セット
+	;恋慕
+	IF TALENT:恋慕
+		PRINTFORMW 
+		RETURN 0
+	;屈服3
+	ELSEIF MARK:不埒刻印 == 3
+		PRINTFORMW 
+		RETURN 0
+	;それ以外
+	ELSE
+		PRINTFORMW 
+		RETURN 0
+	ENDIF
+ENDIF
+RETURN 1
+[SKIPEND]
+
+;==================================================
+;11,乳头吸吮
+;待办事项
+;11,乳首吸い
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_11
+CALL M_KOJO_EGG_MESSAGE_COM_K120_11_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_11_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初次
+	;初めて
+	;記入チェック
+	LOCAL:1 = 0
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		PRINTFORMW 
+		RETURN 0
+	ENDIF
+	;基本セット
+	;時姦中
+	IF FLAG:70
+		PRINTFORMW 
+		RETURN 0
+	;恋慕
+	ELSEIF TALENT:恋慕
+		PRINTFORMW 
+		RETURN 0
+	;屈服3
+	ELSEIF MARK:不埒刻印 == 3
+		PRINTFORMW 
+		RETURN 0
+	;それ以外
+	ELSE
+		PRINTFORMW 
+		RETURN 0
+	ENDIF
+ENDIF
+RETURN 1
+
+;==================================================
+;12、揉胸
+;TODO: 暂时调用「爱抚胸部」，或许可以将其实现为粗暴对待她的胸部
+;12,胸もみ
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_12
+;CALL M_KOJO_EGG_MESSAGE_COM_K120_12_1
+CALL M_KOJO_EGG_MESSAGE_COM_K120_6_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_12_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 0
+;-------------------------------------------------
+IF LOCAL
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初次
+	;初めて
+	;記入チェック
+	LOCAL:1 = 0
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		PRINTFORMW 
+		RETURN 0
+	ENDIF
+	;基本セット
+	;時姦中
+	IF FLAG:70
+		PRINTFORMW 
+		RETURN 0
+	;恋慕
+	ELSEIF TALENT:恋慕
+		PRINTFORMW 
+		RETURN 0
+	;屈服3
+	ELSEIF MARK:不埒刻印 == 3
+		PRINTFORMW 
+		RETURN 0
+	;それ以外
+	ELSE
+		PRINTFORMW 
+		RETURN 0
+	ENDIF
+ENDIF
+RETURN 1
+
+;==================================================
+;13,展开肛门
+;13,肛門開帳
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_13
+CALL M_KOJO_EGG_MESSAGE_COM_K120_13_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_13_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL
+	IF FLAG:70
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初次事件
+	;初めて
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		PRINTFORML 「要、要我自己掰开…？自己来…？」
+		PRINTFORMDW 阿吽震惊地看着你，不确定你是否在开玩笑。
+		PRINTFORMDW 你肯定地点点头，身体前倾准备仔细观看她的动作。
+		IF TALENT:恋慕
+			PRINTFORML 「既、既然是你要求的…」
+		ELSE
+			PRINTFORML 「为、为什么我要配合这种事啊…」
+		ENDIF
+		PRINTFORMDW 她四肢着地羞耻地低下头，用手掌掰开臀瓣，指尖深深陷入臀缝。
+		IF ABL:Ａ感覚 >= 3
+			PRINTFORMDW 你清楚看到那个经过充分锻炼的粉嫩菊穴，正淫靡地抽搐着期待被扩张。
+			PRINTFORML 「这样的话应该没问题…」
+			PRINTFORMDW %BREAKENG("她轻松地将食指与中指滑入体内，短暂犹豫后便将肛门扩张到足以塞入500日元硬币的大小。")%
+			PRINTFORML 「%MOAN()%...像、像这样...？」
+			PRINTFORMDW %BREAKENG("阿吽显然对这个任务感到羞耻，但你的注意力完全集中在她清晰可见的蠕动肛管上，那仿佛在渴求刺激的模样...")%
+		ELSEIF ABL:Ａ感覚 > 0
+			PRINTFORMDW 你仔细端详着她因期待而微微颤抖的粉色肛门
+			PRINTFORML 「那、那么我要开始了...」
+			PRINTFORMDW 她将双食指缓缓探入后庭，却遇到阻力只能勉强插入指尖
+			PRINTFORML 「哈呜...为、为什么括约肌会夹得这么紧啊？」
+			PRINTFORMDW 你察觉到她括约肌的紧绷，于是凑近轻轻揉捏她的尾根
+			PRINTFORML 「...！%MOAN()%...！」
+			PRINTFORMDW 阿吽被你突如其来的触碰惊得浑身一颤，但紧张感随之缓解，手指顺势滑入体内
+			PRINTFORML 「啊...进、进来了。那、那么现在要...」
+			PRINTFORMDW 她咬着嘴唇小心翼翼地扩张肛门，最大只能撑开约50日元硬币的大小
+			PRINTFORMDW 手指突然打滑导致菊穴再度紧闭，但在闭合前仍诱人地收缩了数次
+			PRINTFORML 「手、手滑了...要、要再来一次吗？」
+			PRINTFORMDW 她涨红着脸带着些许热忱回头看向你...
+		ELSEIF ABL:Ａ感覚 <=0
+			PRINTFORMDW 你清楚地看见她那未经训练的粉色菊穴紧紧闭合着尚未产生反应
+			PRINTFORML 「我、我要开始了…」
+			PRINTFORMDW 她尝试将双手食指插入，却遭到强烈抵抗而无法 
+			PRINTFORMDW 你看着她挣扎的样子伸手抚上她的尾根
+			PRINTFORML 「哈哇？！啊——%GROAN()%！」
+			PRINTFORMDW 她因你突如其来的触碰放松了括约肌，指尖终于得以进入
+			PRINTFORML 「进去了...接下来要...%GROAN(,,2)%...！！」
+			PRINTFORMDW 阿吽咬住下唇试图将手指向外拉开，却又再次绷紧身体导致无法将菊穴充分扩张
+			PRINTFORML 「%GROAN()%...好痛...」
+			PRINTFORMDW 你注意到她眼角泛起的泪光，意识到她在强忍疼痛便立刻叫停
+			PRINTFORML 「可、可是您明明要人家...」
+			PRINTFORMDW 你轻拍她的脑袋称赞她贯彻你任性要求的坚强意志
+			PRINTFORML 「我、我应该没问题的。您要人家再试试看吗...？」
+			PRINTFORMDW 她似乎因无法完成您的要求而困扰着，用带着些许炽热的眼神望向您...
+		ENDIF
+		RETURN 1
+	ENDIF
+
+	;-------------------------------------------------
+	;Climax
+	;絶頂した
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && NOWEX:0
+		IF FIRSTTIME("AunnCummingFromSpreadingAnus")
+			PRINTFORML 「%MOAN("m",,3)%...等、等等，为什么扩张会让我突然变得这么敏感啊？必须停下否则我要...」
+			PRINTFORMDW 您意识到阿吽已接近极限，于是鼓励她继续下去。
+			PRINTFORML 「不、不要啊，再这样下去我会...就这样子...不行、我要去了——我要高——%MOAN("h")%!!」
+			PRINTFORMDW 她的菊穴随着高潮剧烈收缩震颤着，腹部与后庭保持着同步的颤动。
+			PRINTFORML 「%MOAN(,,4)%...居、居然只是扩张就...没想到我的身体会变成这样...」
+			PRINTFORMDW 阿吽羞耻地沉浸在余韵中摇头否认，头顶不断冒出蒸汽...
+		ELSE
+			PRINTFORML 「%SPLIT_G("如果继续撑开的话:像这样撑开的话:为什么这么舒服呢:我的脏地方...:酥麻感窜上脊梁")%～♥! %SPLIT_G("要去了--:要高潮了--:要丢了--:要--")%♥! ...%MOAN("h",,2)%!」
+			PRINTFORMDW 阿吽%SPLIT_G("高潮了:去了:泄了:绝顶了")%而她的%FSYN("肛门")%%FSYN("颤抖:s")%着%SPLIT_G("插入手指收尾:因快感紧绷:moan并咬住嘴唇:把肛门撑得更开")%。
+			PRINTFORMW 「%MOAN(,,3)%...%CALLNAME:MASTER%-さん...你、你到底在对人家做什么...？」
+		ENDIF
+		RETURN 1
+	ENDIF
+
+	;-------------------------------------------------
+	;基础描述
+	;-------------------------------------------------
+	IF SELECTCOM == PREVCOM
+		PRINTFORMDW 阿吽「哈啊」地松开手指的力道，深呼吸几次后重新撑开她的%FSYN("肛门")%。
+	ELSE
+		PRINTFORMDW 阿吽%SPLIT_G("四肢着地:高抬双腿弓起腰")%撑开自己的%FSYN("肛门")%。
+	ENDIF
+	PRINTFORML 「%SPLIT_G("还、还是好羞耻...:为、为什么对这么脏的地方感兴趣?:我...我感觉它又要缩紧了...:手指要滑开了...:应、应该擦干净了吧...?")%」
+	PRINTFORMDW 她%SPLIT_G("羞答答地:羞愧地:羞怯地:难为情地:怯生生地")%看着你，%COND_STR(@"%FSYN("淫荡:地")%", ABL:Ａ感覚 >= 3)%%SPLIT_G("蠕动:抽搐:起伏:扭动:震颤:发抖")%的%FSYN("肛门")%持续着...
+ENDIF
+RETURN 1
+
+;==================================================
+;15,阴蒂爱抚
+;15,クリ愛撫
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_15
+CALL M_KOJO_EGG_MESSAGE_COM_K120_15_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_15_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL
+	IF FLAG:70
+		RETURN 1
+	ENDIF
+
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初次
+	;初めて
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		PRINTFORMDW 你凑近并用指尖轻轻抚弄她的阴蒂。
+		PRINTFORML 「%MOAN()%! Hau...?」
+		PRINTFORMDW 阿吽的身体做出了甜美的反应 moan ，阴核探出头来渴求更多快感
+		PRINTFORMDW 那小巧可爱的模样看起来简直像是迷你版的猫爪肉垫
+		PRINTFORMDW 你用手指按压它就会稍微缩回去，但马上又会重新探出来兴奋地颤抖
+		PRINTFORML 「不、不要玩那个...要不然...」
+		PRINTFORMDW 你想验证else语句便轻轻弹了弹她的小豆豆
+		PRINTFORML 「%MOAN("m")%... %CALLNAME:MASTER%-san...」
+		PRINTFORMDW 她怯生生地叫着你的名字，除此之外并没有表现出任何抵抗
+		PRINTFORML 「%MOAN(,,3)%...」
+		PRINTFORMDW 你继续毫不留情地玩弄着她的阴蒂...
+		RETURN 1
+	ENDIF
+
+	;-------------------------------------------------
+	;高潮
+	;絶頂した
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && NOWEX:0
+		IF FIRSTTIME("AunnCummingFromClitCaress")
+			PRINTFORML 「%MOAN("m",,3)%...%CALLNAME:MASTER%-さん...そ、その場所をそんなに撫でられたら私が...」
+			PRINTFORMDW 阿吽が絶頂しそうだと言った言葉に反応して、あなたはニヤリと笑いながら彼女の硬くなったクリトリスをさらに激しく責め立てた
+			PRINTFORML 「%CALLNAME:MASTER%-さん...！ 待って、もう私が...%MOAN("h")%！！」
+			PRINTFORMDW 彼女の足が痙攣すると同時に moanを上げながら高く弧を描く潮を吹き出す
+			PRINTFORML 「%MOAN(,,4)%...私...本当にイッちゃった...」
+			PRINTFORMDW 赤面した阿吽は自分がした惨状を見て目を伏せ、あなたと視線を合わせまいとする...
+		ELSE
+			PRINTFORML 「%SPLIT_G(@"クリトリスが火照ってる:そんなに責め立てられたら:%CALLNAME:MASTER%-さん...もっと速く:ずっと刺激されてる:そんなに弾かれたら...:もっと摘んで")%～♥！%SPLIT_G(@"もう私が...:イキそう...:イッちゃう...:ダメ")%♥！...%MOAN("h",,2)%！」
+			PRINTFORMDW 絶頂する阿吽の全身が%FSYN("震え:s")%ながら%SPLIT_G(@"首を振り乱す:自分の体を抱き締める:上半身をくねらせる:濃厚な潮を噴き上げる")%
+			PRINTFORMW 「%MOAN(,,4)%...%CALLNAME:MASTER%-さん...」
+		ENDIF
+		RETURN 1
+	ENDIF
+
+	;-------------------------------------------------
+	;基本描述
+	;-------------------------------------------------
+	PRINTFORMDW 你 %FSYN("rub")%她的%SPLIT_G("small:cute:pretty:dainty:perky:youthful")% %SPLIT_G("clit:bean:clitoris:button:nub:sweet spot")% %SPLIT_G("eagerly:diligently:earnestly:attentively")%用%SPLIT_G("your index finger:index and middle finger:your flat hand:your palm")%，使得越来越多的%FSYN("juice")%从她的%FSYN("vagina")%流下。
+	PRINTFORML 「%MOAN(,,2)%... %SPLIT_G("你老是攻击那里:别光顾着那里:这让我全身都在发抖:就算只是你的手指也感觉这么好:那里变得真的很敏感")%...」
+	PRINTFORMDW 每一次%FSYN("stroke")%都让她%SPLIT_G(@"rub her thighs together:jolt from the pleasure:moan in pleasure:dispense more %FSYN("juice")%:shiver and moan:sigh and twitch")%...
+ENDIF
+RETURN 1
+
+;※※※※※※※※※※※※※※※※※※※※※※※※※
+;ソフト系コマンド
+;※※※※※※※※※※※※※※※※※※※※※※※※※
+;==================================================
+;继续接吻
+;19,キスする
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_19
+CALL M_KOJO_EGG_MESSAGE_COM_K120_19_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_19_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL
+	IF FLAG:70
+		RETURN 1
+	ENDIF
+	;-------------------------------------------------
+	;小分岐
+	;-------------------------------------------------
+	;初次
+	;初めて
+	;記入チェック
+	LOCAL:1 = 1
+	;-------------------------------------------------
+	IF LOCAL:1 && FIRSTTIME(SELECTCOM)
+		PRINTFORMDW 阿吽以为亲吻要结束了正要抽身，却被你拉回来继续索求
+		PRINTFORML 「%FSYN("lips_muffle")%?! %FSYN("lips_muffle")%...%COND_STR(@" %SLUR(@"%CALLNAME:MASTER%-san",-2)%～♥...", TALENT:恋慕)%」
+		PRINTFORMDW 你 \@ TALENT:恋慕 ? 将舌头探入#紧紧贴着她的嘴唇不放 \@ 继续缠绵
+		PRINTFORML 「%RANDLIPS(,"kiss")%... %FSYN("lips_over")%... %SLUR(@"%CALLNAME:MASTER%-san",-2)%...」
+		PRINTFORMDW 你终于结束了这个吻，被迷得神魂颠倒的阿吽瘫软在你怀里...
+		RETURN 1
+	ENDIF
+
+	;-------------------------------------------------
+	;基础描述
+	;-------------------------------------------------
+	PRINTFORMDW 你%SPLIT_G("贴近这个吻:还不愿放开她:轻轻抓住她的后脑勺:拉住并抱住她")%继续着热烈的唇舌交缠
+	IF TALENT:恋慕
+		PRINTFORML 「%RANDLIPS(,"kiss")%... %SLUR(@"%CALLNAME:MASTER%-san",-2)%...%COND_STR(@" %SLUR("我爱你",2)%～♥", TALENT:恋人)%」
+	ELSE
+		PRINTFORML 「%RANDLIPS(,"kiss")%...」
+	ENDIF
+	PRINTFORMDW 你最终 %SPLIT_G("挣脱了这个吻:结束了热烈的交流:将她从怀抱中解放:抽身退开:分开双唇")% 而阿吽 %SPLIT_G("融化:变得无力:软绵绵地瘫倒:放弃自我挣扎:无法正常思考")% 带着%SPLIT_G("出神的:恍惚的:迷人的:迷恋的:陶醉的:入迷的:被蛊惑的")% %SPLIT_G("眼神:凝视:注视:表情")%...
+ENDIF
+RETURN 1
+
+;==================================================
+;20,亲吻
+;20,キスする
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_20
+CALL M_KOJO_EGG_MESSAGE_COM_K120_20_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_20_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL
+	IF FLAG:70
+		RETURN 1
+	ENDIF
+	CALL K120_KISS_DIALOGUE()
+ENDIF
+RETURN 1
+
+
+;==================================================
+;21，无操作
+;21,何もしない
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_21
+CALL M_KOJO_EGG_MESSAGE_COM_K120_21_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_21_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL
+	IF FLAG:70
+		RETURN 1
+	ENDIF
+
+	CALL K120_DO_NOTHING_CHOICES()
+	DO
+		INPUT
+		SELECTCASE RESULT
+			CASE 0
+				SELECTCASE CFLAG:1001
+					CASE 0
+						CALL K120_ARMPITS_NOT_UNLOCKED_DIALOGUE()
+						RETURN 1
+					CASE 1
+						PRINTFORML 「%SPLIT_G("又碰我的腋下……:你好像真的很喜欢我的腋下……:我的腋下真的有这么吸引人吗……？:我...我觉得灵梦小姐更适合做这种事...:我不介意，但是...味道不会很难闻吗？:尝起来不会很咸吗...？")%」
+						SELECTCASE RAND:2
+							CASE 0
+					;玩家主动
+								PRINTFORMDW 你%SPLIT_G("将阿吽的手臂举过她的头顶以露出腋下:寻求接触她的腋下")%并%SPLIT_G("用舌尖轻搔那里:用舌根舔舐那里:用舌头戳刺并吸吮那里:用舌头做圆周运动爱抚那里:交替进行舔舐与亲吻:先亲吻再深深埋入舌头")%。
+							CASE 1
+					;阿吽主动
+								PRINTFORMDW 阿吽 %SPLIT_G("将手臂高举过头露出腋下:向你开放她的腋下")%而 %SPLIT_G("用舌尖轻轻挠痒:用舌根部位舔舐:用舌头戳刺并吸吮:用舌头画着圈爱抚:交替进行舔舐与亲吻:先轻吻再深深埋入舌头")%的你。
+						ENDSELECT
+						PRINTFORML 「%MOAN()%... 哈呜... %SPLIT_G("好痒啊...:感觉并不坏呢...:这种触感真奇怪...:你真是急不可耐...:你看上去很开心呢...:你的舌头湿漉漉的...")%」
+						SELECTCASE RAND:2
+							CASE 0
+					;嗅闻气味
+								PRINTFORMDW 一种%SPLIT_G("pleasant:sweet:opulent:savory:piquant:distinctive")%%SPLIT_G("smell:scent:aroma:fragrance:odor")%%SPLIT_G("filled with:that reminds you of:reminiscent of:similar to:mixed with")%%SPLIT_G("the fresh sea:a rainy autumn day:salted, uncooked onions:dry moss on a rock's surface:an empty bowl of shio ramen:the residue of miso soup")%%SPLIT_G("drifts into:tickles:fills")%你的鼻子。
+							CASE 1
+					;味道
+								PRINTFORMDW 一种%SPLIT_G("rich:salty:opulent:savory:piquant:distinctive")%%SPLIT_G("taste:flavor:relish")%%SPLIT_G("filled with:that reminds you of:reminiscent of:similar to:mixed with")%%SPLIT_G("the saline sea:a rainy autumn day:salted, uncooked onions:dry moss on a rock's surface:the last sip of shio ramen:left over, cold miso soup")%%SPLIT_G("spreads over your tongue:tickles all your taste buds:fills your mouth:dominates your palate")%。
+						ENDSELECT
+						PRINTFORMDW 她%SPLIT_G("rubs her thighs together:lets out another sigh of pleasure:doesn't seem to dislike it:pats your head in return:tries to cover her moistening vagina:squirms from being tickled")%而你继续%SPLIT_G("your assault:to lick her armpit:to caress her armpit with your tongue:to try and pleasure her armpit")%...
+						CALL K120_LICK_ARMPIT()
+						RETURN 1
+					CASE 2
+						CALL K120_ARMPITS_REJECTED_DIALOGUE()
+						RETURN 1
+				ENDSELECT
+			CASE 1
+				SELECTCASE CFLAG:1001
+					CASE 0
+						CALL K120_ARMPITS_NOT_UNLOCKED_DIALOGUE()
+						RETURN 1
+					CASE 1
+						IF FIRSTTIME("AunnArmpitSex")
+							PRINTFORML 「你、你想插进我的腋下……？」
+							PRINTFORMDW Aunn嘴巴张得老大，困惑地朝你眨了眨眼。
+							PRINTFORML 「而、而且……那样会舒服……？」
+							PRINTFORMDW 你点头告诉她，每个男人一生中都会幻想和女孩子的腋下做爱。
+							PRINTFORML 「我、我不知道该怎么回答……但既然是你的话……我倒是不介意……」
+							PRINTFORMDW 你指示她将手肘紧贴身侧，但留出可供插入的余地。
+							PRINTFORML 「L-像这样…？」
+							PRINTFORMDW 你绕到阿吽身后，将你的 %TINKO(MASTER)% 挤入她手臂与胸脯间的缝隙。
+							PRINTFORML 「W-哇...能看到尖端从另一边冒出来...」
+							PRINTFORMDW 阿吽涨红着脸，视线在你的 %FSYN("penis")% 尖端和你之间来回游移。
+							PRINTFORML 「那-么？ 你-喜欢吗？」
+							PRINTFORMDW 她似乎和你一样好奇，而你在开始晃动臀部时陷入了内省。
+							PRINTFORMDW 这种感觉就像是素股和手动刺激的混合。
+							PRINTFORMDW 你的 %FSYN("阴茎")% 被完全包裹住，她的手臂、胸部和腋下的内部光滑而柔软。
+							PRINTFORMDW 每次你挺进时，你的顶端从另一端探出，这让你的下半身一阵酥麻。
+							PRINTFORMDW 尽管如此，润滑有些不足，与素股相比可能在纯粹的快感上稍逊一筹。
+							PRINTFORMDW 但毫无疑问地，当你将她的身体另一部分也占为己有时，背德感充斥着你的内心。
+							PRINTFORML 「C-占有...哈哇...」
+							PRINTFORMDW 阿吽羞愧地低下了头，而你继续随心所欲地抽插着...
+						ELSE
+					;-------------------------------------------------
+					;Climax
+					;-------------------------------------------------
+							IF NOWEX:PLAYER:射精
+								IF FIRSTTIME("PlayerCummingFromArmpitSex")
+									PRINTFORML 「Hawa…能感觉到那里在激烈地跳动着…」
+									PRINTFORMDW 你随着高潮的临近加快了抽插速度。
+									PRINTFORML 「...！等、等等...要、要出——」
+									PRINTFORMDW 你弓起腰将胯部压向阿吽的腋穴，精液绳从另一端喷射而出。
+									PRINTFORML 「呜、呜哇…射得好远！」
+									PRINTFORMDW 阿吽似乎被你的活力所震撼，当你拔出肉棒时在她手臂内侧留下了些许痕迹。
+									PRINTFORML 「居、居然真的从腋下射出来了…好厉害…」
+									PRINTFORMDW 她带着困惑的表情凝视着腋下的精液...
+								ELSE
+									PRINTFORML 「%SPLIT_G("我能感觉到它疯狂地跳动...:它变得好烫...:你快要来了吗...?:你到极限了吗...?")%」
+									PRINTFORMDW 你%SPLIT_G("加快速度:狠狠撞进她的腋下:动作变得粗暴:再也停不下来:疯狂地摆动臀部")%并且%SPLIT_G("达到高潮:到达极限:射出:射精:高潮")%。
+									PRINTFORMDW 你将顶端推入她的腋下并且%SPLIT_G("射出:释放:喷发:发射")%%SPLIT_G("一缕缕:一团团:一条条:一股")%%SEMEN(,1)%。
+									PRINTFORML 「哇……好烫好粘……我总是很高兴让你感觉舒服，但是……」
+									PRINTFORMDW 她%SPLIT_G("注视着:触碰:试图擦去")%腋下的精液，脸上带着%SPLIT_G("困惑的:茫然的:不知所措的")%表情……
+								ENDIF
+							否则
+						;-------------------------------------------------
+						;基本描述
+						;-------------------------------------------------
+								如果 SELECTCOM == PREVCOM
+									PRINTFORMDW 你继续%SPLIT_G("无情地:凶猛地:激烈地:毫不留情地:疯狂地")%%SPLIT_G("摆动:移动:挺进:活塞运动")%你的臀部，来与她的腋下%SPLIT_G("做爱:交合:繁殖:性交:交配")%。
+								ELSE
+									PRINTFORMDW 你%SPLIT_G("移到前面:移到后面")%阿吽，将你的%TINKO(MASTER)%对准她的腋下并且%SPLIT_G("摆动:移动:挺进:活塞运动")%你的臀部。
+								ENDIF
+								PRINTFORMW 「%SPLIT_G("尖端不断地从另一边露出来...:有点痒...:你感觉爽吗？:你满意了吗？:你真是全力以赴...:你-知道这不是性器官...对吧？")%」
+							ENDIF
+						ENDIF
+					CASE 2
+						CALL K120_ARMPITS_NOT_UNLOCKED_DIALOGUE()
+						RETURN 1
+				ENDSELECT
+				CALL K120_ARMPIT_SEX()
+				CALL K120_INSEMINATION_WASTE_COMMENT("onArmpits")
+				RETURN 1
+			CASE 2
+				IF FIRSTTIME("AunnLickingBellyButton")
+					PRINTFORML 「我、我的肚脐？那个...我一直都有特别注意清洁的，所以没关系啦...大概...」
+					PRINTFORMDW 你凑上前用舌头勾勒她水滴形状的肚脐。
+					PRINTFORML 「哈哇...好痒！」
+					PRINTFORMDW 你舔舐着肚脐入口时阿吽夹紧了双膝。
+					PRINTFORML 「嗯...」
+					PRINTFORMDW 你将舌头伸入其中却连舌尖都几乎无法被包裹。
+					PRINTFORML 「%FSYN("hii")%...%MOAN()%...！」
+					PRINTFORMDW 阿吽左右摇晃着脑袋，你在得到阿吽各种各样的反应后暂且满足了...
+				ELSE
+				;-------------------------------------------------
+				;Basic description
+				;-------------------------------------------------
+					IF SELECTCOM == PREVCOM
+						PRINTFORMDW 你继续 %SPLIT_G("侵犯:攻击:舔弄:挑逗")% 她的肚脐。
+						PRINTFORML 「%FSYN("咿")%... %SPLIT_G("嘻嘻:呵呵:嗯哈哈:嗯哈哈哈:嘻嘻嘻")%!」
+						PRINTFORMDW 阿吽再也忍不住了，爆发出一阵咯咯笑声，抓住你的头想让你放松一点。
+						PRINTFORMW 「停-停下...！好痒啊！」
+					ELSE
+						PRINTFORMDW 你%SPLIT_G("用舌头描画她的肚脐:舔过她肚脐的入口:将舌头伸进她的肚脐里")%。
+						PRINTFORML 「%FSYN("hii")%... 好痒！」
+						PRINTFORMDW Aunn %FSYN("squirm:s")% 扭动着身体，试图抑制住笑声。
+					ENDIF
+				ENDIF
+				CALL K120_LICK_BELLY_BUTTON()
+				RETURN 1
+			CASE 3
+				IF MARK:反発刻印 >= 3
+					PRINTFORMDW 阿吽气呼呼地朝你摇头拒绝。
+					RETURN 1
+				ENDIF
+				IF FIRSTTIME("AunnHairSex")
+					PRINTFORML 「我的头发？！绝、绝对不行！我可是每天都精心护理的！这可是我的爱和骄傲啊！」
+					PRINTFORMDW 你平静地向她解释正是因为这份美丽才让你心生渴望。
+					PRINTFORML 「但是...」
+					PRINTFORMDW 你再次劝说并保证会特别小心，这是你最大的愿望。
+					PRINTFORML 「...」
+					PRINTFORMDW 阿吽抱着胳膊咬着舌头，露出了纠结的表情。
+					PRINTFORML 「...」
+					PRINTFORMDW 她左右歪着脑袋思考该如何回应。
+					PRINTFORML 「...」
+					PRINTFORMDW 她以短暂的叹息接受你的请求，沉默地跪坐下来将秀发梳理到胸前。
+					PRINTFORML 「要小心点哦...？」
+					PRINTFORMDW 你站到她面前，从她脖颈处蓬松的鬈发中选出一缕，将你的 %TINKO()% 缓缓埋入其中。
+					PRINTFORMDW  它完美地缠绕在你的肉棒上，仿佛天生为此而造，将其紧紧包裹。
+					PRINTFORMDW  你用手握住它，贪婪地将其当作飞机杯般使用。
+					PRINTFORML  「D-感觉舒服吗？」
+					PRINTFORMDW 阿吽用带着不安神情的双眸仰视着你。
+					PRINTFORMDW 她的毛发虽然极其蓬松，但每根发丝触碰到肌肤时确实能感受到些许粗糙感。
+					PRINTFORMDW 然而快感的主要来源是她发丝带来的搔痒感，尤其是当你的尖端进出她的发卷时。
+					PRINTFORMDW 随着每一次的滑动，你的阴茎尖端变得越来越敏感。
+					PRINTFORML 「S-这么说，你是喜欢的喽？」
+					CALL ASK_YN("我真的很喜欢", "没我想的那么好")
+					IF !RESULT
+						PRINTFORMDW 阿吽无奈地叹了口气，但最后还是露出了轻声的微笑。
+						PRINTFORML 「那么...就随你喜欢摆弄我的头发吧...不过只有你才能这样哦 %CALLNAME:MASTER%-san！」
+					ELSE
+						PRINTFORMDW 阿吽松了口气似地瞥了你一眼。
+						PRINTFORML 「那、那就停下来吧？我有点担心会弄坏头发......」
+					ENDIF
+				ELSE
+				;-------------------------------------------------
+				;射精
+				;-------------------------------------------------
+					IF NOWEX:PLAYER:射精
+						IF FIRSTTIME("阿吽与玩家通过发交射精")
+							PRINTFORMDW 随着高潮的临近，你加快了在发卷中抽送的速度。
+							PRINTFORML 「喂、别这么粗暴啊！」
+							PRINTFORMDW 阿吽皱着眉头抬头看你，却在看到你表情时睁大了眼睛。
+							PRINTFORML 「等、等等，你要是要出来的话就——」
+							PRINTFORMDW 在极乐的恍惚中，你带着陶醉的表情将精液尽数释放在她的发丝间。
+							PRINTFORML 「不要啊啊！我的头发......！」
+							PRINTFORMDW 她徒劳地试图梳理掉发间的白浊，结果反而涂抹得更均匀了。
+							PRINTFORML 「这可不好…」
+							PRINTFORMDW 你告诉她额外蛋白质对头发生长很有好处。
+							PRINTFORML 「听好了！」
+							PRINTFORMDW 阿吽突然跳起来朝你挥舞手指。
+							PRINTFORML 「狛犬的毛发可是很纤细的！听见了吗！很纤细的！！」
+							PRINTFORMDW 你在阿吽严厉的目光前怯生生地把手举到胸前。
+							PRINTFORML 「不能随便把那种东西注入我的毛发！这对毛发很不好！」
+							PRINTFORMDW 她背过身去抱起胳膊噘起嘴。
+							PRINTFORMDW 看到阿吽明显生气的样子，你感到懊悔并诚心诚意地向她道歉。
+							PRINTFORML 「咕奴奴…」
+							PRINTFORMDW 阿吽从头到脚打量了你一番，再次叹了口气。
+							PRINTFORML 「只有答应一个条件才让你再来一次！」
+							PRINTFORMDW 你认真地点头。
+							PRINTFORML 「别弄脏我的毛发，明白吗？」
+							PRINTFORMDW 看来下次必须注意别射进她的毛发里了…
+						ELSE
+							PRINTFORMDL 要射在她的头发里吗？
+							CALL ASK_YN("是","否")
+							IF !RESULT
+								PRINTFORMDW 尽管她之前警告过，你还是欢快地将%SEMEN(,1)%射进了她的头发
+								PRINTFORML 「啊！不是说过不要射在头发里吗？！咕奴奴！」
+								PRINTFORMDW 阿吽撅着嘴对你进行了长篇大论的训斥...
+								MARK:反発刻印 +=1
+								TALENT:機嫌 = -1
+							ELSE
+								PRINTFORMDW 你迅速从她头发处抽离，将%SEMEN(,1)%射在了地板上
+								PRINTFORML 「哇、哇啊！好险！谢谢你没射在头发里...」
+								PRINTFORMDW 你成功避免了一场灾难...
+							ENDIF
+						ENDIF
+
+					ELSE
+					;-------------------------------------------------
+					;基本描述
+					;-------------------------------------------------
+						IF SELECTCOM == PREVCOM
+							PRINTFORMDW 你继续%SPLIT_G("毫不留情地:凶猛地:激烈地:无情地:疯狂地")% %SPLIT_G("摆动:移动:冲刺:活塞运动")%腰部与她的头发%SPLIT_G("交合:交配:配种:交尾:媾和")%。
+						ELSE
+							PRINTFORMDW 你%SPLIT_G("移动到阿吽面前:绕到阿吽背后")%对准毛茸茸的卷发，将%TINKO(MASTER)%贴上去开始%SPLIT_G("摆动:移动:冲刺:活塞运动")%腰部。
+						ENDIF
+						PRINTFORMW 「%SPLIT_G("尖端不断从另一端冒出来...:我的头发应该没问题吧...？:这样会让你舒服吗？:你满足了吗？:你真的好激烈啊...:我的头发很重要，请温柔点哦？")%」
+					ENDIF
+				ENDIF
+				CALL K120_HAIR_SEX()
+				CALL K120_INSEMINATION_WASTE_COMMENT("inHair")
+				RETURN 1
+			CASE 4
+				SELECTCASE RAND:5
+					CASE 0
+						PRINTFORMDW 你用食指沿着她的阴毛从顶端一路描摹到阴唇中央
+						PRINTFORML 「-这样不会太过分吧？」
+						PRINTFORMDW 你安慰她这样刚刚好，她明显松了一口气发出安心的叹息。
+						PRINTFORML 「虽然打理起来有点费劲，不过就像对待头顶的毛发一样，我可是很用心保养的！」
+						PRINTFORMDW 环绕在蜜裂起始部位的较短毛发格外可爱，你用指尖轻轻拨弄了几下。
+						PRINTFORML 「A-是在捉弄我吗？ W-难道你其实希望更多吗？」
+						PRINTFORMDW 你提醒她你之前的说法，她便红着脸挠了挠脸颊
+						PRINTFORML 「G-知道了…」
+					CASE 1
+						PRINTFORMDW 你轻轻拉扯着几缕毛发，小心地避免给阿吽带来任何痛楚。
+						PRINTFORML 「你想让我除掉它吗？」
+						PRINTFORMDW 你震惊地抬头看着阿吽。
+						PRINTFORML 「哇-哇！你为啥突然看起来这么难过啊？！」
+						PRINTFORML 「知道了，知道了啦！我不是认真的！」
+						PRINTFORMDW 阿吽轻拍你的头安抚你，你继续把玩眼前的毛发。
+					CASE 2
+						PRINTFORMDW 你用食指和拇指拈起几缕毛发检视把玩。
+						PRINTFORMDW 发丝轻易地从指缝间翘出，只有约一半长度能被手指夹住。
+						PRINTFORML 「你看起来对它相当着迷呢...」
+						PRINTFORMW 「我、我才不介意这种事呢！」
+						PRINTFORML 「其实这样...还蛮可爱的吧？」
+					CASE 3
+						PRINTFORMDW 你将手指埋入她的阴毛中轻抚下方肌肤。
+						PRINTFORML 「%MOAN()%... 这样被触摸其实挺舒服的...」
+						PRINTFORMDW 你按摩她的阴部并挑弄毛发根部。
+						PRINTFORML 「你对它这么执着呢， %CALLNAME:MASTER%-san... %MOAN()%...」
+						PRINTFORMDW 阿吽虚弱地斥责你，但显然没有要你停手的意思。
+					CASE 4
+						PRINTFORMDW 你用食指抚弄她的阴部，以画圈方式将几缕毛发缠绕指间。
+						PRINTFORML 「S-停下... 你会让它像我真正的头发一样卷起来的...」
+						PRINTFORMDW 你告诉她这正是你的计划，她则调皮地撅起嘴作为回应。
+						PRINTFORMW 「照这个速度下去，我下面的毛发会比我头上的头发梳理得还要频繁...」
+				ENDSELECT
+				PRINTFORMDW 你注意到%SPLIT_G(@"她的阴部因 %FSYN("汁液")%而泛着水光:阿吽分泌出甜腻的t moan汗:她的大腿相互磨蹭:她的呼吸变得粗重")%正在 %SPLIT_G("打理:专注于:爱抚:梳理:玩弄")%她的阴毛...
+				CALL K120_CARESS_PUBIC_HAIR()
+				RETURN 1
+			CASE 5
+				IF FIRSTTIME("AunnPubicHairSex")
+					PRINTFORML 「Y-你想蹭蹭这里……？」
+					PRINTFORMDW 阿吽露出了困惑的表情，低头盯着自己的阴部，似乎不确定你是否真是那个意思。
+					PRINTFORML 「我……呃……g-请自便……？」
+					PRINTFORMDW 你将你的 %TINKO(MASTER)% 滑过她的阴毛并稍微陷入其中。
+					PRINTFORMDW 触感柔软蓬松，但随着每根毛发掠过皮肤又略带粗糙。
+					PRINTFORML 「%MOAN()%...感、感觉怎么样...？」
+					PRINTFORMDW 你用腰部的动作作为回应，追寻着这种独特的快感。
+					PRINTFORML 「哈呜... %MOAN()%...你、你一直蹭着我的小、小豆豆...」
+					PRINTFORMDW 你调整角度故意用阴茎根部再次摩擦那里。
+					PRINTFORML 「%MOAN()%！果然是故意的嘛...」
+					PRINTFORMDW 你问她是否和你一样享受这个过程。
+					PRINTFORML 「感觉还不坏……下面的皮肤开始变得有点敏感而且--%MOAN()%！」
+					PRINTFORMDW 你坏笑着再次摩擦她的阴蒂，随后继续用肉棒磨蹭她的阴毛...
+				ELSE
+				;-------------------------------------------------
+				;高潮
+				;-------------------------------------------------
+					IF NOWEX:PLAYER:射精
+						IF FIRSTTIME("玩家因阴毛性爱而射精")
+							PRINTFORMDW 你狂乱地扭动着腰，感觉自己逐渐逼近高潮。
+							PRINTFORML 「W-等等，要是快到极限的话就别勉强了--」
+							PRINTFORMDW 你将你的 %SEMEN(,1)% 射进了她的阴毛根部，不过大部分都直接穿了过去。
+							PRINTFORML 「Hau...」
+							PRINTFORMDW 阿吽试图从阴毛间舀取一些，但立刻渗入其中并顽固地粘附在上面。
+							PRINTFORML 「真是乱七八糟…清理起来会很麻烦…」
+							PRINTFORMDW 你道歉并说会帮忙清理，但她摇了摇头。
+							PRINTFORML 「不用…没关系…只是…」
+							PRINTFORMDW 她带着复杂的表情看着自己阴部区域的精液...
+						ELSE
+							PRINTFORML 「%MOAN()%! %SPLIT_G("我能感觉到它在疯狂地跳动着...:变得越来越烫了...:你是不是快出来了...?:你是不是到极限了吗...？")%」
+							PRINTFORMDW 你%SPLIT_G("加快速度:弄乱她的阴毛:动作变得粗暴:再也无法停下:迷乱地摆动臀部")%并且%SPLIT_G("达到高潮:到达极限:射出来:射精:高潮")%。
+							PRINTFORMDW 你将尖端推入她阴毛的中心，然后%SPLIT_G("射出:释放:喷射:发射")% %SPLIT_G("一束束:一团团:一条条:一股")% %SEMEN(,1)%。
+							PRINTFORML 「%SPLIT_G("好烫好粘:这可不容易清洗:哇... 它粘得这么紧:我的阴毛会开始有这种味道")%... %SPLIT_G("我很高兴能让你感觉舒服:我很高兴你这么热切地做了:我并不是介意")%，但是...」
+							PRINTFORMDW 她%SPLIT_G("盯着:触摸:试图擦掉:舀起")%阴毛上的精液，脸上带着%SPLIT_G("矛盾的:困扰的:担心的")%表情...
+						ENDIF
+					ELSE
+					;-------------------------------------------------
+					;基本描述
+					;-------------------------------------------------
+						如果 SELECTCOM == PREVCOM
+							PRINTFORMDW 你继续 %SPLIT_G("毫不留情地:凶猛地:激烈地:无情地:疯狂地")% %SPLIT_G("摆动:移动:抽插:活塞运动")% 你的腰部来 %SPLIT_G("性交:交配:繁殖:通奸:交尾")% 她的阴毛。
+						ELSE
+							PRINTFORMDW 你 %SPLIT_G("让阿吽仰面躺下:与阿吽面对面站立:让阿吽骑乘你")%，将你的 %TINKO(MASTER)% 对准她的阴部并 %SPLIT_G("抽动:摆动:挺动:活塞运动")% 你的腰部。
+						ENDIF
+						PRINTFORMW 「%SPLIT_G(@"啊...你把下面的毛发弄得一团糟了...:%MOAN()%...你一直在玩弄我的阴、阴蒂...:你也有感觉吗？:%MOAN()%...有点痒痒的...:你还真是干劲十足啊...:要、要插入的话得再往下一点才行哦...？")%」
+					ENDIF
+				ENDIF
+				CALL K120_PUBIC_HAIR_SEX()
+				CALL K120_INSEMINATION_WASTE_COMMENT("onPubicHair")
+				RETURN 1
+			CASE 6
+				IF CFLAG:1004
+					SELECTCASE RAND:3
+						CASE 0
+					;爱抚与抚摸
+							PRINTFORMDW You %FSYN("stroke")% her %SPLIT_G("incredibly:amazingly:astonishingly")% %SPLIT_G("soft:fluffy:cushy")% tail and %SPLIT_G("your fingers turn all tingly:your fingers sink right in:you become entranced with it:find yourself unable to stop:concentrate a little on the base")%.
+							PRINTFORML 「%MOAN("m")%... %SPLIT_G("Hau:Hawa:Be gentle:Be careful")%...」
+							PRINTFORMDW Aunn %FSYN("squirm:s")% and lets out %FSYN("lewd")% %FSYN("moan:s")% with each %FSYN("stroke")%.
+							PRINTFORML 「%MOAN("m")%...my tail is...%MOAN("m")%...very...%MOAN("m")%...%SPLIT_G("important:vital:sensitive:delicate")%... So be %SPLIT_G("car:gen")%--%MOAN("h")%!」
+							PRINTFORMDW You enjoy stroking and teasing Aunn's tail for a while longer...
+						CASE 1
+					;梳理毛发
+							PRINTFORMDW You %SPLIT_G("comb:brush:groom:prim")% her %SPLIT_G("incredibly:amazingly:astonishingly")% %SPLIT_G("soft:fluffy:cushy")% tail with your fingers.
+							PRINTFORML 「%MOAN("m")%... %SPLIT_G("It's different from when I groom it myself...:Because my tail is curly it's normally hard to do this by myself...:Make sure to brush it along its growth, not against it!:Sometimes sticks and leaves get stuck in it...:Only you are allowed to do this, got it?")%」
+							SELECTCASE RAND:2
+								CASE 0
+						;粗糙的毛发
+									PRINTFORMDW Her fur is a bit %SPLIT_G("coarse:rough:messy:gruff:tangled")% in places and you take great care to %SPLIT_G("comb:brush:groom:prim:iron")% out any irregularities...
+								CASE 1
+						;顺滑的毛发
+									PRINTFORMDW 你在她的毛发中找不到任何不平整的地方，继续 %SPLIT_G("comb:brush:groom:prim")% 它，为你和她带来愉悦...
+							ENDSELECT
+						CASE 2
+					;将脸埋进去
+							PRINTFORMDW 你 %SPLIT_G("按压:摩擦:推挤:陷入")% 将脸埋入她 %SPLIT_G("柔软:蓬松:软绵绵")% 的尾巴里。
+							PRINTFORML 「%MOAN("m")%...」
+							PRINTFORMDW 你 %SPLIT_G("迅速地:敏捷地:立即地:瞬间地")% %SPLIT_G("被包裹于:升华至:迷失于")% %SPLIT_G("极乐:天堂:乐园:欣快感:纯粹的喜悦")% 并 %SPLIT_G("忘却凡躯的所有烦恼:超越生与死的境界:达到绝对的顿悟:置身于更高维度的存在层面:漂流至宇宙的广袤之中:感受思维的无尽扩张")%。
+							PRINTFORML 「%MOAN("m")%...」
+							PRINTFORML 「...?」
+							PRINTFORML 「%CALLNAME:MASTER%-san?!」
+							PRINTFORMDW 阿吽 %SPLIT_G("carefully shakes:gently slaps:gingerly calls out to")% 你，把你拉回意识之中。
+							PRINTFORML 「我还以为你在我身边死掉了呢！」
+							PRINTFORMDW 体验了无法言喻的极乐，你感觉稍微恢复了一些活力...
+							DOWNBASE:MASTER:体力 -= 10
+							DOWNBASE:MASTER:気力 -= 10
+					ENDSELECT
+					RETURN 1
+				ELSE
+					PRINTFORMDW 你已在心中做好了决定、却突然听到有个声音在你脑海中回响
+					PRINTFORMDL 
+					SETCOLOR C_AQUA
+					FONTBOLD
+					PRINTFORMW ...你能听见吗... ...你能听见吗 %CALLNAME:MASTER%...?
+					PRINTFORMW ...此刻...我将直接与你的心灵对话...能听见吗...?
+					PRINTFORMW ...想要触摸她毛茸茸的尾巴...你需要让她习惯更多的肌肤相亲...
+					PRINTFORMW ...肌肤相亲...你必须更多地与她亲密接触 %CALLNAME:MASTER%...
+					CALL SET_KOJO_COLOR(120)
+					FONTREGULAR
+					PRINTFORMDW 那个声音逐渐减弱、最终完全消失了...
+					RETURN 1
+				ENDIF
+				CALL K120_TOUCH_FLUFFY_TAIL()
+				RETURN 1
+			CASE 99
+				RETURN 1
+		ENDSELECT
+
+		;若执行到这里说明获得了无效值或选择了腋下选项但被拒绝
+		PRINTFORMDL 
+		CALL K120_DO_NOTHING_CHOICES()
+		PRINTFORMDL 
+		PRINTFORMDL 请输入0到6之间的值，或输入99表示不执行任何操作并返回。
+	LOOP 1
+ENDIF
+RETURN 1
+
+;==================================================
+;22,被诱惑
+;22,誘い受ける
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_22
+CALL M_KOJO_EGG_MESSAGE_COM_K120_22_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_22_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL
+	IF FLAG:70
+		RETURN 1
+	ENDIF
+
+	CALL K120_BE_SEDUCED_CHOICES()
+	DO
+		INPUT
+		SELECTCASE RESULT
+			CASE 0
+			;关于手部技巧的讨论
+				IF ABL:MASTER:指 >= 5
+					PRINTFORML 「只是被轻轻一碰就...」
+					PRINTFORMDW 阿吽显得有些动摇，她意识到你仅凭简单的触碰就能轻易让她扭动身躯
+					PRINTFORMDW 她发出明显的叹息声，但似乎并没有对此感到特别困扰
+					PRINTFORML 「连像被抚摸这种简单的动作都感觉太棒了...」
+					PRINTFORMDW 阿吽再次叹息，不过这次是红着脸主动靠向你
+					PRINTFORMDW 你回应她的要求温柔地抚摸着她的头...
+				ELSEIF ABL:MASTER:指 >= 3
+					PRINTFORML 「不管怎么碰我都会引发各种反应...」
+					PRINTFORMDW 阿吽红着脸挠了挠脸颊
+					PRINTFORML 「你的手指说不定正在变成某种邪恶的工具...」
+					PRINTFORMDW 你带着成就感看向自己的手...
+				ELSE
+					PRINTFORML 「你的抚摸有时候有点粗鲁呢」
+					PRINTFORML 「啊、但是...这说明你是真心诚意的！所以，我不介意！」
+					PRINTFORMDW 阿吽向你挥了挥拳头表示完全没问题...
+				ENDIF
+				RETURN 1
+			CASE 1
+			;讨论阴户技巧
+				IF !HAS_VAGINA(MASTER)
+					PRINTFORMDW 阿吽困惑地朝你眨了眨眼。
+					PRINTFORML 「那个... %CALLNAME:MASTER%-san？」
+					PRINTFORMDW 你发现自己没有阴户并很快意识到这个愚蠢的错误...
+				ELSEIF ABL:MASTER:膣 >= 5
+				;
+				ELSEIF ABL:MASTER:膣 >= 3
+				;
+				ELSE
+				;
+				ENDIF
+				RETURN 1
+			CASE 2
+			;谈论肛技
+				IF ABL:MASTER:肛門 >= 5
+				;
+				ELSEIF ABL:MASTER:肛門 >= 3
+				;
+				ELSE
+				;
+				ENDIF
+				RETURN 1
+			CASE 3
+			;谈论胸技
+				IF IS_MALE(MASTER)
+					PRINTFORMDW 阿吽困惑地朝你眨了眨眼睛。
+					PRINTFORML 「那个……这里什么都没有……吧？」
+					PRINTFORMDW 你平坦如板的身材让自己立刻意识到这个愚蠢的失误……
+				ELSEIF ABL:MASTER:胸 >= 5
+				;
+				ELSEIF ABL:MASTER:胸 >= 3
+				;
+				ELSE
+				;
+				ENDIF
+				RETURN 1
+			CASE 4
+			;谈论舌技相关
+				IF TALENT:キス未経験
+					PRINTFORMDW 阿吽局促不安地扭动身体、害羞地看着你。
+					PRINTFORML 「我、我们还没接过吻......所以......」
+					PRINTFORMDW 也许你应该尽快弥补这点再回来继续话题...
+					RETURN 1
+				ENDIF
+
+				IF ABL:MASTER:舌 >= 5
+					PRINTFORMDW 阿吽想起你的舌技、害羞地捂住了脸。
+					PRINTFORML 「不管是接吻还是下面的......你总是能准确找到我的敏感点......」
+					PRINTFORML 「每次都让人家浑身发软......」
+					PRINTFORMDW 阿吽羞得连连摇头、但似乎又有些暗喜...
+				ELSEIF ABL:MASTER:舌 >= 3
+					PRINTFORMDW 阿吽红着脸移开了视线。
+					PRINTFORML 「你、你真的很擅长这个……」
+					PRINTFORMDW 她害羞地看着你，手指轻轻按在自己的嘴唇上。
+					PRINTFORMDW 你不确定她是在索吻还是单纯在回忆你们相处的时光……
+				ELSE
+					PRINTFORML 「啊……那个……接吻是……」
+					PRINTFORML 「所以说……那个……」
+					PRINTFORMW 「是接、接吻啦！」
+					PRINTFORMDW 阿吽避而不答，你感觉完全没有得到任何有用的信息……
+				ENDIF
+				RETURN 1
+			CASE 5
+			;关于腰技的话题
+				IF (TALENT:処女 && !CFLAG:尻穴処女喪失記念日)
+					PRINTFORMDW 阿吽不安地扭动身体，羞怯地看向你。
+					PRINTFORML 「我、我从未见识过你的腰技......所以......」
+					PRINTFORMDW 或许该尽快弥补这点空白再重新讨论话题......
+					RETURN 1
+				ENDIF
+
+				IF ABL:MASTER:腰 >= 5
+					PRINTFORMDW 提起这个话题时阿吽满脸通红，迅速移开了视线。
+					PRINTFORML 「说、说实话，你太厉害了......」
+					PRINTFORML 「我一下子就融化掉了......」
+					PRINTFORMW 「这样有点让人担心啊......」
+					PRINTFORMDW 她依然不愿与你对视，小声嘟囔着。
+					FONTITALIC
+					PRINTFORMW 「不过因为是你的话，这样反应也没关系......」
+					FONTREGULAR
+				ELSEIF ABL:MASTER:腰 >= 3
+					PRINTFORMDW 阿吽似乎对这个话题有些困扰，但还是表达了她的意见。
+					PRINTFORML 「那个... 你做得很好，所以...」
+					PRINTFORMDW 她脸红了，扭捏不安。
+					PRINTFORMW 「干、干得好...」
+					PRINTFORMDW 阿吽带着一脸尴尬，小心翼翼地拍了拍你的头...
+				ELSE
+					PRINTFORMDW 阿吽将手指放在嘴边，认真地思考着。
+					PRINTFORML 「你的髋部动作有时候真是挺粗鲁的……」
+					PRINTFORML 「啊！但-但这反而让人觉得特别可爱！所-所以，别难过！」
+					PRINTFORMW 「这么认真地做--」
+					PRINTFORML 「--这让我也想全力以赴！」
+					PRINTFORMDW 她拍了拍你的背，还竖起了大拇指……
+				ENDIF
+				RETURN 1
+			CASE 99
+				PRINTFORMDW 阿吽的脸涨得通红，在你耳边轻声细语着甜言蜜语...
+				RETURN 1
+		ENDSELECT
+
+		;若执行到此则收到无效值
+		PRINTFORMDL 
+		CALL K120_BE_SEDUCED_CHOICES()
+		PRINTFORMDL 
+		PRINTFORMDL 请输入0到5之间的数值，或99
+	LOOP 1
+ENDIF
+RETURN 1
+
+;==================================================
+;23,枕边细语
+;23,ピロートーク
+;==================================================
+@M_KOJO_EGG_MESSAGE_COM_K120_23
+CALL M_KOJO_EGG_MESSAGE_COM_K120_23_1
+RETURN RESULT
+
+@M_KOJO_EGG_MESSAGE_COM_K120_23_1
+;-------------------------------------------------
+;記入チェック（=0, 非表示、1, 表示）
+LOCAL = 1
+;-------------------------------------------------
+IF LOCAL
+	IF FLAG:70
+		RETURN 1
+	ENDIF
+
+	CALL K120_PILLOW_TALK_CHOICES()
+	DO
+		INPUT
+		SELECTCASE RESULT
+			CASE 0
+			;关于手上的技巧
+				IF ABL:TARGET:指 >= 5
+					PRINTFORML 「我的双手变得相当灵巧了呢」
+					PRINTFORML 「那、那个……是在私下里的事情上啦……」
+					PRINTFORMDW 阿吽似乎对这个发现有些纠结，但还是向你露出了微笑。
+					PRINTFORML 「我的这双手！将永远侍奉您， %CALLNAME:MASTER%大人！」
+					PRINTFORMDW 她戏剧性地双手叉腰挺起%OPPAI_DESCRIPTION_TR(TARGET)%...
+					IF FIRSTTIME("AunnMaxedHandTechnique")
+						PRINTFORML 
+						CALL COLORMESSAGE(@"你目睹阿吽惊人的成长后感到内心有所变化",C_GREEN,1,1)
+						CALL COLORMESSAGE(@"最大精力 + 50!",C_GREEN,2,1)
+						MAXBASE:MASTER:精力 += 50
+					ENDIF
+				ELSEIF ABL:TARGET:指 >= 3
+					PRINTFORML 「我终于掌握使用手指和双手的诀窍了」
+					PRINTFORMW 「虽然一开始有点害怕，但现在终于有自信了！」
+					PRINTFORML 「我的努力有传达到...对吧？」
+					PRINTFORMDW 她用小狗般的眼神望着你并扑闪着睫毛...
+				ELSE
+					PRINTFORMW 「我的手指... 得好好用它来让%CALLNAME:MASTER%舒服才行。」
+					PRINTFORML 「不过必须要小心不能太粗暴伤到%CALLNAME:MASTER%呢...」
+					PRINTFORMDW 阿吽不安分地摆弄着自己的手指。
+					PRINTFORML 「但是，如果太温柔的话效果就会大打折扣...」
+					PRINTFORMDW 她凝视着自己的双手，眉头紧蹙显露出坚定的决心。
+					PRINTFORMW 「我会为了%CALLNAME:MASTER% %CALLNAME:MASTER%-san拼尽全力的！」
+				ENDIF
+				RETURN 1
+			CASE 1
+			;关于膣技的谈话
+				IF ABL:TARGET:膣 >= 5
+					PRINTFORML 「我的膣已经完全适应%CALLNAME:MASTER% %CALLNAME:MASTER%-san的肉棒形状了...」
+					PRINTFORMDW 虽然说着这种话本应悲伤，但她却洋溢着发自内心的幸福。
+					PRINTFORML 「感谢您总是给予如此多的关爱！」
+					PRINTFORMDW 面对如此天真无邪的道谢，您一时不知该如何回应...
+					IF FIRSTTIME("AunnMaxedVaginaTechnique")
+						PRINTFORML 
+						CALL COLORMESSAGE(@"你见证阿吽的巨大成长后，心中产生了某种变化。",C_GREEN,1,1)
+						CALL COLORMESSAGE(@"精力最大值 + 50!",C_GREEN,2,1)
+						MAXBASE:MASTER:精力 += 50
+					ENDIF
+				ELSEIF ABL:TARGET:膣 >= 3
+					PRINTFORML 「我、我的小穴已经变得很熟练了…」
+					PRINTFORMDW 阿吽揉着下腹部露出了些许笑容
+					PRINTFORML 「明明最开始还那么痛呢。但是现在总是想要…更、更多的…」
+					PRINTFORMDW 她红着脸如此宣告道…
+				ELSE
+					IF TALENT:処女
+						PRINTFORML 「我从来没有…那、那种经验…」
+						PRINTFORMDW 阿吽红着脸移开了视线
+						PRINTFORML 「那、那个…我现在还不太能谈论那种事情…」
+						IF TALENT:恋慕
+							PRINTFORMDW 她再次与你的目光交汇，你察觉到其中隐约流露出一丝渴望…
+						ELSE
+							PRINTFORMDW 也许在她经历过第一次之后再来谈论这个话题会比较好吧…
+						ENDIF
+					ELSE
+						PRINTFORML 「最开始有点疼、不过现在已经没问题了…」
+						PRINTFORMDW 阿吽小心翼翼地揉着自己小腹下方
+						PRINTFORML 「我的那个地方…」
+						IF TALENT:恋慕
+							PRINTFORML 「你以后也会好好疼爱它的、对吧？」
+							PRINTFORMDW 她用小狗般湿润的眼神注视着你，但瞳孔深处却蕴含着某种坚定的渴望…
+						ELSE
+							PRINTFORML 「要温柔对待它、好吗？」
+							PRINTFORMDW 她用小狗般纯真的眼神望着你，你再次保证自己会小心对待...
+						ENDIF
+					ENDIF
+				ENDIF
+				RETURN 1
+			CASE 2
+			;关于肛技的讨论
+				IF ABL:TARGET:肛門 >= 5
+					PRINTFORMW 「现在被插入的时候会紧紧缠绕上来了呢...」
+					PRINTFORML 「哈呜...我的肮脏部位已经彻底变得下流了...」
+					PRINTFORMDW 阿吽把脸埋在手掌里左右摇晃着脑袋否认现实。
+					PRINTFORML 「但是...」
+					PRINTFORMDW 她突然凑近你的耳边低声呢喃。
+					FONTITALIC
+					PRINTFORML 「感觉真的很好～...」
+					FONTREGULAR
+					PRINTFORMDW 阿吽又恢复了摇头的日常动作，不过这次还附加了甜菜根般通红的脸色...
+					IF FIRSTTIME("AunnMaxedAnalTechnique")
+						PRINTFORML 
+						CALL COLORMESSAGE(@"在目睹了阿吽的巨大成长后，你感觉内心产生了某种变化。",C_GREEN,1,1)
+						CALL COLORMESSAGE(@"最大气力 +50！",C_GREEN,2,1)
+						MAXBASE:MASTER:精力 += 50
+					ENDIF
+				ELSEIF ABL:TARGET:肛門 >= 3
+					PRINTFORML 「哈呜...没想到我的肮脏的地方竟然会变得这么习惯这种事啊...」
+					PRINTFORMDW 阿吽用双手捂住脸庞，却又透过指缝偷偷瞄着你
+					PRINTFORMW 「这都是你的错， %CALLNAME:MASTER%-san！」
+					PRINTFORML 「你会负起责任的...对吧？」
+					PRINTFORMDW 她又突然合拢手指，不让你看见她的表情...
+				ELSE
+					IF TCVAR:Ａ破瓜
+						PRINTFORML 「等、等等…连那里也可以进去吗？」
+						PRINTFORMDW 阿吽满脸通红地用震惊的眼神看着你。
+						PRINTFORML 「不、不可能…因为…那里可是很脏的地方啊…！」
+						PRINTFORMDW 你安慰她这并非罕见的行为。
+						PRINTFORML 「但、但是…那样会舒服吗？」
+						PRINTFORMDW 你点了点头。
+						PRINTFORML 「哈哇…怎么会…」
+						PRINTFORMDW 你询问她是否讨厌这种想法。
+						PRINTFORML 「欸？啊…不、不是…如果主人真的想的话…」
+						PRINTFORMDW 她虽然有些犹豫但并没有完全拒绝...
+					ELSE
+						PRINTFORML 「倒不是说感觉不好啦，不过…」
+						PRINTFORML 「那个…下面的地方有什么问题吗？」
+						PRINTFORMDW 你告诉她多样性是生活的调味料。
+						PRINTFORML 「多样化是很好啦，但是…」
+						IF TALENT:恋慕
+							PRINTFORML 「不要冷落我的特别部位哦？」
+							PRINTFORMDW 阿吽揉着自己的下腹部，用充满欲望的眼神看着你…
+						ELSE
+							PRINTFORML 「啊-…不、没什么」
+							PRINTFORMDW 阿吽似乎有什么心事，但不愿明说…
+						ENDIF
+					ENDIF
+				ENDIF
+				RETURN 1
+			CASE 3
+			;关于胸技的话题
+				IF ABL:TARGET:胸 >= 5
+					PRINTFORML 「我现在对自己的技术超有自信啦！」
+					PRINTFORML 「而且我还学会了如何用我的%COND_STR(@" small", TALENT:胸圍 <= 0)%胸部好好伺候你！」
+					PRINTFORMDW 阿吽用手指描绘着自己胸部的轮廓。
+					PRINTFORMW 「我有仔细观察你的反应、非常清楚什么能让你最舒服...」
+					PRINTFORMDW 阿吽虽然自信满满地朝你微笑，但脸上泛起的红晕和窘迫却逃不过你的眼睛...
+					IF FIRSTTIME("AunnMaxedChestTechnique")
+						PRINTFORML 
+						CALL COLORMESSAGE(@"你感受到见证阿吽巨大成长后内心的变化。",C_GREEN,1,1)
+						CALL COLORMESSAGE(@"Maximum Vigor + 50!",C_GREEN,2,1)
+						MAXBASE:MASTER:精力 += 50
+					ENDIF
+				ELSEIF ABL:TARGET:胸 >= 3
+					PRINTFORML 「我总是不确定这样是否真的舒服」
+					PRINTFORMW 「但抬头看到你享受的表情、所有不安就立刻烟消云散了！」
+					PRINTFORMDW 她充满自信的笑容让你同样欣喜于她的稳步成长...
+				ELSE
+					IF TALENT:胸圍 <= 0
+						PRINTFORML 「不知道该怎么做…」
+						PRINTFORMW 「毕竟这里也没多少料，剩下的办法就只有揉搓表面了…」
+						PRINTFORMDW 你向她保证只要尽力而为，对你来说就已经足够好了。
+						PRINTFORML 「既、既然你都这么说了…」
+						PRINTFORMDW 阿吽虽然红着脸挠脸颊，但看起来很开心。
+					ELSE
+						PRINTFORML 「自己动手感觉有点难呢」
+						PRINTFORML 「把它们挤在一起会好些，但总担心用力过猛会弄疼你」
+						PRINTFORMDW 你拍拍她的头并告诉她只要尽力而为，慢慢就会掌握窍门了。
+						PRINTFORMDW 阿吽元气满满地点点头，朝你挥了挥拳头表示一定会做到...
+					ENDIF
+				ENDIF
+				RETURN 1
+			CASE 4
+			;谈论舌技
+				IF ABL:TARGET:舌 >= 5
+					PRINTFORML 「看我现在能做到这样了！」
+					PRINTFORMDW 阿吽将舌头伸得老长，再次提醒你她本质上是妖怪的事实
+					PRINTFORML 「安...吸吸！（还...有这招！）」
+					PRINTFORMDW 接着她将舌头侧向翻转卷曲成螺旋状
+					PRINTFORML 「酷...吧？（厉害吧？）」
+					PRINTFORMDW 阿吽对此显然非常自豪，你赞许地摸了摸她的头
+					PRINTFORML 「欸嘿嘿～...我一定会好好用在您身上的！」
+					PRINTFORMDW 她脸上泛起红晕，但仍努力向你露出自信的笑容...
+					IF FIRSTTIME("AunnMaxedTongueTechnique")
+						PRINTFORML 
+						CALL COLORMESSAGE(@"见证阿吽的巨大成长后，你感受到内心发生了变化。",C_GREEN,1,1)
+						CALL COLORMESSAGE(@"最大元气值 + 50!",C_GREEN,2,1)
+						MAXBASE:MASTER:精力 += 50
+					ENDIF
+				ELSEIF ABL:TARGET:舌 >= 3
+					PRINTFORML 「我的舌头和下巴不再会累啦！」
+					PRINTFORMDW 阿吽为稳步提升的成果感到欣喜。
+					PRINTFORML 「但总觉得技巧方面还是有所欠缺啊…」
+					PRINTFORMDW 她交叉双臂开始认真思考自己的技艺。
+					PRINTFORML 「你、你会继续帮我提升的…对吧？」
+					PRINTFORMDW 阿吽红着脸提出请求，你立即点头回应...
+				ELSE
+					PRINTFORML 「用舌头很舒服对吧？」
+					PRINTFORMW 「但真的没想到会这么辛苦…」
+					PRINTFORMW 「舌头很快就会干涩发累」
+					PRINTFORMW 「舌尖也容易变得刺痛」
+					PRINTFORMW 「过段时间连下巴都会酸痛起来」
+					PRINTFORMDW 你惊讶于阿吽竟然会如此细致地抱怨。
+					PRINTFORML 「啊！但这并不是我在抱怨什么的」
+					IF TALENT:恋慕
+						PRINTFORML 「只要能让你觉得舒服的话那就全都值得啦！」
+						PRINTFORMDW 阿吽带着发自内心的坚定决心向你展露笑容...
+					ELSE
+						PRINTFORML 「所-所以别担心我！」
+						PRINTFORMDW 阿吽试着安慰你……
+					ENDIF
+				ENDIF
+				RETURN 1
+			CASE 5
+			;谈论腰部技巧
+				IF ABL:TARGET:腰 >= 5
+					PRINTFORML 「我知道你所有的弱点！」
+					PRINTFORMW 「速度、节奏、角度、动作……」
+					PRINTFORML 「呵呵呵...咱会好好利用这些弱点、让你爽到天～国哟！」
+					PRINTFORMDW 你只能点头确认阿吽的自信。共度的时光确实将她在这方面锻炼得相当出色...
+					IF FIRSTTIME("AunnMaxedWaistTechnique")
+						PRINTFORML 
+						CALL COLORMESSAGE(@"目睹阿吽巨大成长后的你感受到内心的变化。",C_GREEN,1,1)
+						CALL COLORMESSAGE(@"最大精力 + 50!",C_GREEN,2,1)
+						MAXBASE:MASTER:精力 += 50
+					ENDIF
+				ELSEIF ABL:TARGET:腰 >= 3
+					PRINTFORMW 「咱觉得差不多掌握诀窍了」
+					PRINTFORML 「体力的持久度好像也提升了不少」
+					PRINTFORMDW 她抱着胳膊自我肯定地点了点头
+					PRINTFORML 「既能让你舒服又能锻炼自己...简直是双赢的局面嘛！」
+					PRINTFORMDW 阿吽虽然红着脸却依然向你绽放着笑容...
+				ELSE
+					PRINTFORML 「扭、扭动腰肢真的好累啊…」
+					PRINTFORMDW 阿吽揉着自己的腰腹部位。
+					PRINTFORML 「我真的没问题吗…？」
+					PRINTFORMDW 她似乎对自身技巧不足感到不安。
+					PRINTFORML 「啊，但、但为了你， %CALLNAME:MASTER%-san，我会努力的！」
+					PRINTFORMDW 阿吽从为你效力的决心中寻得了一丝安心...
+				ENDIF
+				RETURN 1
+			CASE 99
+				PRINTFORMDW 你在阿吽耳边低语甜言蜜语，她顿时满脸通红...
+				RETURN 1
+		ENDSELECT
+
+		;若执行至此说明存在无效值
+		PRINTFORMDL 
+		CALL K120_PILLOW_TALK_CHOICES()
+		PRINTFORMDL 
+		PRINTFORMDL 请输入一个介于0和5之间的值，或99
+	LOOP 1
+ENDIF
+RETURN 1
