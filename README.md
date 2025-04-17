@@ -1,1 +1,1 @@
-# Mimis-Added-Club
+# Mimi’s-Translators-Club
