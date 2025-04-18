@@ -55,8 +55,8 @@ IF LOCAL
 	;-------------------------------------------------
 	IF CHK_DATENOW(CFLAG:TARGET:デート中)
 		SELECTCASE CFLAG:MASTER:現在位置
-			;移动中
-			;道中
+				;移动中
+				;道中
 			CASE ROAD_TO(CFLAG:MASTER:デート中)
 				IF TALENT:恋慕
 					;
@@ -64,13 +64,13 @@ IF LOCAL
 					;
 				ENDIF
 
-			;波力神社
-			;博麗神社
+				;波力神社
+				;博麗神社
 			CASE 10 TO 90
 				;
 
-			;魔法森林
-			;魔法の森
+				;魔法森林
+				;魔法の森
 			CASE 森林的入口, 古木的大樹, 霧雨魔法店, 人偶的洋館
 				SELECTCASE RAND:3
 					CASE 0
@@ -262,7 +262,7 @@ IF LOCAL
 						ENDSELECT
 				ENDSELECT
 
-			;魔森 -> 香霖堂
+				;魔森 -> 香霖堂
 			CASE 香霖堂
 				;Intro - Firsttime below is the final (current) event
 				IF FIRSTTIME("AunnKourindouFindsPolaroidCamera", 1)
@@ -279,81 +279,83 @@ IF LOCAL
 					PRINTFORML 「这个...还挺好玩......」
 					PRINTFORMDW 她尝试着把彩虹圈从一只手弹到另一只手
 					PRINTFORML 「喔! 这个....」
-					PRINTFORMDW Aunn flips the toy down to the ground, pulls on it hard and it bounces back into her hand.
-					PRINTFORML 「And then if I do this...!」
-					PRINTFORMDW She spins it with both her hands and creates a mesmerizing pattern with it.
-					PRINTFORMDW Seeing how much she enjoys it, you ask her if you should buy it for her.
-					PRINTFORML 「Nah...」
-					PRINTFORMDW Aunn puts the toy back on the shelf where she found it.
-					PRINTFORML 「I'm all done!」
-					PRINTFORMDW It seems she's already bored with it...
+					PRINTFORMDW 阿吽把彩虹圈扔到地上，再用力拉扯，它又弹回了她的手中。
+					PRINTFORML 「这样...然后...」
+					PRINTFORMDW 她用双手在空中旋转摆动着, 画出一道彩色的飞龙。
+					PRINTFORMDW 看到她玩得如此开心，你正打算买一个
+					PRINTFORML 「啊...」
+					PRINTFORMDW 阿吽把玩具放回了架子上。
+					PRINTFORML 「已经玩够啦！」
+					PRINTFORMDW 看起来她已经对它感到无聊了...
 				ELSEIF FIRSTTIME("AunnKourindouFindsPiggybank")
-					PRINTFORML 「Wazzat?」
-					PRINTFORMDW Aunn is holding a pink rectangular piggy bank with a blue planet motif on it.
-					PRINTFORML 「Is there something in there?」
-					PRINTFORMDW She looks through the slit at the top and promptly shakes it.
-					PRINTFORMDW You explain the concept of using it to store loose coins.
-					PRINTFORML 「Ooooh! Kinda like an offertory box.」
-					PRINTFORMDW Aunn looks back at the piggy bank and shakes it again in hopes that coins fall out of it.
-					PRINTFORMDW However, much to her dismay, it doesn't even produce a sound.
-					PRINTFORMW 「But I don't really get it.」
-					PRINTFORMW 「Just put your coins in a shrine's offertory box instead!」
-					PRINTFORMW 「You get rid of them and thank the gods at the same time!」
-					PRINTFORMW 「So this weird storing box here is entirely unnecessary.」
-					PRINTFORMDW She puts the box back where she found it and holds out her hands.
-					PRINTFORMW 「Or just give it to this trusty Komainu and I'll convey your gratitude myself!」
-					PRINTFORMDW You place some imaginary coins into Aunn's outstretched hands.
-					PRINTFORML 「Ehehe～! I'll convey your gratitude right away!!」
-					PRINTFORMDW Aunn claps her hands twice and closes her eyes.
-					PRINTFORMDW You joke if she is taking on the role of Inari's fox messengers now.
-					PRINTFORMDW She suddenly opens her eyes and wags her finger at you.
-					PRINTFORML 「I'm a Komainu! You hear? A Ko-ma-i-nu! Not some dumb fox!」
-					PRINTFORMDW It seems you struck a nerve and quickly drop the topic...
+					PRINTFORML 「这是...啥...」
+					PRINTFORMDW 阿吽拿着一个画着蓝色星球图案的粉色长方形存钱罐。
+					PRINTFORML 「这里面有什么吗？」
+					PRINTFORMDW 她透过顶部的缝隙往里面瞅了瞅。
+					PRINTFORMDW 你向她解释这是用来存零钱的存钱罐。
+					PRINTFORML 「噢噢！就像神社的赛钱箱嘛。」
+					PRINTFORMDW (呃...还是有点区别吧)
+					PRINTFORMDW 阿吽再次看向存钱罐，满怀期待地摇晃着希望有硬币掉出来。
+					PRINTFORMDW 什么声音都没有...果然是空的
+					PRINTFORMW 「呐, 我还是不太明白。」
+					PRINTFORMW 「直接把钱投进神社的赛钱箱不就好了嘛！」
+					PRINTFORMW 「既能处理零钱又能感谢神明！」
+					PRINTFORMW 「所以这种奇怪的储蓄罐完全没必要存在啦。」
+					PRINTFORMDW (投进赛钱箱啊...大概率是拿不回来了吧...)
+					PRINTFORMW 「或者直接交给可靠的狛犬，让我亲自传达你的谢意吧！」
+					PRINTFORMDW 你假装把硬币放进阿吽摊开的手掌里。
+					PRINTFORML 「嘿嘿嘿～!」
+					PRINTFORMDW 阿吽啪地合掌两次闭上了眼睛。
+					PRINTFORMDW 哇, 好像是在扮演狐狸使者吧
+					PRINTFORMDW 她突然睁开眼朝你摇了摇手指
+					PRINTFORML 「我可是狛犬！才不是什么蠢狐狸！」
+					PRINTFORMDW 好像戳到痛处了...你赶紧结束了这个话题...
 				ELSEIF FIRSTTIME("AunnKourindouFindsBobbleHead")
-					PRINTFORML 「What's this weird figurine of a dog?」
-					PRINTFORMW 「Why is its head so big?」
-					PRINTFORMDW Aunn is inspecting a bobble head in the form of a shiba inu.
-					PRINTFORMDW It's about the size of your hand and has its tongue hanging out in a grin.
-					PRINTFORMDW You tell Aunn to tap its head.
-					PRINTFORML 「Tap its head?」
-					PRINTFORMDW She looks back at the figurine in confusion, but does as instructed.
-					PRINTFORML 「Oooh! Its head is moving all weirdly!」
-					PRINTFORMDW Aunn taps it again.
-					PRINTFORML 「Ehehe. It's kinda cute!」
-					PRINTFORMDW She tries to mimic the dog's bobbing head.
-					PRINTFORMDW You are blessed with a rare sight and conclude that Aunn is a thousand times cuter than the figurine...
+					PRINTFORML 「这个奇怪的...狗..？这是啥」
+					PRINTFORMW 「为什么脑袋这么大」
+					PRINTFORMDW 阿吽正在端详一个柴犬造型的摇头玩偶, 大概有手掌大小, 正吐着舌头露出傻笑。
+					PRINTFORMDW 你让阿吽敲敲它的脑袋
+					PRINTFORML 「敲脑袋？...嗯...」
+					PRINTFORMDW 咚!
+					PRINTFORML 「喔!! 哈哈!」
+					PRINTFORMDW 玩具狗的脑袋晃动起来
+					PRINTFORMDW 阿吽再次轻敲了它的头。
+					PRINTFORML 「嘿嘿嘿...有点可爱呢！」
+					PRINTFORMDW 她试着模仿狗狗摇头晃脑的样子。
+					PRINTFORMDW 看到了无比珍奇的场面啊! 阿吽比摆件可爱一千倍!
 				ELSEIF FIRSTTIME("AunnKourindouFindsPainting")
-					PRINTFORML 「Woah... So pretty...」
-					PRINTFORMDW Aunn stares at an ukiyo-e painting of a woman in a lavish sky-blue kimono.
-					PRINTFORMDW The woman stands in a river and fish pass by her bare feet.
-					PRINTFORMDW A sakura tree stands tall next to the river and blossoms under the spring sun.
-					PRINTFORMDW AUnn pries her attention away from the painting and raises her arms to inspect herself.
-					PRINTFORML 「Compared to that I look so simple and uninteresting.」
-					PRINTFORMDW Aunn gives you a bitter smile.
+					PRINTFORML 「哇啊...好漂亮...」
+					PRINTFORMDW 阿吽正凝视着一幅身着奢华天蓝色和服女子的浮世绘。
+					PRINTFORMDW 画中女子立于川上，赤裸双足旁鱼群游过
+					PRINTFORMDW 河畔樱树巍然矗立, 满树樱花在春日下绽放
+					PRINTFORMDW 阿吽将注意力从画作上移开，抬起双臂审视自己
+					PRINTFORML 「那样相比的话...我看起来真是平凡无趣呢...」
+					PRINTFORMDW 阿吽向你露出苦涩的微笑。
 					PRINTFORML 
-					PRINTFORMDL [ 0] 「You are the cutest thing in all of Gensokyo!」
-					PRINTFORMDL [ 1] 「Everyone has their own charms.」
+					PRINTFORMDL [ 0] 「阿吽才是幻想乡最可爱的！」
+					PRINTFORMDL [ 1] 「每个人都有自己的魅力啦」
 					DO
 						INPUT
 						PRINTFORML 
 						SELECTCASE RESULT
 							CASE 0
-								PRINTFORMDW You shower her with praise and head pats.
-								PRINTFORML 「Hawa...! B-But--」
-								PRINTFORMDW You don't let her finish her sentence and intensify the patting to reassure her.
-								PRINTFORML 「Hau... O-Okay...」
-								PRINTFORMDW Aunn blushes and fidgets as you continue to repeatedly call her cute...
+								PRINTFORMDW 你赞赏着轻抚她的头
+								PRINTFORML 「哈哇…！但、但是——」
+								PRINTFORMDW 你不让她说完就加大了摸头的力度...
+								PRINTFORML 「哈呜...好、好吧...」
+								PRINTFORMDW 阿吽红着脸扭动着身体，而你还在不断重复说她很可爱...
 								BREAK
 							CASE 1
-								PRINTFORMW 「But not me...」
-								PRINTFORMW 「Reimu-san has this natural beauty to her.」
-								PRINTFORMW 「And Marisa-san just looks good no matter what she puts on.」
-								PRINTFORML 「Meanwhile I'm just--」
-								PRINTFORMW 「--Where are you going?」
-								PRINTFORMDW You ask Rinnosuke if he has a hair tie lying around, and are handed a piece of string instead.
-								PRINTFORMW 「Huh? What's that for?」
+								PRINTFORMW 「但是我没有...」
+								PRINTFORMW 「灵梦小姐天生丽质..」
+								PRINTFORMW 「魔理沙小姐也是...不管穿什么都很好看」
+								PRINTFORML 「但是...我只是...」
+								PRINTFORMW 「————欸? 你去哪儿? 」
+								PRINTFORMDW 你问霖之助有没有多余的发圈，他却递给你一根绳线。
+								PRINTFORMW 「嗯？这是干什么用的？」
 								IF !TALENT:恋慕
-									PRINTFORMDW You ask Aunn for permission to comb and style her hair and she reluctantly agrees.
+									PRINTFORMDW 你请求阿吽允许你帮她梳理和造型头发
+									PRINTFORMDW 她有些不情愿地同意了
 								ENDIF
 								PRINTFORMDW You move behind Aunn and carefully comb her unruly hair with your fingers.
 								PRINTFORMDW You then bundle and tie it together with the string.
